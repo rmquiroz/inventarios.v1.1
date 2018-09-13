@@ -17,6 +17,7 @@ public class inicio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					System.out.println("hola");
 					inicio frame = new inicio();
 					frame.setVisible(true);
 				} catch (Exception e) {
