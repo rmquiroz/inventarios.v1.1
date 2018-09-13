@@ -5,10 +5,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
+import usuarios.usuario;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,8 +22,8 @@ import java.awt.event.ActionEvent;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField txtusuario;
+	private JPasswordField txtpass;
 
 	/**
 	 * Launch the application.
@@ -57,14 +63,14 @@ public class Login extends JFrame {
 		lblContrasea.setBounds(32, 185, 117, 34);
 		contentPane.add(lblContrasea);
 
-		textField = new JTextField();
-		textField.setBounds(142, 122, 170, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtusuario = new JTextField();
+		txtusuario.setBounds(142, 122, 170, 20);
+		contentPane.add(txtusuario);
+		txtusuario.setColumns(10);
 
-		passwordField = new JPasswordField();
-		passwordField.setBounds(142, 192, 170, 25);
-		contentPane.add(passwordField);
+		txtpass = new JPasswordField();
+		txtpass.setBounds(142, 192, 170, 25);
+		contentPane.add(txtpass);
 
 		JLabel lblSistemaDeToma = new JLabel("SISTEMA DE TOMA DE INVENTARIOS");
 		lblSistemaDeToma.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -91,7 +97,29 @@ public class Login extends JFrame {
 	}
 
 	protected void ingresar() {
-		// TODO Auto-generated method stub
+		String usuario = txtusuario.getText();
+		String pass = String.valueOf(txtpass.getPassword());
+
+		gestionusuario gestionusuario = new gestionusuario();
+
+		usuarios.usuario usuario2 = new usuario();
+		usuario2.setUsuario(usuario);
+		usuario2.setPass(pass);
+
+		usuarios.usuario usu = gestionusuario.obtenerusuario(usuario2);
+
+		if (usu != null) {
+			JOptionPane.showMessageDialog(contentPane, "Bienvenido de nuevo");
+			
+			this.dispose();
+			//con esto muestro la ventana inicial
+			inicio bienvenido = new inicio();
+			bienvenido.setVisible(true);
+		} else {
+			JOptionPane.showMessageDialog(contentPane, "Datos incorectos",
+					"Error", JOptionPane.ERROR_MESSAGE);
+
+		}
 
 	}
 
