@@ -1,0 +1,70 @@
+<ui:composition template="/templates/plantilla.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<h:form>
+			<p:panel id="panel" header="Nuevo Usuario"
+				style="margin-bottom:10px;">
+				<p:messages id="messages" />
+				<h:panelGrid columns="2">
+
+					<h:outputLabel for="usuario" value="Usuario" />
+					<p:inputText id="usuario" required="true" maxlength="30"
+						value="#{userMB.username}"
+						requiredMessage="El usuario es obligatorio"
+						validatorMessage="El usuario permite solo letras">
+						<f:validateRegex pattern="[A-Za-z ]*" />
+						<p:clientValidator />
+					</p:inputText>
+
+					<h:outputLabel for="nombres" value="Nombre(s)" />
+					<p:inputText id="nombres" required="true" maxlength="80"
+						value="#{userMB.name}" requiredMessage="El nombre es obligatorio"
+						validatorMessage="El nombre permite solo letras">
+						<f:validateRegex pattern="[A-Za-z ]*" />
+					</p:inputText>
+
+					<h:outputLabel for="apellidop" value="Paterno" />
+					<p:inputText id="apellidop" required="true" maxlength="80"
+						value="#{userMB.surname}"
+						requiredMessage="El Apellido Paterno es obligatorio"
+						validatorMessage="El apellido paterno permite solo letras">
+						<f:validateRegex pattern="[A-Za-z ]*" />
+					</p:inputText>
+
+
+					<h:outputLabel for="apellidom" value="Materno" />
+					<p:inputText id="apellidom" maxlength="80" value="#{userMB.mname}"
+						validatorMessage="El apellido materno permite solo letras">
+						<f:validateRegex pattern="[A-Za-z ]*" />
+					</p:inputText>
+
+					<h:outputLabel for="rol" value="Rol:" />
+					<p:selectOneMenu id="rol" value="#{userMB.rol}">
+						<f:selectItem itemLabel="Seleccione el Rol" itemValue="" />
+						<f:selectItem itemLabel="Administrador" itemValue="ROLE_ADMIN" />
+						<f:selectItem itemLabel="Operador" itemValue="ROLE_USER" />
+						<!-- <f:selectItems value="#{userMB.roles}" itemValue="#{x}" var="x" itemLabel="#{x.name}" /> -->
+					</p:selectOneMenu>
+
+				</h:panelGrid>
+
+
+				<p:commandButton value="Guardar" icon="ui-icon-check" update="panel"
+					actionListener="#{userMB.addUser}" style="margin-right:50px;" />
+
+				<p:commandButton value="Limpiar" update="panel" process="@this"
+					style="margin-right:20px;">
+					<p:resetInput target="panel" />
+				</p:commandButton>
+
+				<p:commandButton type="button" onclick="history.back()"
+					value="Regresar" icon="ui-icon-return" />
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

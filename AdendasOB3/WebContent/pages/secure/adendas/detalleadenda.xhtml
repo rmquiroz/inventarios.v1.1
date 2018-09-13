@@ -1,0 +1,841 @@
+<ui:composition template="/templates/plantilla.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+
+		<h:form>
+			<p:remoteCommand name="rc" update="msgs"
+				actionListener="#{facturaMB.export}" />
+
+			<p:growl id="msgs" showDetail="true" />
+
+			<p:panel id="opcEmitir">
+				<p:commandButton type="button" onclick="history.back()"
+					value="Regresar" icon="ui-icon-return" />
+				<p:commandButton type="button" onclick="rc()" value="Emitir"
+					icon="ui-icon-refresh" rendered="#{facturaMB.emitida eq false}"
+					update="opcEmitir" />
+				<h:outputText rendered="#{facturaMB.emitida eq true}"
+					value="Esta factura ya fue emitida con anterioridad, no puede volver a enviarse" />
+			</p:panel>
+
+
+			<h3>Emisor</h3>
+			<p:dataTable resizableColumns="true" var="head"
+				value="#{facturaMB.dirFiscal}" style="width:200%;" scrollable="true"
+				scrollWidth="100%" editable="true" editMode="cell"
+				widgetVar="cellDirFiscal">
+				<p:column headerText="Nombre" style="width:100px">
+					<h:outputText id="emisor#{rowIndex}"
+						value="#{head.nombreEmisorVende}" />
+					<p:tooltip id="tipemisor#{rowIndex}" for="emisor#{rowIndex}"
+						value="#{head.nombreEmisorVende}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="R.F.C." style="width:80px">
+					<h:outputText value="#{head.rfc}" />
+				</p:column>
+
+
+				<p:column headerText="GLN" style="background: #A99D80;width:80px">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{head.gln}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{head.gln}" style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{head.gln}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+
+				<p:column headerText="Calle" style="width:200px">
+					<h:outputText id="calle#{rowIndex}" value="#{head.calle}" />
+					<p:tooltip id="tipcalle#{rowIndex}" for="calle#{rowIndex}"
+						value="#{head.calle}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="No." style="width:50px">
+					<h:outputText id="noext#{rowIndex}" value="#{head.noExterior}" />
+					<p:tooltip id="tipnoext#{rowIndex}" for="noext#{rowIndex}"
+						value="#{head.noExterior}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="No.Int." style="width:80px">
+					<h:outputText id="noint#{rowIndex}" value="#{head.noInterior}" />
+					<p:tooltip id="tipnoint#{rowIndex}" for="noint#{rowIndex}"
+						value="#{head.noInterior}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Colonia" style="width:150px">
+					<h:outputText id="colonia#{rowIndex}" value="#{head.colonia}" />
+					<p:tooltip id="tipcolonia#{rowIndex}" for="colonia#{rowIndex}"
+						value="#{head.colonia}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Municipio" style="width:150px">
+					<h:outputText id="municipio#{rowIndex}" value="#{head.municipio}" />
+					<p:tooltip id="tipmunicipio#{rowIndex}" for="municipio#{rowIndex}"
+						value="#{head.municipio}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Estado" style="width:40px">
+					<h:outputText id="estado#{rowIndex}" value="#{head.estado}" />
+					<p:tooltip id="tipestado#{rowIndex}" for="estado#{rowIndex}"
+						value="#{head.estado}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="País" style="width:40px">
+					<h:outputText value="#{head.pais}" />
+				</p:column>
+				<p:column headerText="C.P." style="width:30px">
+					<h:outputText id="cp#{rowIndex}" value="#{head.cp}" />
+					<p:tooltip id="tipcp#{rowIndex}" for="cp#{rowIndex}"
+						value="#{head.cp}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Num. Cuenta" style="width:120px">
+					<h:outputText value="#{head.noDeCuenta}" />
+				</p:column>
+
+			</p:dataTable>
+
+			<h3>Receptor</h3>
+			<p:dataTable resizableColumns="true" var="drecep"
+				value="#{facturaMB.dirReceptor}" style="width:200%;"
+				scrollable="true" scrollWidth="100%" editable="true" editMode="cell"
+				widgetVar="cellDRecep">
+
+				<p:column headerText="Nombre del Cliente" style="width:150px">
+					<h:outputText id="cliente#{rowIndex}"
+						value="#{drecep.nombreReceptorCliente}" />
+					<p:tooltip id="tipcliente#{rowIndex}" for="cliente#{rowIndex}"
+						value="#{drecep.nombreReceptorCliente}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="RFC" style="width:90px">
+					<h:outputText id="rfccli#{rowIndex}" value="#{drecep.rfc}" />
+					<p:tooltip id="tiprfccli#{rowIndex}" for="rfccli#{rowIndex}"
+						value="#{drecep.rfc}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="GLN" style="background: #A99D80;width:60px">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{drecep.gln}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{drecep.gln}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{drecep.gln}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+
+				<p:column headerText="Colonia" style="width:150px">
+					<h:outputText id="coloniacli#{rowIndex}" value="#{drecep.colonia}" />
+					<p:tooltip id="tipcoloniacli#{rowIndex}"
+						for="coloniacli#{rowIndex}" value="#{drecep.colonia}"
+						trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Calle" style="width:120px">
+					<h:outputText id="callecli#{rowIndex}" value="#{drecep.calle}" />
+					<p:tooltip id="tipcallecli#{rowIndex}" for="callecli#{rowIndex}"
+						value="#{drecep.calle}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Num. Ext" style="width:60px">
+					<h:outputText id="nextcli#{rowIndex}" value="#{drecep.noExterior}" />
+					<p:tooltip id="tipnextcli#{rowIndex}" for="nextcli#{rowIndex}"
+						value="#{drecep.noExterior}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Num. Int" style="width:80px">
+					<h:outputText id="nintcli#{rowIndex}" value="#{drecep.noInterior}" />
+					<p:tooltip id="tipnintcli#{rowIndex}" for="nintcli#{rowIndex}"
+						value="#{drecep.noInterior}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Localidad" style="width:120px">
+					<h:outputText id="localidadcli#{rowIndex}"
+						value="#{drecep.localidad}" />
+					<p:tooltip id="tiplocalidadcli#{rowIndex}"
+						for="localidadcli#{rowIndex}" value="#{drecep.localidad}"
+						trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Referencia" style="width:80px">
+					<h:outputText value="#{drecep.referencia}" />
+				</p:column>
+
+				<p:column headerText="Municipio" style="width:120px">
+					<h:outputText id="municipiocli#{rowIndex}"
+						value="#{drecep.municipio}" />
+					<p:tooltip id="tipmunicipiocli#{rowIndex}"
+						for="municipiocli#{rowIndex}" value="#{drecep.municipio}"
+						trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Estado" style="width:100px">
+					<h:outputText id="estadocli#{rowIndex}" value="#{drecep.estado}" />
+					<p:tooltip id="tipestadocli#{rowIndex}" for="estadocli#{rowIndex}"
+						value="#{drecep.estado}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Pais" style="width:50px">
+					<h:outputText value="#{drecep.pais}" />
+				</p:column>
+
+				<p:column headerText="C.P." style="width:50px">
+					<h:outputText value="#{drecep.cp}" />
+				</p:column>
+
+				<p:column headerText="IMSS" style="width:40px">
+					<h:outputText value="#{drecep.imss}" />
+				</p:column>
+
+				<p:column headerText="Telefono" style="width:50px">
+					<h:outputText value="#{drecep.telefono}" />
+				</p:column>
+			</p:dataTable>
+
+			<h3>Dirección de Entrega</h3>
+			<p:dataTable resizableColumns="true" var="dlugarEntrega"
+				value="#{facturaMB.lugarEntrega}" style="width:200%;"
+				scrollable="true" scrollWidth="100%" editable="true" editMode="cell"
+				widgetVar="cellDLugarEntrega">
+
+				<p:column headerText="Nombre" style="width:150px">
+					<h:outputText value="#{dlugarEntrega.nmbreLugarDeEntre}" />
+				</p:column>
+				<p:column headerText="RFC" style="width:80px">
+					<h:outputText id="entrrfc#{rowIndex}" value="#{dlugarEntrega.rfc}" />
+					<p:tooltip id="tipentrrfc#{rowIndex}" for="entrrfc#{rowIndex}"
+						value="#{dlugarEntrega.rfc}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="GLN" style="background: #A99D80;width:80px">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{dlugarEntrega.gln}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{dlugarEntrega.gln}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{dlugarEntrega.gln}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+				<p:column headerText="Calle" style="width:150px">
+					<h:outputText id="entrcalle#{rowIndex}"
+						value="#{dlugarEntrega.calle}" />
+					<p:tooltip id="tipentrcalle#{rowIndex}" for="entrcalle#{rowIndex}"
+						value="#{dlugarEntrega.calle}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Num. Ext" style="width:60px">
+					<h:outputText id="entrnext#{rowIndex}"
+						value="#{dlugarEntrega.noExterior}" />
+					<p:tooltip id="tipentrnext#{rowIndex}" for="entrnext#{rowIndex}"
+						value="#{dlugarEntrega.noExterior}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Num. Int" style="width:80px">
+					<h:outputText id="entrnint#{rowIndex}"
+						value="#{dlugarEntrega.noInterior}" />
+					<p:tooltip id="tipentrnint#{rowIndex}" for="entrnint#{rowIndex}"
+						value="#{dlugarEntrega.noInterior}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Colonia" style="width:150px">
+					<h:outputText id="entrcolonia#{rowIndex}"
+						value="#{dlugarEntrega.colonia}" />
+					<p:tooltip id="tipentrcolonia#{rowIndex}"
+						for="entrcolonia#{rowIndex}" value="#{dlugarEntrega.colonia}"
+						trackMouse="true" />
+				</p:column>
+				<p:column headerText="Localidad" style="width:150px">
+					<h:outputText id="entrloc#{rowIndex}"
+						value="#{dlugarEntrega.localidad}" />
+					<p:tooltip id="tipentrloc#{rowIndex}" for="entrloc#{rowIndex}"
+						value="#{dlugarEntrega.localidad}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Referencia" style="width:120px">
+					<h:outputText value="#{dlugarEntrega.referencia}" />
+				</p:column>
+				<p:column headerText="Municipio" style="width:120px">
+					<h:outputText id="entrmun#{rowIndex}"
+						value="#{dlugarEntrega.municipio}" />
+					<p:tooltip id="tipentrmun#{rowIndex}" for="entrmun#{rowIndex}"
+						value="#{dlugarEntrega.municipio}" trackMouse="true" />
+				</p:column>
+                
+				<p:column headerText="Estado" style="background: #A99D80;width:60px"  >
+                
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{dlugarEntrega.estado}"
+                                style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{dlugarEntrega.estado}"
+                                style="color: black;width:100%" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{dlugarEntrega.estado}"
+                        rendered="#{facturaMB.emitida eq true}" />
+
+				</p:column>
+				<p:column headerText="Pais" style="width:50px">
+					<h:outputText value="#{dlugarEntrega.pais}" />
+				</p:column>
+				<p:column headerText="C.P." style="width:30px">
+					<h:outputText id="entrcp#{rowIndex}" value="#{dlugarEntrega.cp}" />
+					<p:tooltip id="tipentrcp#{rowIndex}" for="entrcp#{rowIndex}"
+						value="#{dlugarEntrega.cp}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="IMSS" style="width:50px">
+					<h:outputText value="#{dlugarEntrega.imss}" />
+				</p:column>
+				<p:column headerText="Telefono" style="width:50px">
+					<h:outputText value="#{dlugarEntrega.telefono}" />
+				</p:column>
+                
+                <p:column headerText="Etiqueta 1" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{dlugarEntrega.etiqueta1}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{dlugarEntrega.etiqueta1}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{dlugarEntrega.etiqueta1}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+
+                  <p:column headerText="Etiqueta 2" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{dlugarEntrega.etiqueta2}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{dlugarEntrega.etiqueta2}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{dlugarEntrega.etiqueta2}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>              
+			</p:dataTable>
+
+			<h3>Adendas</h3>
+			<p:dataTable resizableColumns="true" id="adenda" var="adenda"
+				value="#{facturaMB.encabezado}" editable="true" editMode="cell"
+				widgetVar="cellAdenda" style="width:300%;" scrollable="true"
+				scrollWidth="100%">
+
+				<p:column headerText="Serie" style="width:40px">
+					<h:outputText id="adserie#{rowIndex}" value="#{adenda.serie}" />
+					<p:tooltip id="tipadserie#{rowIndex}" for="adserie#{rowIndex}"
+						value="#{adenda.serie}" trackMouse="true" />
+
+				</p:column>
+				<p:column headerText="Folio" style="width:60px">
+					<h:outputText id="adfolio#{rowIndex}" value="#{adenda.folio}" />
+					<p:tooltip id="tipadfolio#{rowIndex}" for="adfolio#{rowIndex}"
+						value="#{adenda.folio}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Fecha CFD" style="width:80px">
+					<h:outputText id="adfechacfd#{rowIndex}" value="#{adenda.fechaCfd}" />
+					<p:tooltip id="tipfechacfd#{rowIndex}" for="adfechacfd#{rowIndex}"
+						value="#{adenda.fechaCfd}" trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Referencia" style="width:90px">
+					<h:outputText id="adreferencia#{rowIndex}"
+						value="#{adenda.referenciaDeDocume}" />
+					<p:tooltip id="tipreferencia#{rowIndex}"
+						for="adreferencia#{rowIndex}" value="#{adenda.referenciaDeDocume}"
+						trackMouse="true" />
+				</p:column>
+				<p:column headerText="Fecha de Referencia" style="width:120px">
+					<h:outputText id="adfecreferencia#{rowIndex}"
+						value="#{adenda.fechaReferenciaDe}" />
+					<p:tooltip id="tipfecreferencia#{rowIndex}"
+						for="adfecreferencia#{rowIndex}"
+						value="#{adenda.fechaReferenciaDe}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Forma de Pago" style="width:150px">
+					<h:outputText id="adformpago#{rowIndex}"
+						value="#{adenda.formaDePago}" />
+					<p:tooltip id="tipadformpago#{rowIndex}"
+						for="adformpago#{rowIndex}" value="#{adenda.formaDePago}"
+						trackMouse="true" />
+
+				</p:column>
+				<p:column headerText="Condiciones de Pago" style="width:120px">
+					<h:outputText value="#{adenda.diasDePago}" />
+				</p:column>
+
+				<p:column headerText="Funcion" style="width:80px">
+					<h:outputText value="#{adenda.funcion}" />
+				</p:column>
+				<p:column headerText="Tipo de Documento 1" style="width:150px">
+
+					<h:outputText id="adtipoc#{rowIndex}"
+						value="#{adenda.tipoDeDocumento}" />
+					<p:tooltip id="tipadtipoc#{rowIndex}" for="adtipoc#{rowIndex}"
+						value="#{adenda.tipoDeDocumento}" trackMouse="true" />
+
+				</p:column>
+				<p:column headerText="Porcentaje de Documento 1" style="width:120px">
+					<h:outputText value="#{adenda.porcenDescuento1}" />
+				</p:column>
+				<p:column headerText="Tipo de Documento 1" style="width:120px">
+					<h:outputText value="#{adenda.tipoDescuento1}" />
+				</p:column>
+
+				<p:column headerText="Numero Interno" style="width:100px">
+					<h:outputText value="#{adenda.numeroInterno}" />
+				</p:column>
+
+				<p:column headerText="Num. Proveedor"
+					style="background: #A99D80;width:120px">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.noProveedor}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.noProveedor}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.noProveedor}" style="color: black;"
+						rendered="#{facturaMB.emitida eq true}" />
+
+				</p:column>
+				<p:column headerText="Tasa. Iva" style="width:80px">
+					<h:outputText value="#{adenda.tasaGlobalDeIva}" />
+				</p:column>
+
+				<p:column headerText="FRM" style="background: #A99D80; width:120px">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.frm}" style="color: black;"  />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.frm}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.fechaDeFrm}" style="color: black;"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+				<p:column headerText="Fecha FRM" style="background: #A99D80; width:120px">
+						<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+					<f:facet name="output">
+						<h:outputText value="#{adenda.fechaDeFrm}" style="color: black;" />
+					</f:facet>
+					
+					<f:facet name="input">
+							<p:inputText value="#{adenda.fechaDeFrm}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.fechaDeFrm}" style="color: black;"
+						rendered="#{facturaMB.emitida eq true}" />
+
+				</p:column>
+
+				<p:column headerText="Metodo de Pago" style="width:150px">
+					<h:outputText value="#{adenda.metodoDePago}" />
+				</p:column>
+
+
+				<p:column headerText="Moneda" style="width:80px">
+					<h:outputText value="#{adenda.moneda}" />
+				</p:column>
+
+
+				<p:column headerText="Tipo de Cambio" style="width:80px">
+					<h:outputText value="#{adenda.tipoDeCambio}" />
+				</p:column>
+				
+				<p:column headerText="Fecha de Entrega" style="background: #A99D80; width:120px">	
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">  
+					<f:facet name="output">
+						<h:outputText value="#{adenda.fechaDeEntregaAct}" style="color: black;"  />
+					</f:facet>
+					<f:facet name="input">
+					<p:inputText value="#{adenda.fechaDeEntregaAct}" placeholder="2015-03-23T00:00:00"
+						style="width:100%;color: black;" />
+					</f:facet>
+					</p:cellEditor>  
+					<h:outputText value="#{adenda.fechaDeEntregaAct}"
+								rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+		        <p:column headerText="Contacto de Compras" style="background: #A99D80;width:130px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{adenda.contactoDeCompras}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{adenda.contactoDeCompras}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{adenda.contactoDeCompras}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+                
+                <p:column headerText="Departamento del Contacto" style="background: #A99D80;width:120px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#adenda.departamentoDelCon}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{adenda.departamentoDelCon}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{adenda.departamentoDelCon}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+        
+        
+				<p:column headerText="Observaciones 1"
+					style="background: #A99D80;width:100px">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.observaciones1come}"
+								style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.observaciones1come}"
+								style="color: black;width:100%" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.observaciones1come}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+				<p:column headerText="Tipo de Impresion"
+					style="background: #A99D80;width:80px">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.tipoImpresion}"
+								style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.tipoImpresion}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.tipoImpresion}"
+						rendered="#{facturaMB.emitida eq true}" />
+
+
+				</p:column>
+
+				<p:column headerText="Tipo de Envio"
+					style="background: #A99D80;width:90px">
+
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.tipoDeEnvio}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.tipoDeEnvio}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.tipoDeEnvio}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+
+				<p:column headerText="Etiqueta 1" style="background: #A99D80;">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.etiqueta1}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.etiqueta1}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.etiqueta1}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+
+				<p:column headerText="Etiqueta 2" style="background: #A99D80;">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.etiqueta2}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.etiqueta2}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.etiqueta2}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+				<p:column headerText="Etiqueta 3" style="background: #A99D80;">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.etiqueta3}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.etiqueta3}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.etiqueta3}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+				<p:column headerText="Etiqueta 4" style="background: #A99D80;">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.etiqueta4}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.etiqueta4}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.etiqueta4}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+				<p:column headerText="Etiqueta 5" style="background: #A99D80;">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.etiqueta5}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.etiqueta5}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.etiqueta5}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+				<p:column headerText="Etiqueta 6" style="background: #A99D80;">
+					<p:cellEditor rendered="#{facturaMB.emitida eq false}">
+						<f:facet name="output">
+							<h:outputText value="#{adenda.etiqueta6}" style="color: black;" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{adenda.etiqueta6}"
+								style="width:100%;color: black;" />
+						</f:facet>
+					</p:cellEditor>
+					<h:outputText value="#{adenda.etiqueta6}"
+						rendered="#{facturaMB.emitida eq true}" />
+				</p:column>
+                <p:column headerText="# Tienda" style="background: #A99D80;">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{adenda.numeroDeTienda}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{adenda.numeroDeTienda}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{adenda.etiqueta6}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+			</p:dataTable>
+			<h3>Lineas</h3>
+			<p:dataTable resizableColumns="true" var="detalle"
+				value="#{facturaMB.detalle}" editable="true" editMode="cell"
+				style="width:200%;" scrollable="true"
+				scrollWidth="100%">
+				<p:column headerText="EAN/UPC" style="width:60px">
+					<h:outputText id="lean#{rowIndex}" value="#{detalle.eanOUpc}" />
+					<p:tooltip id="tiplean#{rowIndex}" for="lean#{rowIndex}"
+						value="#{detalle.eanOUpc}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Descripción" style="width:200px">
+
+					<h:outputText id="ldesc#{rowIndex}" value="#{detalle.descripcion}" />
+					<p:tooltip id="tipldesc#{rowIndex}" for="ldesc#{rowIndex}"
+						value="#{detalle.descripcion}" trackMouse="true" />
+
+				</p:column>
+				<p:column headerText="Cantidad" style="width:50px">
+					<h:outputText value="#{detalle.cantidad}" />
+				</p:column>
+				<p:column headerText="Unidad" style="width:50px">
+					<h:outputText value="#{detalle.unidadDeMedida}" />
+				</p:column>
+		
+                <p:column headerText="Cant. Empaque" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.cantEmpaque}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.cantEmpaque}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.cantEmpaque}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+
+                
+				<p:column headerText="Precio" style="width:60px">
+					<h:outputText value="#{detalle.precio}" />
+				</p:column>
+				<p:column headerText="Precio Neto" style="width:80px">
+					<h:outputText value="#{detalle.precioNeto}" />
+				</p:column>
+				<p:column headerText="%IVA" style="width:50px">
+					<h:outputText value="#{detalle.porcenIva}" />
+				</p:column>
+	
+                <p:column headerText="Cant. Embarque" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.cantEmbarcada}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.cantEmbarcada}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.cantEmbarcada}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+
+                
+				<p:column headerText="Aduana" style="width:70px">
+					<h:outputText value="#{detalle.aduana}" />
+				</p:column>
+				<p:column headerText="Fecha" style="width:70px">
+					<h:outputText value="#{detalle.fecha}" />
+				</p:column>
+				<p:column headerText="Número Pedimento" style="width:70px">
+					<h:outputText value="#{detalle.numeroPedimento}" />
+				</p:column>
+				<p:column headerText="Costo Total" style="width:80px">
+					<h:outputText value="#{detalle.costoTotalPrecio}" />
+				</p:column>
+				<p:column headerText="Importe" style="width:80px">
+					<h:outputText value="#{detalle.importeConDescuen}" />
+				</p:column>
+				<p:column headerText="Monto IVA" style="width:80px">
+					<h:outputText value="#{detalle.montoDeIva}" />
+				</p:column>
+
+                <p:column headerText="Num. Interno PR 1" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.numeroInternoDePr1}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.numeroInternoDePr1}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.numeroInternoDePr1}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+
+                <p:column headerText="Num. Interno PR 2" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.numeroInternoDePr2}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.numeroInternoDePr2}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.numeroInternoDePr2}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>
+                
+                <p:column headerText="Pago de Empaque" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.pagoDeEmpaque}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.pagoDeEmpaque}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.pagoDeEmpaque}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>                
+
+ <p:column headerText="Etiqueta 2" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.etiqueta2}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.etiqueta2}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.etiqueta2}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>                
+                  
+                <p:column headerText="Etiqueta 7" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.etiqueta7}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.etiqueta7}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.etiqueta7}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>                
+                
+                <p:column headerText="Etiqueta 9" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.etiqueta9}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.etiqueta9}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.etiqueta9}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>                                
+                
+                <p:column headerText="Etiqueta 10" style="background: #A99D80;width:80px">
+                    <p:cellEditor rendered="#{facturaMB.emitida eq false}">
+                        <f:facet name="output">
+                            <h:outputText value="#{detalle.etiqueta10}" style="color: black;" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{detalle.etiqueta10}"
+                                style="width:100%;color: black;" />
+                        </f:facet>
+                    </p:cellEditor>
+                    <h:outputText value="#{detalle.etiqueta10}"
+                        rendered="#{facturaMB.emitida eq true}" />
+                </p:column>                                
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

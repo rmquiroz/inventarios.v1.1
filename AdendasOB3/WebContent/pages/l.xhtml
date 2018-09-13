@@ -1,0 +1,45 @@
+<ui:composition template="/templates/plantilla_sm.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<ui:define name="content">
+
+		<p:fieldset legend="Acceso al Sistema"
+			style="background: #F2F2F2;text-align:center;width:300px;position:absolute; left:40%;">
+
+			<h:form id="loginFormId" prependId="false">
+				<p:growl id="msgs" showDetail="true" />
+				<h:panelGrid columns="2">
+
+
+					<h:outputText id="outTxtUserNameId" value="Usuario:"
+						name="outTxtUserNameNm"></h:outputText>
+					<h:inputText id="userName" required="true"
+						value="#{loginMgmtBean.userName}"
+						requiredMessage="Por favor, especifique un usuario">
+					</h:inputText>
+
+					<h:outputText id="outTxtPasswordId" value="Clave:"
+						name="outTxtPasswordNm"></h:outputText>
+					<h:inputSecret id="password" required="true"
+						value="#{loginMgmtBean.password}"
+						requiredMessage="Por favor, indique su contraseña"
+						name="inTxtPasswordNm"></h:inputSecret>
+
+
+				</h:panelGrid>
+
+				<h:commandButton type="submit" value="Acceder"
+					action="#{loginMgmtBean.login}"></h:commandButton>
+			</h:form>
+
+		</p:fieldset>
+
+	</ui:define>
+
+</ui:composition>
+

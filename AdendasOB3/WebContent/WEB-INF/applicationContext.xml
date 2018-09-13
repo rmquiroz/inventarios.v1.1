@@ -1,0 +1,194 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd
+						http://www.springframework.org/schema/security 
+						http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+	<!-- Security Beans -->
+	<bean id="loginBean" name="loginBean" class="mx.redts.adendas.managebean.LoginBean"
+		scope="prototype">
+		<property name="authenticationManager" ref="authenticationManager"></property>
+	</bean>
+
+	<bean id="applicationProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>file:#{systemProperties['adendas.home']}/config/settings.properties
+			</value>
+		</property>
+	</bean>
+
+	<bean id="proveedorAutenticacion" class="mx.redts.adendas.security.ProveedorAutenticacion">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+
+	<bean id="CorganizacionService" class="mx.redts.adendas.service.CorganizacionService">
+		<property name="organizacionDao" ref="CorganizacionDAO" />
+	</bean>
+
+	<bean id="CclientesService" class="mx.redts.adendas.service.CclientesService">
+		<property name="clientesDao" ref="ClientesDAO" />
+	</bean>
+
+
+	<bean id="CorganizacionDAO" class="mx.redts.adendas.dao.CorganizacionDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+	<bean id="ClientesDAO" class="mx.redts.adendas.dao.ClientesDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+	<bean id="AdendaService" class="mx.redts.adendas.service.AdendaService">
+		<property name="adendaDAO" ref="AdendaDAO" />
+		<property name="repositorioAdendas" value="${repositorio.adendas}" />
+	</bean>
+
+	<bean id="AdendaDAO" class="mx.redts.adendas.dao.AdendaDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+	<!-- Beans Declaration -->
+	<bean id="User" class="mx.redts.adendas.model.User" />
+
+	<!-- User Service Declaration -->
+	<bean id="UserService" class="mx.redts.adendas.service.UserService">
+		<property name="userDAO" ref="userDAO" />
+	</bean>
+
+	<!-- User DAO Declaration -->
+	<bean id="userDAO" class="mx.redts.adendas.dao.UserDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+
+	<bean id="OBService" class="mx.redts.adendas.service.OBService">
+		<property name="openBravoDAO" ref="openbravoDAO" />
+	</bean>
+
+
+	<!-- Sync Service Declaration -->
+	<!-- <bean id="SyncService" class="mx.redts.adendas.service.SyncService"> 
+		<property name="openbravoDAO" ref="openbravoDAO" /> </bean> -->
+	<!-- User DAO Declaration -->
+	<bean id="openbravoDAO" class="mx.redts.adendas.dao.OpenBravoDAO">
+		<property name="sessionFactory" ref="SessionFactoryOB" />
+	</bean>
+
+	<!-- <bean id="ordenesCompraDAO" class="mx.redts.adendas.dao.OrdenesCompraDAO"> 
+		<property name="sessionFactory" ref="SessionFactoryOC" /> </bean> -->
+
+	<!-- Data Source Declaration -->
+	<bean id="DataSourceOB3" class="org.springframework.jndi.JndiObjectFactoryBean"
+		scope="singleton">
+		<property name="jndiName">
+			<value>jdbc/OB3Datasource</value>
+		</property>
+	</bean>
+
+	<!-- Data Source Declaration -->
+	<bean id="DataSource" class="org.springframework.jndi.JndiObjectFactoryBean"
+		scope="singleton">
+		<property name="jndiName">
+			<value>jdbc/AdendasDatasource</value>
+		</property>
+	</bean>
+	<!-- <bean id="DataSourceOC" class="org.springframework.jndi.JndiObjectFactoryBean" 
+		scope="singleton"> <property name="jndiName"> <value>jdbc/OCConnectDataSource</value> 
+		</property> </bean> <bean id="SessionFactoryOC" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> 
+		<property name="dataSource" ref="DataSourceOC" /> <property name="annotatedClasses"> 
+		<list> <value>mx.redts.simoc.model.entities.User</value> <value>mx.redts.simoc.model.entities.ArchivoProcesado</value> 
+		<value>mx.redts.simoc.model.entities.Parametros</value> <value>mx.redts.simoc.model.entities.COrganizacion</value> 
+		<value>mx.redts.simoc.model.entities.CClientes</value> <value>mx.redts.simoc.model.entities.OcfileOriginal</value> 
+		</list> </property> <property name="hibernateProperties"> <props> <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop> 
+		<prop key="hibernate.show_sql">true</prop> <prop key="c3p0.testConnectionOnCheckout">false</prop> 
+		<prop key="c3p0.min_size">2</prop> <prop key="c3p0.max_size">10</prop> <prop 
+		key="c3p0.timeout">300</prop> <prop key="c3p0.max_statements">50</prop> <prop 
+		key="c3p0.idleTestPeriod">300</prop> </props> </property> </bean> -->
+	<!-- Session Factory Declaration -->
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>mx.redts.adendas.model.User</value>
+				<value>mx.redts.adendas.model.Role</value>
+				<value>mx.redts.adendas.model.COrganizacion</value>
+				<value>mx.redts.adendas.model.CClientes</value>
+				<value>mx.redts.adendas.model.FeEncabezado</value>
+				<value>mx.redts.adendas.model.FeDetalle</value>
+				<value>mx.redts.adendas.model.FeDirFiscal</value>
+				<value>mx.redts.adendas.model.FeDirReceptor</value>
+				<value>mx.redts.adendas.model.FeExpedidoEn</value>
+				<value>mx.redts.adendas.model.FeLugarEntrega</value>
+				<value>mx.redts.adendas.model.FeSumario</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="SessionFactoryOB"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSourceOB3" />
+		<property name="annotatedClasses">
+			<list>
+				<value>mx.redts.ob3.model.AdOrg</value>
+				<value>mx.redts.ob3.model.AdOrginfo</value>
+				<value>mx.redts.ob3.model.CBpartner</value>
+				<value>mx.redts.ob3.model.CBpartnerLocation</value>
+				<value>mx.redts.ob3.model.CCountry</value>
+				<value>mx.redts.ob3.model.CCurrency</value>
+				<value>mx.redts.ob3.model.CDoctype</value>
+				<value>mx.redts.ob3.model.CInvoice</value>
+				<value>mx.redts.ob3.model.CInvoiceline</value>
+				<value>mx.redts.ob3.model.CInvoicetax</value>
+				<value>mx.redts.ob3.model.CLocation</value>
+				<value>mx.redts.ob3.model.COrder</value>
+				<value>mx.redts.ob3.model.CPaymentterm</value>
+				<value>mx.redts.ob3.model.CRegion</value>
+				<value>mx.redts.ob3.model.CTax</value>
+				<value>mx.redts.ob3.model.CUom</value>
+				<value>mx.redts.ob3.model.FinPaymentmethod</value>
+				<value>mx.redts.ob3.model.MProduct</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManagerOB" />
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManagerOB"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactoryOB" />
+	</bean>
+
+
+</beans>

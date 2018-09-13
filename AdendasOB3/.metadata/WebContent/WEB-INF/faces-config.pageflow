@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13816026712150" configfile="/AdendasOB3/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/index.rts" x="122" y="370" id="pf13816027144411" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13816027144422 pf13816027144423" path="/pages/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/success.xhtml" x="338" y="178" id="pf13816027144434" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13816027144422" path="/pages/success.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/error.xhtml" x="338" y="562" id="pf13816027144435" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13816027144423" path="/pages/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/reportes/reportegral.xhtml" x="122" y="754" id="pf13816989966581" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" path="/pages/reportes/reportegral.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/detalleoc.xhtml" x="122" y="1138" id="pf13924998369654" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" path="/pages/detalleoc.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cifrascontrol.xhtml" x="122" y="1522" id="pf13924998369655" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" path="/pages/cifrascontrol.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/consultas/altausers.xhtml" x="122" y="2290" id="pf139250209768010" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" path="/pages/consultas/altausers.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/secure/secured.xhtml" x="338" y="1906" id="pf14119539914920" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf14119539955706" inlinks="pf14119539914942" path="/pages/secure/secured.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/l.xhtml" x="122" y="1906" id="pf14119539914943" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" outlinks="pf14119539914942 pf14119539914944" inlinks="pf14119539914944" path="/pages/l.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/home.xhtml" id="pf14119539955747" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14119539955706" path="/pages/home.xhtml"/>
+  <links id="pf13816027144422" target="pf13816027144434" source="pf13816027144411" outcome="success"/>
+  <links id="pf13816027144423" target="pf13816027144435" source="pf13816027144411" outcome="error"/>
+  <links id="pf14119539914942" target="pf14119539914920" source="pf14119539914943" outcome="secured" fromaction="#{loginMgmtBean.login}"/>
+  <links id="pf14119539914944" target="pf14119539914943" source="pf14119539914943" outcome="unsecured" fromaction="#{loginMgmtBean.login}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14119539955706" target="pf14119539955747" source="pf14119539914920" outcome="loggedout" fromaction="#{loginMgmtBean.logout}"/>
+</pageflow:Pageflow>

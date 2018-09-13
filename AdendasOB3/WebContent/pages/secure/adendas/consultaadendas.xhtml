@@ -1,0 +1,145 @@
+<ui:composition template="/templates/plantilla.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+
+		<h:form>
+			<p:panel header="CONSULTA DE FACTURAS" style="margin-bottom:5px;">
+				<h:panelGrid id="panelgrid" columns="6" border="0"
+					style="margin-bottom:5px;" cellpadding="10" cellspacing="1">
+
+					<p:selectOneMenu id="orgSeleccionada"
+						value="#{consultasMB.orgSeleccionada}">
+						<f:selectItem itemLabel="Organización..." itemValue="" />
+						<f:selectItems value="#{consultasMB.COrganizacionList}"
+							itemValue="#{x.idOb3}" var="x" itemLabel="#{x.nameOrg}" />
+					</p:selectOneMenu>
+
+
+					<p:selectOneMenu id="cliSeleccionada"
+						value="#{consultasMB.clienteSeleccionado}">
+						<f:selectItem itemLabel="Cliente..." itemValue="" />
+						<f:selectItems value="#{consultasMB.clientesList}"
+							itemValue="#{y.idOb3}" var="y" itemLabel="#{y.nombreCliente}" />
+					</p:selectOneMenu>
+
+
+				</h:panelGrid>
+				<h:panelGrid id="folio" columns="6" border="0"
+					style="margin-bottom:5px;" cellpadding="10" cellspacing="1">
+					<h:outputText value="Folio: " size="20" />
+					<h:inputText size="10" style="width: 103px; "
+						value="#{consultasMB.folio}" />
+
+					<p:selectOneMenu effect="fold" editable="false"
+						value="#{consultasMB.tipoDoc}">
+						<f:selectItem itemLabel="Tipo de Documento..." itemValue="" />
+						<f:selectItem itemLabel="Factura" itemValue="AR Invoice" />
+						<f:selectItem itemLabel="Nota de Debito" itemValue="AR DebitMemo" />
+						<f:selectItem itemLabel="Nota de Credito"
+							itemValue="AR Credit Memo','Return Material Sales Invoice" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid id="etiketa" columns="6" border="0"
+					style="margin-bottom:5px;" cellpadding="10" cellspacing="1">
+
+					<h:outputText value="Fecha Inicial: " size="20" />
+					<p:calendar effect="slide" pattern="dd/MM/yyyy" size="10"
+						value="#{consultasMB.fechaInicial}" />
+					<h:outputText value="Fecha Final: " size="20" />
+					<p:calendar effect="slide" pattern="dd/MM/yyyy" size="10"
+						value="#{consultasMB.fechaFinal}" />
+
+				</h:panelGrid>
+				<h:panelGrid id="acepta" columns="6" border="0"
+					style="margin-bottom:5px;" cellpadding="10" cellspacing="1">
+					<p:commandButton value="Buscar" id="buska" icon="ui-icon-search"
+						styleClass="ui-priority-primary" update=":form:datos" />
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable id="datos" var="fact" style="width:100%;"
+				value="#{consultasMB.facturas}" resizableColumns="true" rows="10"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" draggableColumns="true">
+
+				<f:facet name="header">
+					Facturas en OB3
+					<p:commandButton id="toggler" type="button" value="Columns"
+						style="float:right" icon="ui-icon-calculator" />
+					<p:columnToggler datasource="datos" trigger="toggler" />
+				</f:facet>
+
+				<p:column style="width:150px" headerText="Opciones"
+					toggleable="false">
+					<p:button outcome="detalleadenda" value="Ver Detalle"
+						icon="ui-icon-search">
+						<f:param name="f" value="#{fact.ob3id}" />
+					</p:button>
+				</p:column>
+
+				<p:column headerText="Id" rendered="false">
+					<h:outputText value="#{fact.ob3id}" />
+				</p:column>
+
+				<p:column headerText="Folio" toggleable="false" style="width:80px">
+					<h:outputText id="folio#{rowIndex}" value="#{fact.folio}" />
+					<p:tooltip id="tipfolio#{rowIndex}" for="folio#{rowIndex}"
+						value="#{fact.folio}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Serie" toggleable="false" style="width:40px">
+					<h:outputText value="#{fact.serie}" />
+				</p:column>
+
+				<p:column headerText="Cliente" style="width:160px">
+					<h:outputText id="cliente#{rowIndex}" value="#{fact.cliid}" />
+					<p:tooltip id="tipcliente#{rowIndex}" for="cliente#{rowIndex}"
+						value="#{fact.cliid}" trackMouse="true" />
+
+				</p:column>
+
+				<p:column headerText="Fecha" style="width:80px">
+					<h:outputText value="#{fact.fechaCfd}" />
+				</p:column>
+				<p:column headerText="Referencia" style="width:80px">
+					<h:outputText id="referencia#{rowIndex}"
+						value="#{fact.referenciaDeDocume}" />
+					<p:tooltip id="tipreferencia#{rowIndex}"
+						for="referencia#{rowIndex}" value="#{fact.referenciaDeDocume}"
+						trackMouse="true" />
+				</p:column>
+
+				<p:column headerText="Días de Pago" style="width:80px">
+					<h:outputText value="#{fact.diasDePago}" />
+				</p:column>
+
+				<p:column headerText="Tipo de Documento" style="width:150px">
+					<h:outputText value="#{fact.tipoDeDocumento}" />
+				</p:column>
+				<p:column headerText="IVA" style="width:40px">
+					<h:outputText value="#{fact.tasaGlobalDeIva}" />
+				</p:column>
+
+				<p:column headerText="Importe" style="width:50px">
+					<h:outputText id="importe#{rowIndex}"
+						value="#{fact.importeConLetra}" />
+					<p:tooltip id="tipimporte#{rowIndex}" for="importe#{rowIndex}"
+						value="#{fact.importeConLetra}" trackMouse="true" />
+				</p:column>
+				<p:column headerText="Moneda" style="width:50px">
+					<h:outputText value="#{fact.moneda}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<h:head>
+	<title>Sistema FE - Adendas</title>
+	<link href="#{request.contextPath}/css/estilos.css" type="text/css"
+		rel="stylesheet" />
+
+	<link href="#{request.contextPath}/prime-ui/primeui-1.0-min.css"
+		type="text/css" rel="stylesheet" />
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/prime-ui/primeui-1.0-min.js" />
+</h:head>
+<h:body style="background-color:  #6db33f;">
+	<p:layout fullPage="true">
+		<p:layoutUnit position="center">
+			<ui:insert name="content">
+
+			</ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="north" size="160" header="  "
+			resizable="false" closable="false" collapsible="true"
+			style="background-color:  #f5f3e5;">
+			<h:panelGrid border="0" columns="2"
+				style="background-color:  #f5f3e5;" width="100%" cellspacing="10"
+				cellpadding="0">
+				<h:panelGrid style="text-align:center;background-color:  #f5f3e5;">
+					<h:graphicImage value="/images/4e.png" />
+				</h:panelGrid>
+
+				<h:panelGrid style="text-align: center;background-color:  #f5f3e5;">
+					<h:outputText value="Sistema de Automatización de Facturas"
+						style="font-weight:bold;color: #6db33f;font-size:20pt; text-align:center" />
+				</h:panelGrid>
+			</h:panelGrid>
+
+			<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+				<f:facet name="default">
+					<h:outputText value="" />
+				</f:facet>
+
+				<f:facet name="start">
+					<p:graphicImage
+						value="#{request.contextPath}/../images/loading.gif"
+						style="z-index: 9999;" />
+				</f:facet>
+
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage value="#{request.contextPath}/../images/loading.gif"
+					style="z-index: 9999;" />
+			</p:dialog>
+
+
+		</p:layoutUnit>
+
+
+	</p:layout>
+</h:body>
+</html>

@@ -1,0 +1,139 @@
+<ui:composition template="/templates/plantilla.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+
+		<p:dataTable id="tbl" var="rep" value="#{reportesMB.reportGral}"
+			paginator="true" rows="10">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Organizacion" />
+				</f:facet>
+				<h:outputText value="#{rep.organizacion}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Folio OB3" />
+				</f:facet>
+				<h:outputText value="#{rep.folioOb3}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Folio EDC" />
+				</f:facet>
+				<h:outputText value="#{rep.folioEdc}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Fecha de la Factura" />
+				</f:facet>
+				<h:outputText value="#{rep.fechaFactura}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Descripcion" />
+				</f:facet>
+				<h:outputText value="#{rep.descripcion}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cliente" />
+				</f:facet>
+				<h:outputText value="#{rep.cliente}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="SubTotal" />
+				</f:facet>
+				<h:outputText value="#{rep.subTotal}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Total" />
+				</f:facet>
+				<h:outputText value="#{rep.total}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Moneda" />
+				</f:facet>
+				<h:outputText value="#{rep.moneda}" />
+			</p:column>
+
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Estatus" />
+				</f:facet>
+				<h:outputText value="#{rep.estatus}" />
+			</p:column>
+
+		</p:dataTable>
+
+		<h:panelGrid columns="2">
+			<p:panel header="Export All Data">
+				<h:commandLink>
+					<p:graphicImage value="/images/excel.png" />
+					<p:dataExporter type="xls" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="/images/csv.png" />
+					<p:dataExporter type="csv" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="/images/xml.png" />
+					<p:dataExporter type="xml" target="tbl" fileName="cars" />
+				</h:commandLink>
+			</p:panel>
+
+			<p:panel header="Export Page Data">
+				<h:commandLink>
+					<p:graphicImage value="/images/excel.png" />
+					<p:dataExporter type="xls" target="tbl" fileName="cars"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tbl" fileName="cars"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="/images/csv.png" />
+					<p:dataExporter type="csv" target="tbl" fileName="cars"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="/images/xml.png" />
+					<p:dataExporter type="xml" target="tbl" fileName="cars"
+						pageOnly="true" />
+				</h:commandLink>
+			</p:panel>
+		</h:panelGrid>  
+                          
+
+Running PrimeFaces-4.0 on Mojarra-2.2.4
+ 
+ 
+     </ui:define>
+</ui:composition>
