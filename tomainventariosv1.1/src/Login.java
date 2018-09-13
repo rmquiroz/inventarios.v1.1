@@ -4,11 +4,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.Color;
 
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -33,9 +41,37 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 882, 404);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.RED);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblUsuario.setBounds(32, 113, 88, 34);
+		contentPane.add(lblUsuario);
+		
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a: ");
+		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblContrasea.setBounds(32, 185, 117, 34);
+		contentPane.add(lblContrasea);
+		
+		textField = new JTextField();
+		textField.setBounds(142, 122, 170, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(142, 192, 170, 25);
+		contentPane.add(passwordField);
+		
+		JLabel lblSistemaDeToma = new JLabel("SISTEMA DE TOMA DE INVENTARIOS");
+		lblSistemaDeToma.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblSistemaDeToma.setBounds(121, 11, 531, 34);
+		contentPane.add(lblSistemaDeToma);
+		
+		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.setBounds(338, 251, 106, 23);
+		contentPane.add(btnIngresar);
 	}
-
 }
