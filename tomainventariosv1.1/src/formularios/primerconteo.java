@@ -38,6 +38,7 @@ public class primerconteo extends JFrame {
 				try {
 					primerconteo frame = new primerconteo();
 					frame.setVisible(true);
+					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

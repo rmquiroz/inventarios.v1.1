@@ -36,6 +36,7 @@ public class inicio extends JFrame {
 					System.out.println("hola");
 					inicio frame = new inicio();
 					frame.setVisible(true);
+					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
