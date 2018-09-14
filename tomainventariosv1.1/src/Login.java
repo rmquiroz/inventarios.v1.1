@@ -26,6 +26,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
 import formularios.inicio;
+import java.awt.SystemColor;
 
 public class Login extends JFrame {
 
@@ -58,7 +59,7 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 718, 352);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.CYAN);
+		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

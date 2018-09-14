@@ -18,6 +18,7 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class inicio extends JFrame {
 
@@ -61,6 +62,13 @@ public class inicio extends JFrame {
 			}
 		});
 		
+		JMenuItem mntmCerrarSesion = new JMenuItem("Cerrar Sesion");
+		mntmCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		mnArchivo.add(mntmCerrarSesion);
+		
 		mnArchivo.add(mntmSalir);
 		
 		JMenu mnCapturaDeInventario = new JMenu("Inventario");
@@ -101,7 +109,7 @@ public class inicio extends JFrame {
 		JMenuItem menuItem = new JMenuItem("");
 		mnInformes.add(menuItem);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.CYAN);
+		contentPane.setBackground(SystemColor.inactiveCaption);
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
