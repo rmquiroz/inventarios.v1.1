@@ -27,6 +27,9 @@ import javax.swing.event.ChangeEvent;
 
 import formularios.inicio;
 import java.awt.SystemColor;
+import javax.swing.DropMode;
+import java.awt.TextField;
+import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
 
@@ -58,6 +61,8 @@ public class Login extends JFrame {
 		setTitle("SISTEMA DE GESTION DE INVENTARIOS COPYRIGHT SISTEMAS ERP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 718, 352);
+		setSize(750,400); 
+		setResizable(false); 
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,24 +70,22 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setIcon(new ImageIcon(Login.class.getResource("/imagenes/usuario3.png")));
-		lblUsuario.setBounds(25, 100, 138, 34);
+		lblUsuario.setBounds(66, 95, 138, 34);
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(lblUsuario);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a: ");
-		lblContrasea.setIcon(new ImageIcon(Login.class.getResource("/imagenes/password.png")));
-		lblContrasea.setBounds(25, 140, 152, 34);
+		lblContrasea.setBounds(66, 140, 152, 34);
 		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(lblContrasea);
 
 		txtusuario = new JTextField();
-		txtusuario.setBounds(173, 109, 170, 20);
+		txtusuario.setBounds(284, 109, 170, 20);
 		contentPane.add(txtusuario);
 		txtusuario.setColumns(10);
 
 		txtpass = new JPasswordField();
-		txtpass.setBounds(173, 149, 170, 20);
+		txtpass.setBounds(284, 149, 170, 20);
 		contentPane.add(txtpass);
 
 		JLabel lblSistemaDeToma = new JLabel("SISTEMA DE TOMA DE INVENTARIOS");
@@ -93,7 +96,7 @@ public class Login extends JFrame {
 
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.setIcon(new ImageIcon(Login.class.getResource("/imagenes/candado.png")));
-		btnIngresar.setBounds(10, 205, 159, 23);
+		btnIngresar.setBounds(66, 225, 159, 23);
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ingresar();
@@ -103,7 +106,7 @@ public class Login extends JFrame {
 
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/imagenes/salir.png")));
-		btnSalir.setBounds(223, 205, 152, 23);
+		btnSalir.setBounds(302, 225, 152, 23);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				salir();
@@ -112,13 +115,14 @@ public class Login extends JFrame {
 		contentPane.add(btnSalir);
 		
 		JLabel lblSistemaDeToma_1 = new JLabel("Sistema de Toma de Inventarios Version 1.1 Copyright Desarrollo de Sistemas 4e Global SAPI de CV");
+		lblSistemaDeToma_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblSistemaDeToma_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		lblSistemaDeToma_1.setBounds(152, 299, 540, 14);
 		contentPane.add(lblSistemaDeToma_1);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/inventario.png")));
-		lblNewLabel.setBounds(505, 58, 152, 190);
+		lblNewLabel.setBounds(481, 85, 230, 151);
 		contentPane.add(lblNewLabel);
 	}
 
