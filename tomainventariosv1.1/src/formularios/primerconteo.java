@@ -22,11 +22,13 @@ import java.awt.SystemColor;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class primerconteo extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtbuscar;
 	private JTextField textField_1;
 
 	/**
@@ -91,46 +93,56 @@ public class primerconteo extends JFrame {
 		});
 		mnArchivo.add(mntmSalir);
 		
-		JButton button = new JButton("OK");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button.addActionListener(new ActionListener() {
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String Nombre =txtbuscar.getText();
+				
 				
 			}
 		});
-		button.setBounds(475, 263, 89, 23);
-		contentPane.add(button);
+		btnBuscar.setBounds(287, 74, 89, 23);
+		contentPane.add(btnBuscar);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField.setColumns(10);
-		textField.setBounds(178, 73, 170, 20);
-		contentPane.add(textField);
+		txtbuscar = new JTextField();
+		txtbuscar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtbuscar.setColumns(10);
+		txtbuscar.setBounds(178, 74, 81, 23);
+		contentPane.add(txtbuscar);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(178, 135, 170, 20);
-		contentPane.add(textField_1);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		comboBox.setBounds(178, 231, 170, 20);
-		contentPane.add(comboBox);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(21, 73, 89, 14);
+		JLabel lblNewLabel = new JLabel("Primer Conteo");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel.setBounds(10, 32, 190, 28);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel("Numero de Marbete");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(21, 138, 89, 14);
+		lblNewLabel_1.setBounds(20, 76, 148, 21);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(21, 234, 89, 14);
+		JLabel lblNewLabel_2 = new JLabel("Ubicacion:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2.setBounds(226, 142, 106, 28);
 		contentPane.add(lblNewLabel_2);
+		
+		JLabel label = new JLabel("");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		label.setBounds(342, 142, 106, 28);
+		contentPane.add(label);
+		
+		JLabel lblCodigo = new JLabel("CODIGO:");
+		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCodigo.setBounds(24, 203, 73, 21);
+		contentPane.add(lblCodigo);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(90, 204, 86, 21);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnValidar = new JButton("Validar");
+		btnValidar.setBounds(194, 203, 89, 23);
+		contentPane.add(btnValidar);
 	}
 }
