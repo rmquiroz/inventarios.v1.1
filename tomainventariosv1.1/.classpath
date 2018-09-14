@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/DesarrolloSistemas4e/AdendaOB3-CCE/WebContent/WEB-INF/lib/postgresql-8.4-703.jdbc3.jar"/>
-	<classpathentry kind="lib" path="C:/DesarrolloSistemas4e/AdendaOB3-CCE/WebContent/WEB-INF/lib/postgresql-9.4.1212.jre6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Documents/Workspace/faltantes_mes_pdf/libs/postgresql-8.4-703.jdbc3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
