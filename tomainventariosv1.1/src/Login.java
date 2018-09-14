@@ -96,7 +96,7 @@ public class Login extends JFrame {
 
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.setIcon(new ImageIcon(Login.class.getResource("/imagenes/candado.png")));
-		btnIngresar.setBounds(66, 225, 159, 23);
+		btnIngresar.setBounds(93, 294, 159, 23);
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ingresar();
@@ -106,7 +106,7 @@ public class Login extends JFrame {
 
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/imagenes/salir.png")));
-		btnSalir.setBounds(302, 225, 152, 23);
+		btnSalir.setBounds(414, 294, 152, 23);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				salir();
@@ -115,14 +115,15 @@ public class Login extends JFrame {
 		contentPane.add(btnSalir);
 		
 		JLabel lblSistemaDeToma_1 = new JLabel("Sistema de Toma de Inventarios Version 1.1 Copyright Desarrollo de Sistemas 4e Global SAPI de CV");
+		lblSistemaDeToma_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSistemaDeToma_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblSistemaDeToma_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		lblSistemaDeToma_1.setBounds(152, 299, 540, 14);
+		lblSistemaDeToma_1.setBounds(0, 357, 744, 14);
 		contentPane.add(lblSistemaDeToma_1);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/inventario.png")));
-		lblNewLabel.setBounds(481, 85, 230, 151);
+		lblNewLabel.setBounds(624, 195, 110, 151);
 		contentPane.add(lblNewLabel);
 	}
 
