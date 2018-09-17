@@ -29,7 +29,8 @@ public class primerconteo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtbuscar;
-	private JTextField textField_1;
+	private JTextField txtcodigo;
+	private JTextField txtcantidad;
 
 	/**
 	 * Launch the application.
@@ -131,18 +132,42 @@ public class primerconteo extends JFrame {
 		label.setBounds(342, 142, 106, 28);
 		contentPane.add(label);
 		
-		JLabel lblCodigo = new JLabel("CODIGO:");
+		JLabel lblCodigo = new JLabel("Codigo: ");
 		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCodigo.setBounds(24, 203, 73, 21);
 		contentPane.add(lblCodigo);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(90, 204, 86, 21);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtcodigo = new JTextField();
+		txtcodigo.setBounds(90, 204, 86, 21);
+		contentPane.add(txtcodigo);
+		txtcodigo.setColumns(10);
 		
 		JButton btnValidar = new JButton("Validar");
 		btnValidar.setBounds(194, 203, 89, 23);
 		contentPane.add(btnValidar);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_3.setBounds(87, 256, 312, 26);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescripcion.setBounds(10, 258, 87, 23);
+		contentPane.add(lblDescripcion);
+		
+		JLabel lblNewLabel_4 = new JLabel("Cantidad");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_4.setBounds(427, 259, 63, 19);
+		contentPane.add(lblNewLabel_4);
+		
+		txtcantidad = new JTextField();
+		txtcantidad.setBounds(497, 258, 95, 20);
+		contentPane.add(txtcantidad);
+		txtcantidad.setColumns(10);
+		
+		JButton btnConfirmarConteo = new JButton("Confirmar Conteo");
+		btnConfirmarConteo.setBounds(287, 337, 155, 23);
+		contentPane.add(btnConfirmarConteo);
 	}
 }
