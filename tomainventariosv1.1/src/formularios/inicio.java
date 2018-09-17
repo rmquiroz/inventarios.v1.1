@@ -85,6 +85,14 @@ public class inicio extends JFrame {
 		menuBar.add(mnCapturaDeInventario);
 		
 		JMenuItem mntmNuevaCaptura = new JMenuItem("Consultar Inventario");
+		mntmNuevaCaptura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			inventario.inventario i=new inventario.inventario();
+			i.main();
+			}
+				
+			
+		});
 		mntmNuevaCaptura.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/buscar.png")));
 		mntmNuevaCaptura.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		mnCapturaDeInventario.add(mntmNuevaCaptura);
@@ -94,6 +102,7 @@ public class inicio extends JFrame {
 		mntmCapturaDeInventario.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		mntmCapturaDeInventario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				dispose();
 				//con esto muestro la ventana inicial
 				formularios.primerconteo primerconteo = new formularios.primerconteo();
