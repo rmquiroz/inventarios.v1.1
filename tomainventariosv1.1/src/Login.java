@@ -71,35 +71,28 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(134, 158, 138, 34);
+		lblUsuario.setBounds(224, 236, 138, 34);
 		lblUsuario.setFont(new Font("Candara", Font.PLAIN, 20));
 		contentPane.add(lblUsuario);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a: ");
-		lblContrasea.setBounds(134, 203, 152, 34);
+		lblContrasea.setBounds(219, 267, 143, 34);
 		lblContrasea.setFont(new Font("Candara", Font.PLAIN, 20));
 		contentPane.add(lblContrasea);
 
 		txtusuario = new JTextField();
-		txtusuario.setBounds(396, 166, 170, 20);
+		txtusuario.setBounds(359, 244, 170, 20);
 		contentPane.add(txtusuario);
 		txtusuario.setColumns(10);
 
 		txtpass = new JPasswordField();
-		txtpass.setBounds(396, 211, 170, 20);
+		txtpass.setBounds(359, 275, 170, 20);
 		contentPane.add(txtpass);
-
-		JLabel lblSistemaDeToma = new JLabel("SISTEMA DE TOMA DE INVENTARIOS");
-		lblSistemaDeToma.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSistemaDeToma.setBackground(Color.BLACK);
-		lblSistemaDeToma.setBounds(0, 0, 744, 34);
-		lblSistemaDeToma.setFont(new Font("Candara", Font.PLAIN, 24));
-		contentPane.add(lblSistemaDeToma);
 
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.setFont(new Font("Candara", Font.PLAIN, 14));
 		btnIngresar.setIcon(new ImageIcon(Login.class.getResource("/imagenes/candado.png")));
-		btnIngresar.setBounds(93, 283, 159, 34);
+		btnIngresar.setBounds(153, 312, 159, 34);
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ingresar();
@@ -110,7 +103,7 @@ public class Login extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setFont(new Font("Candara", Font.PLAIN, 14));
 		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/imagenes/salir.png")));
-		btnSalir.setBounds(414, 283, 152, 34);
+		btnSalir.setBounds(427, 312, 152, 34);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				salir();
@@ -126,8 +119,8 @@ public class Login extends JFrame {
 		contentPane.add(lblSistemaDeToma_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/usuario.png")));
-		lblNewLabel.setBounds(291, 34, 110, 115);
+		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/sistemainventariosv2.png")));
+		lblNewLabel.setBounds(266, 0, 220, 232);
 		contentPane.add(lblNewLabel);
 	}
 
