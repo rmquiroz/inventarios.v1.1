@@ -36,49 +36,54 @@ public class inventario
 		  Connection cn = DriverManager.getConnection(url, "postgres", "s3st2m1s4e");            
 		  System.out.println("Ejecutando Query.......");
 		  ResultSet rs = null;
-		  PreparedStatement ps = cn.prepareStatement("SELECT m_locator.value AS ubicacion,m_product.value AS codigo,"
-+ "m_product.upc AS upc,replace(m_product.description,',',' ') AS descripcion,m_attributesetinstance.description,"
-+ "REPLACE(REPLACE(c_uom.name, 'Unit', 'UNIDAD'),'Kilogram','KILOGRAMO')AS unidad,m_warehouse.name AS almacen,"
-+ "sum(m_storage_detail.qtyonhand) AS cantidad,m_storage_detail.reservedqty AS cantidad_reservada,"
-+ "sum(m_storage_detail.qtyonhand)-m_storage_detail.reservedqty as cantidad_disponible,CASE WHEN "
-+ "sum(m_storage_detail.qtyonhand) = 0 THEN 'DISPONIBLE' ELSE 'OCUPADO' END as estatus,re.nombre,concat(chr(10)) AS sp FROM "
-+ "m_storage_detail LEFT JOIN m_locator ON m_storage_detail.m_locator_id=m_locator.m_locator_id LEFT JOIN "
-+ "m_reservation_stock AS st ON m_locator.m_locator_id=st.m_locator_id LEFT JOIN m_product ON "
-+ "m_product.m_product_id=m_storage_detail.m_product_id LEFT JOIN m_attributesetinstance ON "
-+ "m_storage_detail.m_attributesetinstance_id=m_attributesetinstance.m_attributesetinstance_id LEFT JOIN "
-+ "m_reservation AS re ON re.m_reservation_id=st.m_reservation_id AND m_product.m_product_id=re.m_product_id AND "
-+ "re.res_status='CO' LEFT JOIN c_uom ON c_uom.c_uom_id=m_product.c_uom_id,m_warehouse WHERE m_warehouse.name LIKE "
-+ "'%' AND m_storage_detail.qtyonhand <> 0 AND m_locator.m_warehouse_id=m_warehouse.m_warehouse_id GROUP BY "
-+ "m_product.value,m_product.description,m_attributesetinstance.description,m_warehouse.name,c_uom.name,m_product.upc,"
-+ "m_locator.value,m_storage_detail.reservedqty,m_locator.m_locator_id,re.nombre UNION ALL SELECT "
-+ "m_locator.value AS ubicacion,'' as codigo,'' as upc,'' as descripcion,'' AS description,'' as unidad"
-+ ",m_warehouse.name as ALMACEN,0 as cantidad,0 as cantidad_reservada,0 as cantidad_disponible,"
-+ "'DISPONIBLE' as estatus,re.nombre,concat(chr(10)) as sp FROM m_warehouse,m_locator LEFT JOIN m_reservation_stock AS st ON "
-+ "m_locator.m_locator_id=st.m_locator_id LEFT JOIN m_reservation AS re ON re.m_reservation_id=st.m_reservation_id "
-+ "LEFT JOIN m_storage_detail ON m_storage_detail.m_locator_id=m_locator.m_locator_id WHERE m_locator.isactive = 'Y' "
-+ "AND m_locator.m_warehouse_id=m_warehouse.m_warehouse_id AND m_warehouse.name LIKE '%' AND m_locator.value not "
-+ "in (SELECT m_locator.value AS ubicacion FROM m_locator,m_warehouse,m_storage_detail LEFT JOIN m_product ON "
-+ "m_storage_detail.m_product_id = m_product.m_product_id LEFT JOIN m_attributesetinstance ON "
-+ "m_storage_detail.m_attributesetinstance_id=m_attributesetinstance.m_attributesetinstance_id,c_uom WHERE "
-+ "m_warehouse.name LIKE '%' AND m_storage_detail.qtyonhand <> 0 AND "
-+ "m_storage_detail.m_locator_id=m_locator.m_locator_id AND m_locator.m_warehouse_id=m_warehouse.m_warehouse_id AND "
-+ "c_uom.c_uom_id=m_product.c_uom_id GROUP BY m_product.value,m_product.description,m_warehouse.name,c_uom.name,"
-+ "m_product.upc,m_locator.value,m_storage_detail.reservedqty,m_attributesetinstance.description ORDER BY "
-+ "m_product.description ASC) GROUP BY ubicacion,re.nombre,m_warehouse.name ORDER BY almacen,ubicacion ASC ");		 
+		  PreparedStatement ps = cn.prepareStatement("SELECT m_warehouse.name,m_locator.value,m_product.value AS codigo,"
++ "REPLACE(m_product.description,',',' ') AS descripcion,  m_product.categoria AS categoria,"
++ "m_product.subcategoria AS sub,m_product.upc,m_product.licenciante,m_product.piezas_caja,m_product.piezas_pallet,"
++ "round(sum(m_storage_detail.qtyonhAND),2) AS cantidad,"
++ "REPLACE(REPLACE(c_uom.name, 'Unit', 'UNIDAD'),'Kilogram', 'KILOGRAMO') AS unidad,"
++ "round(sum(CASE WHEN m_product.value LIKE '1%' THEN 1*m_storage_detail.qtyonhAND WHEN m_product.value LIKE '2%' "
++ "THEN 1*m_storage_detail.qtyonhAND  WHEN m_product.value LIKE '3%'  THEN 1*m_storage_detail.qtyonhAND  WHEN "
++ "m_product.value LIKE '7%'  THEN 1*m_storage_detail.qtyonhAND   WHEN m_product.value LIKE '8%'  THEN "
++ "1*m_storage_detail.qtyonhAND  WHEN m_product.value LIKE '4%'  THEN piezas_Caja::NUMERIC*m_storage_detail.qtyonhAND "
++ "WHEN m_product.value LIKE '5%'  THEN piezas_pallet::NUMERIC*m_storage_detail.qtyonhAND ELSE "
++ "1*m_storage_detail.qtyonhAND end ),2) AS piezas,  to_char(CASE WHEN (case when m_Warehouse.name like "
++ "'%4E BRANDS EUA%' THEN m_product.campoabcdeuno else to_Char(m_product.coststd) end) is null THEN 'FALTA VALUACION' "
++ "ELSE (case when m_Warehouse.name like '%4E BRANDS EUA%' THEN m_product.campoabcdeuno else "
++ "to_char(m_product.coststd) end)::varchar  END ) AS costostd,   (round(sum(CASE WHEN m_product.value LIKE '1%' THEN "
++ "1*m_storage_detail.qtyonhAND   WHEN m_product.value LIKE '2%'  THEN 1*m_storage_detail.qtyonhAND WHEN "
++ "m_product.value LIKE '3%'  THEN 1*m_storage_detail.qtyonhAND  WHEN m_product.value LIKE '7%'  THEN "
++ "1*m_storage_detail.qtyonhAND WHEN m_product.value LIKE '8%'  THEN 1*m_storage_detail.qtyonhAND WHEN "
++ "m_product.value LIKE '4%'  THEN piezas_Caja::NUMERIC*m_storage_detail.qtyonhAND  WHEN m_product.value LIKE '5%' "
++ "THEN piezas_pallet::NUMERIC*m_storage_detail.qtyonhAND ELSE 1*m_storage_detail.qtyonhAND end ),2))*(case when "
++ "m_Warehouse.name like '%4E BRANDS EUA%' THEN m_product.campoabcdeuno::numeric else m_product.coststd end) AS std,"
++ "chr(13) AS sp  FROM m_storage_detail LEFT JOIN m_attributesetinstance ON "
++ "m_storage_detail.m_attributesetinstance_id=m_attributesetinstance.m_attributesetinstance_id,m_product,m_locator,"
++ "m_warehouse, c_uom  WHERE m_storage_detail.m_product_id = m_product.m_product_id  AND "
++ "m_storage_detail.qtyonhAND <> 0 AND m_storage_detail.m_locator_id=m_locator.m_locator_id  AND "
++ "m_locator.m_warehouse_id=m_warehouse.m_warehouse_id AND c_uom.c_uom_id=m_product.c_uom_id  AND m_product.value NOT "
++ "LIKE '9%'   AND m_product.value NOT LIKE 'US%' AND m_product.value NOT LIKE 'ES%' AND m_product.value NOT LIKE "
++ "'HERRA%'  AND m_product.value NOT LIKE 'SERVI%' AND m_warehouse.isactive='Y' AND m_Warehouse.name NOT LIKE "
++ "'4E_MP TEMPORAL'  AND m_Warehouse.name NOT LIKE '4G_SMO m_productUCCION'  AND m_Warehouse.name NOT LIKE "
++ "'4G_1D ADUANA' AND m_Warehouse.name NOT LIKE '4E_BRANDS' AND m_Warehouse.name NOT LIKE '4G_1F REFACCIONES'  AND "
++ "m_Warehouse.name NOT LIKE 'ALMACEN_MERIDA' GROUP BY m_warehouse.name,m_locator.value,m_product.value,"
++ "m_product.description,  unidad,categoria,sub,m_product.upc,m_product.licenciante,m_product.piezas_caja,"
++ "m_product.piezas_pallet,c_uom.name,m_product.coststd,m_product.campoabcdeuno  ORDER BY m_warehouse.name,"
++ "m_locator.value,codigo ASC");		 
 		  rs = ps.executeQuery();		  
 		  String valor = "";		  
 		  System.out.println(" Termina Consulta.......");
 		  while (rs.next())
 		  {
-			  valor =valor +"" + rs.getString(13) + rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) 
+			  valor =valor +"" + rs.getString(16) + rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) 
 + ","+rs.getString(4)+ "," + rs.getString(5) + ","+ rs.getString(6) + "," + rs.getString(7) + "," + rs.getString(8) 
-+ ","+rs.getString(9)+ "," + rs.getString(10)+ ","+rs.getString(11) + "," + rs.getString(12) + "";
++ ","+rs.getString(9)+ "," + rs.getString(10)+ ","+rs.getString(11) + "," + rs.getString(12) + ","+ rs.getString(13) 
++ ","+rs.getString(14)+ ","+ rs.getString(15) + "";
 		  }
 		  valor=valor.replace("null","");
 		  PrintWriter in = new PrintWriter("Inventario.csv");
-		  PrintWriter out = new PrintWriter("Salida.txt");
-		  in.write("HUECO,CODIGO,UPC,DESCRIPCION,ATRIBUTO,UOM,ALMACEN,CANTIDAD,CANTIDAD RESERVADA,CANTIDAD DISPOBIBL"
-+"E,ESTATUS,No. DOCUMENTO (RESERVADO)" + valor);            
+		  PrintWriter out = new PrintWriter("Salida.csv");
+		  in.write("ALMACEN,HUECO,CODIGO,DESCRIPCION,CATEGORIA,SUBCATEGORIA,UPC,LICENCIANTE,PIEZAS POR CAJA,"
++"PIEZAS POR PALLET,CANTIDAD,UNIDAD,PIEZAS,COSTO,COSTO TOTAL ESTANDAR" + valor);            
 		  in.close();		  
 		  System.out.println("ESCRITURA TERMINADA");	
 	  ////////////////////////////////TERMINA ESCRITURA DE ARCHIVO///////////////////////////////////
@@ -121,7 +126,7 @@ public class inventario
 				  a=3;
 				  val3="";			    	
 				  val3=inter;		        	 				     		       	      		       	     				  					  				       	       	
-					  out.print("insert into prueba values('"+val1+"','"+val2+"','"+val3+"',)");				  
+					  out.print("insert into prueba values('"+val1+"','"+val3+"');\n");				  
 				  System.out.println("Registro insertado ");													   				    		        	
 			  }				        
 		  }
