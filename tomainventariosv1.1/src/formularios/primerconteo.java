@@ -187,6 +187,7 @@ public class primerconteo extends JFrame {
 		contentPane.add(btnConfirmarConteo);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setEnabled(false);
 		lblNewLabel_5.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel_5.setBounds(0, 0, 855, 429);
 		contentPane.add(lblNewLabel_5);

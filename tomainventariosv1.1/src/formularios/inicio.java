@@ -161,5 +161,11 @@ public class inicio extends JFrame {
 		lblDesarrolloDeSistemas.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/ob3.png")));
 		lblDesarrolloDeSistemas.setBounds(213, 115, 452, 186);
 		contentPane.add(lblDesarrolloDeSistemas);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setEnabled(false);
+		lblNewLabel.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/fondo.jpg")));
+		lblNewLabel.setBounds(0, 0, 855, 408);
+		contentPane.add(lblNewLabel);
 	}
 }
