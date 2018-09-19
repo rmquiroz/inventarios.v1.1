@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.SwingConstants;
 
 public class primerconteo extends JFrame {
 
@@ -68,12 +69,12 @@ public class primerconteo extends JFrame {
 		contentPane.add(menuBar);
 		
 		JMenu mnArchivo = new JMenu("Archivo");
-		mnArchivo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		mnArchivo.setFont(new Font("Candara", Font.PLAIN, 14));
 		menuBar.add(mnArchivo);
 		
 		JMenuItem mntmRegresar = new JMenuItem("Regresar");
 		mntmRegresar.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/regresar.png")));
-		mntmRegresar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		mntmRegresar.setFont(new Font("Candara", Font.PLAIN, 12));
 		mntmRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -86,7 +87,7 @@ public class primerconteo extends JFrame {
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mntmSalir.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/salir.png")));
-		mntmSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		mntmSalir.setFont(new Font("Candara", Font.PLAIN, 12));
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -95,7 +96,8 @@ public class primerconteo extends JFrame {
 		mnArchivo.add(mntmSalir);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnBuscar.setVerticalAlignment(SwingConstants.TOP);
+		btnBuscar.setFont(new Font("Candara", Font.PLAIN, 14));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String Nombre =txtbuscar.getText();
@@ -103,28 +105,32 @@ public class primerconteo extends JFrame {
 				
 			}
 		});
-		btnBuscar.setBounds(287, 74, 89, 23);
+		btnBuscar.setBounds(628, 85, 89, 23);
 		contentPane.add(btnBuscar);
 		
 		txtbuscar = new JTextField();
-		txtbuscar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtbuscar.setFont(new Font("Candara", Font.PLAIN, 12));
 		txtbuscar.setColumns(10);
-		txtbuscar.setBounds(178, 74, 81, 23);
+		txtbuscar.setBounds(163, 87, 336, 23);
 		contentPane.add(txtbuscar);
 		
 		JLabel lblNewLabel = new JLabel("Primer Conteo");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel.setBounds(10, 32, 190, 28);
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Candara", Font.BOLD, 30));
+		lblNewLabel.setBounds(0, 32, 855, 28);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numero de Marbete");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(20, 76, 148, 21);
+		JLabel lblNewLabel_1 = new JLabel("Numero de Marbete:");
+		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel_1.setFont(new Font("Candara", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(24, 88, 148, 21);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Ubicacion:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_2.setBounds(226, 142, 106, 28);
+		JLabel lblNewLabel_2 = new JLabel("Ubicaci\u00F3n");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Candara", Font.BOLD, 22));
+		lblNewLabel_2.setBounds(0, 142, 855, 28);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel label = new JLabel("");
@@ -133,41 +139,56 @@ public class primerconteo extends JFrame {
 		contentPane.add(label);
 		
 		JLabel lblCodigo = new JLabel("Codigo: ");
-		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCodigo.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblCodigo.setFont(new Font("Candara", Font.PLAIN, 14));
 		lblCodigo.setBounds(24, 203, 73, 21);
 		contentPane.add(lblCodigo);
 		
 		txtcodigo = new JTextField();
-		txtcodigo.setBounds(90, 204, 86, 21);
+		txtcodigo.setFont(new Font("Candara", Font.PLAIN, 12));
+		txtcodigo.setBounds(163, 204, 336, 21);
 		contentPane.add(txtcodigo);
 		txtcodigo.setColumns(10);
 		
 		JButton btnValidar = new JButton("Validar");
-		btnValidar.setBounds(194, 203, 89, 23);
+		btnValidar.setVerticalAlignment(SwingConstants.TOP);
+		btnValidar.setFont(new Font("Candara", Font.PLAIN, 14));
+		btnValidar.setBounds(628, 202, 89, 23);
 		contentPane.add(btnValidar);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(87, 256, 312, 26);
+		lblNewLabel_3.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel_3.setFont(new Font("Candara", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(121, 266, 312, 26);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion:");
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescripcion.setBounds(10, 258, 87, 23);
+		lblDescripcion.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblDescripcion.setFont(new Font("Candara", Font.PLAIN, 14));
+		lblDescripcion.setBounds(24, 268, 87, 23);
 		contentPane.add(lblDescripcion);
 		
-		JLabel lblNewLabel_4 = new JLabel("Cantidad");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_4.setBounds(427, 259, 63, 19);
+		JLabel lblNewLabel_4 = new JLabel("Cantidad:");
+		lblNewLabel_4.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel_4.setFont(new Font("Candara", Font.PLAIN, 14));
+		lblNewLabel_4.setBounds(465, 270, 63, 19);
 		contentPane.add(lblNewLabel_4);
 		
 		txtcantidad = new JTextField();
-		txtcantidad.setBounds(497, 258, 95, 20);
+		txtcantidad.setFont(new Font("Candara", Font.PLAIN, 12));
+		txtcantidad.setBounds(541, 266, 155, 20);
 		contentPane.add(txtcantidad);
 		txtcantidad.setColumns(10);
 		
 		JButton btnConfirmarConteo = new JButton("Confirmar Conteo");
-		btnConfirmarConteo.setBounds(287, 337, 155, 23);
+		btnConfirmarConteo.setFont(new Font("Candara", Font.PLAIN, 14));
+		btnConfirmarConteo.setVerticalAlignment(SwingConstants.TOP);
+		btnConfirmarConteo.setBounds(344, 354, 155, 23);
 		contentPane.add(btnConfirmarConteo);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/fondo.jpg")));
+		lblNewLabel_5.setBounds(0, 0, 855, 429);
+		contentPane.add(lblNewLabel_5);
 	}
 }
