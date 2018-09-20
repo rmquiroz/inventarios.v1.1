@@ -27,6 +27,12 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 
 import javax.swing.Box;
@@ -42,6 +48,9 @@ public class primerconteo extends JFrame {
 	private JTextField txtbuscar;
 	private JTextField txtcodigo;
 	private JTextField txtcantidad;
+	private JTextField txtdescripcion;
+	private JTextField textField;
+	private JTextField txtuom;
 
 	/**
 	 * Launch the application.
@@ -73,6 +82,26 @@ public class primerconteo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		txtuom = new JTextField();
+		txtuom.setFont(new Font("Candara", Font.PLAIN, 12));
+		txtuom.setEditable(false);
+		txtuom.setColumns(10);
+		txtuom.setBounds(520, 235, 78, 21);
+		contentPane.add(txtuom);
+		
+		JLabel UOM = new JLabel("UOM:");
+		UOM.setVerticalAlignment(SwingConstants.BOTTOM);
+		UOM.setFont(new Font("Candara", Font.PLAIN, 14));
+		UOM.setBounds(481, 236, 63, 19);
+		contentPane.add(UOM);
+		
+		txtdescripcion = new JTextField();
+		txtdescripcion.setEditable(false);
+		txtdescripcion.setFont(new Font("Candara", Font.PLAIN, 12));
+		txtdescripcion.setColumns(10);
+		txtdescripcion.setBounds(112, 236, 359, 21);
+		contentPane.add(txtdescripcion);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 855, 21);
@@ -140,7 +169,7 @@ public class primerconteo extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Ubicaci\u00F3n");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Candara", Font.BOLD, 22));
-		lblNewLabel_2.setBounds(0, 142, 855, 28);
+		lblNewLabel_2.setBounds(173, 119, 489, 28);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel label = new JLabel("");
@@ -156,37 +185,73 @@ public class primerconteo extends JFrame {
 		
 		txtcodigo = new JTextField();
 		txtcodigo.setFont(new Font("Candara", Font.PLAIN, 12));
-		txtcodigo.setBounds(163, 204, 336, 21);
+		txtcodigo.setBounds(112, 204, 106, 21);
 		contentPane.add(txtcodigo);
 		txtcodigo.setColumns(10);
 		
-		JButton btnValidar = new JButton("Validar");
+		
+	
+		final JButton btnValidar = new JButton("Validar");
+		btnValidar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String codigo = txtcodigo.getText();
+				Connection con = null;
+				try {
+					Class.forName("org.postgresql.Driver");
+					String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
+					String usuario = "postgres";
+					String pass = "s3st2m1s4e";
+					
+
+					con = DriverManager.getConnection(url, usuario, pass);
+					
+					 ResultSet rs = null;
+					 PreparedStatement ps = con.prepareStatement("SELECT description,uom.name from m_product as prod,c_uom as uom  where prod.c_uom_id=uom.c_uom_id and prod.value like '"+codigo+"'");
+					 rs = ps.executeQuery();
+				      System.out.println(" Termina Query.......");
+					 
+				      rs.next();
+				      
+				      txtdescripcion.setText(rs.getString(1));
+				      txtuom.setText(rs.getString(2));
+				      
+				      txtdescripcion.setEditable(false);
+				      txtcodigo.setEditable(false);
+				      
+				      btnValidar.setEnabled(false); 
+					 
+				} catch (ClassNotFoundException e) {
+
+					System.out.println("Conexion Fallida DRIVER------>>>");
+
+					e.printStackTrace();
+				} catch (SQLException e) {
+					System.out.println("Conexion BD NO CONECTA------>>>");
+					e.printStackTrace();
+				}
+			}
+		});
 		btnValidar.setVerticalAlignment(SwingConstants.TOP);
 		btnValidar.setFont(new Font("Candara", Font.PLAIN, 14));
-		btnValidar.setBounds(628, 202, 89, 23);
+		btnValidar.setBounds(236, 202, 89, 23);
 		contentPane.add(btnValidar);
-		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel_3.setFont(new Font("Candara", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(121, 266, 312, 26);
-		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion:");
 		lblDescripcion.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblDescripcion.setFont(new Font("Candara", Font.PLAIN, 14));
-		lblDescripcion.setBounds(24, 268, 87, 23);
+		lblDescripcion.setBounds(24, 235, 87, 23);
 		contentPane.add(lblDescripcion);
 		
 		JLabel lblNewLabel_4 = new JLabel("Cantidad:");
 		lblNewLabel_4.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_4.setFont(new Font("Candara", Font.PLAIN, 14));
-		lblNewLabel_4.setBounds(465, 270, 63, 19);
+		lblNewLabel_4.setBounds(275, 286, 63, 19);
 		contentPane.add(lblNewLabel_4);
 		
 		txtcantidad = new JTextField();
 		txtcantidad.setFont(new Font("Candara", Font.PLAIN, 12));
-		txtcantidad.setBounds(541, 266, 155, 20);
+		txtcantidad.setBounds(344, 286, 114, 20);
 		contentPane.add(txtcantidad);
 		txtcantidad.setColumns(10);
 		
@@ -202,7 +267,7 @@ public class primerconteo extends JFrame {
 		});
 		btnConfirmarConteo.setFont(new Font("Candara", Font.PLAIN, 14));
 		btnConfirmarConteo.setVerticalAlignment(SwingConstants.TOP);
-		btnConfirmarConteo.setBounds(344, 354, 155, 23);
+		btnConfirmarConteo.setBounds(342, 374, 155, 23);
 		contentPane.add(btnConfirmarConteo);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
@@ -210,5 +275,12 @@ public class primerconteo extends JFrame {
 		lblNewLabel_5.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel_5.setBounds(0, 0, 855, 429);
 		contentPane.add(lblNewLabel_5);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Candara", Font.PLAIN, 12));
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBounds(173, 121, 359, 21);
+		contentPane.add(textField);
 	}
 }
