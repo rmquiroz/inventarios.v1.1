@@ -87,8 +87,9 @@ public class inicio extends JFrame {
 		JMenuItem mntmNuevaCaptura = new JMenuItem("Consultar Inventario");
 		mntmNuevaCaptura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			inventario.inventario i=new inventario.inventario();
-			i.main();
+				dispose();
+				formularios.inventarioform  inventarios = new formularios.inventarioform();
+				inventarios.setVisible(true);
 			}
 				
 			
