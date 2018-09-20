@@ -17,17 +17,27 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+
 import javax.swing.ImageIcon;
+
 import java.awt.SystemColor;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+
 import java.awt.Component;
+import java.util.LinkedList;
+
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
+import primerconteo.primer;
+
 public class primerconteo extends JFrame {
 
+	public static LinkedList contenedor=new LinkedList();
+	
 	private JPanel contentPane;
 	private JTextField txtbuscar;
 	private JTextField txtcodigo;
@@ -181,6 +191,15 @@ public class primerconteo extends JFrame {
 		txtcantidad.setColumns(10);
 		
 		JButton btnConfirmarConteo = new JButton("Confirmar Conteo");
+		btnConfirmarConteo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			
+				
+				
+			}
+		});
 		btnConfirmarConteo.setFont(new Font("Candara", Font.PLAIN, 14));
 		btnConfirmarConteo.setVerticalAlignment(SwingConstants.TOP);
 		btnConfirmarConteo.setBounds(344, 354, 155, 23);
