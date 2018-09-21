@@ -68,12 +68,12 @@ public class inventarioform extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnArchivo = new JMenu("Archivo     ");
-		mnArchivo.setFont(new Font("Candara", Font.PLAIN, 14));
+		mnArchivo.setFont(new Font("Dialog", Font.PLAIN, 14));
 		menuBar.add(mnArchivo);
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mntmSalir.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/salir.png")));
-		mntmSalir.setFont(new Font("Candara", Font.PLAIN, 12));
+		mntmSalir.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -81,7 +81,7 @@ public class inventarioform extends JFrame {
 		});
 		JMenuItem mntmRegresar = new JMenuItem("Regresar");
 		mntmRegresar.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/regresar.png")));
-		mntmRegresar.setFont(new Font("Candara", Font.PLAIN, 12));
+		mntmRegresar.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mntmRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -103,13 +103,21 @@ public class inventarioform extends JFrame {
 		contentPane.setLayout(null);		
 	
 		final JCheckBox BRANDSEUA = new JCheckBox("4E BRANDS EUA");
+		BRANDSEUA.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox ETIQUETAS = new JCheckBox("4G_1D ETIQUETAS");
+		ETIQUETAS.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox UDMP = new JCheckBox("4G_1D MP");
+		UDMP.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox QUIMICOS = new JCheckBox("4G_1F QUIMICOS");
+		QUIMICOS.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox MPPLANTA = new JCheckBox("MP_PLANTA 2C");
+		MPPLANTA.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox PRINCIPAL_C5 = new JCheckBox("PRINCIPAL_C5");
+		PRINCIPAL_C5.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox SMO_J1_PT = new JCheckBox("SMO_J1_PT");
+		SMO_J1_PT.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox SMO_MATERIA = new JCheckBox("SMO_MATERIA PRIMA");
+		SMO_MATERIA.setFont(new Font("Dialog", Font.BOLD, 12));
 		
 		BRANDSEUA.setBackground(Color.BLACK);
 		BRANDSEUA.setForeground(Color.WHITE);
@@ -153,6 +161,7 @@ public class inventarioform extends JFrame {
 		contentPane.add(SMO_MATERIA);		
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() || 
@@ -189,10 +198,11 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 		contentPane.add(btnAceptar);
 		
 		JLabel lblElegirLosAlmacenes = new JLabel("Elegir los almacenes que desea paralizar y descargar su stock");
-		lblElegirLosAlmacenes.setFont(new Font("Candara", Font.PLAIN, 20));
+		lblElegirLosAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblElegirLosAlmacenes.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblElegirLosAlmacenes.setForeground(Color.WHITE);
 		lblElegirLosAlmacenes.setBackground(Color.WHITE);
-		lblElegirLosAlmacenes.setBounds(113, -24, 567, 175);
+		lblElegirLosAlmacenes.setBounds(0, 0, 865, 80);
 		contentPane.add(lblElegirLosAlmacenes);
 		
 		JLabel lblNewLabel = new JLabel("");
