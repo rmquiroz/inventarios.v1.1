@@ -151,19 +151,19 @@ public class inicio extends JFrame {
 		
 		JLabel lblSistemaDeToma = new JLabel("SISTEMA DE TOMA DE INVENTARIO VENTANA PRINCIPAL");
 		lblSistemaDeToma.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSistemaDeToma.setForeground(Color.DARK_GRAY);
+		lblSistemaDeToma.setForeground(Color.WHITE);
 		lblSistemaDeToma.setFont(new Font("Candara", Font.PLAIN, 30));
 		lblSistemaDeToma.setBounds(0, 11, 855, 58);
 		contentPane.add(lblSistemaDeToma);
 		
-		JLabel lblDesarrolloDeSistemas = new JLabel("      DESARROLLO DE SISTEMAS ERP");
+		JLabel lblDesarrolloDeSistemas = new JLabel("      DESARROLLO  DE  SISTEMAS  ERP");
+		lblDesarrolloDeSistemas.setForeground(Color.WHITE);
 		lblDesarrolloDeSistemas.setFont(new Font("Candara", Font.PLAIN, 20));
 		lblDesarrolloDeSistemas.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/ob3.png")));
-		lblDesarrolloDeSistemas.setBounds(213, 115, 452, 186);
+		lblDesarrolloDeSistemas.setBounds(213, 115, 449, 186);
 		contentPane.add(lblDesarrolloDeSistemas);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setEnabled(false);
 		lblNewLabel.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel.setBounds(0, 0, 855, 408);
 		contentPane.add(lblNewLabel);
