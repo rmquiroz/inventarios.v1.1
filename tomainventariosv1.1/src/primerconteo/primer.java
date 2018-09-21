@@ -2,15 +2,15 @@ package primerconteo;
 
 public class primer {
 	
-	private String Codigo;
-	private String Cantidad;
-	private String Marbete;
+	private String codigo;
+	private String cantidad;
+	private String marbete;
 
-	public primer(String Codigo, String Cantidad,String Marbete ) {
+	public primer(String codigo, String cantidad,String marbete ) {
 
-		this.Codigo = Codigo;
-		this.Cantidad = Cantidad;
-		this.Marbete = Marbete;
+		this.codigo = codigo;
+		this.cantidad = cantidad;
+		this.marbete = marbete;
 
 	}
 	
@@ -19,28 +19,28 @@ public class primer {
 	}
 
 	public String getCodigo() {
-		return Codigo;
+		return codigo;
 	}
 
-	public void setCodigo(String Codigo) {
-		this.Codigo = Codigo;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 	
 	
-	public String getCantidad() {
-		return Cantidad;
+	public String getcantidad() {
+		return cantidad;
 	}
 
-	public void setCantidad(String Cantidad) {
-		this.Cantidad = Cantidad;
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
 	}
 	
-	public String getMarbete() {
-		return Marbete;
+	public String getmarbete() {
+		return marbete;
 	}
 
-	public void setMarbete(String Marbete) {
-		this.Marbete = Marbete;
+	public void setmarbete(String marbete) {
+		this.marbete = marbete;
 	}
 	
 }
