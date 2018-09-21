@@ -49,7 +49,6 @@ public class primerconteo extends JFrame {
 	private JTextField txtcodigo;
 	private JTextField txtcantidad;
 	private JTextField txtdescripcion;
-	private JTextField textField;
 	private JTextField txtuom;
 
 	/**
@@ -207,7 +206,7 @@ public class primerconteo extends JFrame {
 					con = DriverManager.getConnection(url, usuario, pass);
 					
 					 ResultSet rs = null;
-					 PreparedStatement ps = con.prepareStatement("SELECT description,uom.name from m_product as prod,c_uom as uom  where prod.c_uom_id=uom.c_uom_id and prod.value like '"+codigo+"'");
+					 PreparedStatement ps = con.prepareStatement("SELECT prod.description,uom.name from m_product as prod,c_uom as uom  where prod.c_uom_id=uom.c_uom_id and prod.value like '"+codigo+"'");
 					 rs = ps.executeQuery();
 				      System.out.println(" Termina Query.......");
 					 
@@ -274,12 +273,5 @@ public class primerconteo extends JFrame {
 		lblNewLabel_5.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel_5.setBounds(0, 0, 855, 429);
 		contentPane.add(lblNewLabel_5);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Candara", Font.PLAIN, 12));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(173, 121, 359, 21);
-		contentPane.add(textField);
 	}
 }

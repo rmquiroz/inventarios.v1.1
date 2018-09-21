@@ -127,6 +127,16 @@ public class inicio extends JFrame {
 		menuBar.add(mnInformes);
 		
 		JMenuItem mntmGeneracionDeMarbetes = new JMenuItem("Generacion de Marbetes");
+		mntmGeneracionDeMarbetes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.generarmarbete generarmarbete = new formularios.generarmarbete();
+				generarmarbete.setVisible(true);
+				
+			}
+		});
 		mntmGeneracionDeMarbetes.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/tag.png")));
 		mntmGeneracionDeMarbetes.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnInformes.add(mntmGeneracionDeMarbetes);
