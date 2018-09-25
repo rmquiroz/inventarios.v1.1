@@ -225,6 +225,10 @@ public class generarmarbete extends JFrame {
 				almacenes="";
 				if(listo)
 					JOptionPane.showMessageDialog(contentPane, "Archivo generado satisfactoriamente");	
+				
+				//SISI
+				
+				System.out.println("ARCHIVO GENERADO");
 			}
 			else
 			{
