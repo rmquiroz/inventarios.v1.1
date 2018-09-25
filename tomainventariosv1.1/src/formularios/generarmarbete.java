@@ -56,6 +56,7 @@ public class generarmarbete extends JFrame {
 	public static LinkedList contenedor=new LinkedList();
 	
 	private JPanel contentPane;
+	//la pao
 	
 	String almacenes="";
 
