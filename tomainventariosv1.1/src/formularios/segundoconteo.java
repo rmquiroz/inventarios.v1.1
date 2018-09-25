@@ -43,7 +43,7 @@ import primerconteo.primer;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class primerconteo extends JFrame {
+public class segundoconteo extends JFrame {
 
 	public static LinkedList contenedor=new LinkedList();
 	
@@ -63,7 +63,7 @@ public class primerconteo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					primerconteo frame = new primerconteo();
+					segundoconteo frame = new segundoconteo();
 					frame.setVisible(true);
 					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
@@ -76,7 +76,7 @@ public class primerconteo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public primerconteo() {
+	public segundoconteo() {
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
@@ -91,8 +91,8 @@ public class primerconteo extends JFrame {
 		btnLimpiarFormulario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 dispose();
-			      formularios.primerconteo primerconteo = new formularios.primerconteo();
-					primerconteo.setVisible(true);
+			      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
+					segundoconteo.setVisible(true);
 				 
 				
 			}
@@ -148,7 +148,7 @@ public class primerconteo extends JFrame {
 		menuBar.add(mnArchivo);
 		
 		JMenuItem mntmRegresar = new JMenuItem("Regresar");
-		mntmRegresar.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/regresar.png")));
+		mntmRegresar.setIcon(new ImageIcon(segundoconteo.class.getResource("/imagenes/regresar.png")));
 		mntmRegresar.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mntmRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -161,7 +161,7 @@ public class primerconteo extends JFrame {
 		mnArchivo.add(mntmRegresar);
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
-		mntmSalir.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/salir.png")));
+		mntmSalir.setIcon(new ImageIcon(segundoconteo.class.getResource("/imagenes/salir.png")));
 		mntmSalir.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -216,9 +216,8 @@ public class primerconteo extends JFrame {
 				      txtubicacion.setEditable(false);
 				      
 				      btnBuscar.setEnabled(false); 
-				      con.close();
-				      
 					 
+				      con.close();
 				} catch (ClassNotFoundException e) {
 
 					System.out.println("Conexion Fallida DRIVER------>>>");
@@ -279,8 +278,8 @@ public class primerconteo extends JFrame {
 				      txtalmacen.setEditable(false);
 				      txtubicacion.setEditable(false);
 				      
-				      btnBuscar.setEnabled(false);
-				      con.close();
+				      btnBuscar.setEnabled(false); 
+					 con.close();
 					 
 				} catch (ClassNotFoundException e) {
 
@@ -305,7 +304,7 @@ public class primerconteo extends JFrame {
 		txtbuscar.setBounds(217, 88, 127, 23);
 		contentPane.add(txtbuscar);
 		
-		JLabel lblNewLabel = new JLabel("Primer Conteo");
+		JLabel lblNewLabel = new JLabel("Segundo Conteo");
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 30));
@@ -376,6 +375,7 @@ public class primerconteo extends JFrame {
 				      btnValidar.setEnabled(false); 
 
 				      con.close();
+					 
 				} catch (ClassNotFoundException e) {
 
 					System.out.println("Conexion Fallida DRIVER------>>>");
@@ -418,7 +418,6 @@ public class primerconteo extends JFrame {
 				      txtdescripcion.setEditable(false);
 				      txtcodigo.setEditable(false);
 				      
-				     
 				      
 				      btnValidar.setEnabled(false); 
 				      con.close();
@@ -496,21 +495,21 @@ public class primerconteo extends JFrame {
 					
 
 					
-					PreparedStatement psinsert = con.prepareStatement("insert into primerconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
+					PreparedStatement psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
 					
 				rsupdate = psinsert.executeUpdate();
 				System.out.println("Termine la Insercion------>>>");
 				stmtupdate.close();
-				
 				con.close();
+				
 				System.out.println("Cerre la conexion------>>>");
 				
 				      btnValidar.setEnabled(false); 
 				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
 				      
 				      dispose();
-				      formularios.primerconteo primerconteo = new formularios.primerconteo();
-						primerconteo.setVisible(true);
+				      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
+						segundoconteo.setVisible(true);
 					 
 				} catch (ClassNotFoundException e) {
 
@@ -565,7 +564,7 @@ public class primerconteo extends JFrame {
 					
 
 					
-					PreparedStatement psinsert = con.prepareStatement("insert into primerconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
+					PreparedStatement psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
 					
 				rsupdate = psinsert.executeUpdate();
 				System.out.println("Termine la Insercion------>>>");
@@ -578,8 +577,8 @@ public class primerconteo extends JFrame {
 				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
 				      
 				      dispose();
-				      formularios.primerconteo primerconteo = new formularios.primerconteo();
-						primerconteo.setVisible(true);
+				      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
+						segundoconteo.setVisible(true);
 					 
 				} catch (ClassNotFoundException e) {
 
@@ -603,7 +602,7 @@ public class primerconteo extends JFrame {
 		contentPane.add(btnConfirmarConteo);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon(primerconteo.class.getResource("/imagenes/fondo.jpg")));
+		lblNewLabel_5.setIcon(new ImageIcon(segundoconteo.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel_5.setBounds(0, 0, 855, 429);
 		contentPane.add(lblNewLabel_5);
 	}

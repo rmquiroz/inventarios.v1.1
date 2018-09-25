@@ -264,6 +264,7 @@ public class generarmarbete extends JFrame {
 	    exporter.exportReport();
 	    System.out.println("Termina ejecucion");	    
 	    listo = true;
+	    conexion.close();
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
