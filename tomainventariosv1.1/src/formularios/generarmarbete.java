@@ -57,7 +57,7 @@ public class generarmarbete extends JFrame {
 	
 	private JPanel contentPane;
 	//la pao
-	
+	//dhadkjhdsfkjahfkjsdhfkahsf
 	String almacenes="";
 
 	/**
