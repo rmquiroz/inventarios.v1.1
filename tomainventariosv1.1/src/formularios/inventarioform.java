@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -185,8 +186,8 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				inventario.inventario i=new inventario.inventario();
-				i.main(almacenes);	
+				inventario.inventario i=new inventario.inventario();				
+				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes));
 			}
 			else{
 				

@@ -104,7 +104,7 @@ public class inicio extends JFrame {
 		mntmCapturaDeInventario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				dispose();
+				//dispose();
 				//con esto muestro la ventana inicial
 				formularios.primerconteo primerconteo = new formularios.primerconteo();
 				primerconteo.setVisible(true);
@@ -113,19 +113,6 @@ public class inicio extends JFrame {
 		mnCapturaDeInventario.add(mntmCapturaDeInventario);
 		
 		JMenuItem mntmCapturaDeInventario_1 = new JMenuItem("Captura de Inventario 2do Conteo");
-		mntmCapturaDeInventario_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				//con esto muestro la ventana inicial
-				formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
-				segundoconteo.setVisible(true);	
-				
-				
-				
-				
-				
-			}
-		});
 		mntmCapturaDeInventario_1.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/dos.png")));
 		mntmCapturaDeInventario_1.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnCapturaDeInventario.add(mntmCapturaDeInventario_1);

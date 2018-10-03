@@ -1,17 +1,17 @@
-
+package gestionarusuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import usuarios.usuario;
 import utilerias.postgresql;
+
 public class gestionusuario {
 
-	public usuario obtenerusuario(usuario usu){
+	public String obtenerusuario(usuario usu){
 		
 		usuario usuario=null;
-		
+		String nivel=null;
 	Connection con=null;
 	PreparedStatement pst=null;
 	ResultSet rs=null;
@@ -30,16 +30,14 @@ public class gestionusuario {
 				
 				while(rs.next()){
 					usuario=new usuario(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
-					
+					nivel=rs.getString(6);
 					
 				}
-				
-				
-				
+								
 	} catch (Exception e) {
 		System.out.println("error en obtener usuario");
 	}
 		
-		return(usuario);
+		return(nivel);
 	}
 }

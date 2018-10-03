@@ -147,19 +147,6 @@ public class segundoconteo extends JFrame {
 		mnArchivo.setFont(new Font("Dialog", Font.PLAIN, 14));
 		menuBar.add(mnArchivo);
 		
-		JMenuItem mntmRegresar = new JMenuItem("Regresar");
-		mntmRegresar.setIcon(new ImageIcon(segundoconteo.class.getResource("/imagenes/regresar.png")));
-		mntmRegresar.setFont(new Font("Dialog", Font.PLAIN, 12));
-		mntmRegresar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				formularios.inicio inicio= new formularios.inicio();
-				inicio.setVisible(true);
-				
-			}
-		});
-		mnArchivo.add(mntmRegresar);
-		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mntmSalir.setIcon(new ImageIcon(segundoconteo.class.getResource("/imagenes/salir.png")));
 		mntmSalir.setFont(new Font("Dialog", Font.PLAIN, 12));

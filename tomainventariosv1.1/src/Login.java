@@ -26,9 +26,14 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
 import formularios.inicio;
+import gestionarusuario.gestionusuario;
+
 import java.awt.SystemColor;
+
 import javax.swing.DropMode;
+
 import java.awt.TextField;
+
 import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
@@ -128,21 +133,33 @@ public class Login extends JFrame {
 		String usuario = txtusuario.getText();
 		String pass = String.valueOf(txtpass.getPassword());
 
-		gestionusuario gestionusuario = new gestionusuario();
+		gestionusuario gestionusuario = new  gestionusuario();
 
 		usuarios.usuario usuario2 = new usuario();
 		usuario2.setUsuario(usuario);
 		usuario2.setPass(pass);
 
-		usuarios.usuario usu = gestionusuario.obtenerusuario(usuario2);
+		String usu = gestionusuario.obtenerusuario(usuario2);
 
 		if (usu != null) {
-			JOptionPane.showMessageDialog(contentPane, "Bienvenido de nuevo");
-			
+			JOptionPane.showMessageDialog(contentPane, "Bienvenido de nuevo");				
 			this.dispose();
-			//con esto muestro la ventana inicial
-			inicio bienvenido = new inicio();
-			bienvenido.setVisible(true);
+			if(usu.equals("1"))
+			{
+				formularios.primerconteo conteo=new formularios.primerconteo();
+				conteo.setVisible(true);
+			}
+			if(usu.equals("2")){
+				formularios.segundoconteo conteo=new formularios.segundoconteo();
+				conteo.setVisible(true);
+				
+			}
+			if(usu.equals("3"))
+			{
+				inicio bienvenido = new inicio();
+				bienvenido.setVisible(true);
+			}			
+			
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "Datos incorectos",
 					"Error", JOptionPane.ERROR_MESSAGE);
