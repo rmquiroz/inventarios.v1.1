@@ -165,7 +165,8 @@ public class primerconteo extends JFrame {
 				Connection con = null;
 				try {
 					Class.forName("org.postgresql.Driver");
-					String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
+					//String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
+					String url = "jdbc:postgresql://10.1.250.24:5932/inventarios";
 					String usuario = "postgres";
 					String pass = "s3st2m1s4e";
 					
@@ -173,7 +174,7 @@ public class primerconteo extends JFrame {
 					con = DriverManager.getConnection(url, usuario, pass);
 					
 					 ResultSet rs = null;
-					 PreparedStatement ps = con.prepareStatement("SELECT m_warehouse.name as almacen,m_locator.value as ubicacion,m_locator.barcode  as marbete "
+					/* PreparedStatement ps = con.prepareStatement("SELECT m_warehouse.name as almacen,m_locator.value as ubicacion,m_locator.barcode  as marbete "
  +" FROM m_locator, "
  +" m_warehouse  "
  +" WHERE  "
@@ -189,7 +190,8 @@ public class primerconteo extends JFrame {
  +" AND m_locator.barcode like '"+marbete+"'"
  +" and m_locator.value not like '----------------------------------------' "
  +" and m_Warehouse.ad_Client_id not like '23C59575B9CF467C9620760EB255B389' "
- +" ORDER BY m_warehouse.name,m_locator.value ASC");
+ +" ORDER BY m_warehouse.name,m_locator.value ASC");*/
+					 PreparedStatement ps = con.prepareStatement("select almacen,hueco from ubicaciones where marbete like '"+marbete+"'");
 					 rs = ps.executeQuery();
 				      System.out.println(" Termina Query.......");
 					 
@@ -229,7 +231,8 @@ public class primerconteo extends JFrame {
 				Connection con = null;
 				try {
 					Class.forName("org.postgresql.Driver");
-					String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
+					/*String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";*/
+					String url = "jdbc:postgresql://10.1.250.24:5932/inventarios";
 					String usuario = "postgres";
 					String pass = "s3st2m1s4e";
 					
@@ -237,7 +240,7 @@ public class primerconteo extends JFrame {
 					con = DriverManager.getConnection(url, usuario, pass);
 					
 					 ResultSet rs = null;
-					 PreparedStatement ps = con.prepareStatement("SELECT m_warehouse.name as almacen,m_locator.value as ubicacion,m_locator.barcode  as marbete "
+					 /*PreparedStatement ps = con.prepareStatement("SELECT m_warehouse.name as almacen,m_locator.value as ubicacion,m_locator.barcode  as marbete "
  +" FROM m_locator, "
  +" m_warehouse  "
  +" WHERE  "
@@ -253,7 +256,8 @@ public class primerconteo extends JFrame {
  +" AND m_locator.barcode like '"+marbete+"'"
  +" and m_locator.value not like '----------------------------------------' "
  +" and m_Warehouse.ad_Client_id not like '23C59575B9CF467C9620760EB255B389' "
- +" ORDER BY m_warehouse.name,m_locator.value ASC");
+ +" ORDER BY m_warehouse.name,m_locator.value ASC");*/
+					 PreparedStatement ps = con.prepareStatement("select almacen,hueco from ubicaciones where marbete like '"+marbete+"'");
 					 rs = ps.executeQuery();
 				      System.out.println(" Termina Query.......");
 					 
