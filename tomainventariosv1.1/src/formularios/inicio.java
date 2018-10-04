@@ -142,6 +142,18 @@ public class inicio extends JFrame {
 		mnInformes.add(mntmGeneracionDeMarbetes);
 		
 		JMenuItem mntmInformeDeer = new JMenuItem("Informe Comparativo");
+		mntmInformeDeer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.diferencias diferencias = new formularios.diferencias();
+				diferencias.setVisible(true);
+				
+				
+				
+			}
+		});
 		mntmInformeDeer.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/informe.png")));
 		mntmInformeDeer.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnInformes.add(mntmInformeDeer);
