@@ -66,7 +66,7 @@ public class EmailUtility {
         
         msg.setFrom(new InternetAddress("informesob3@4eglobal.com"));
         
-        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("rquiroz@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("jfarias@4eglobal.com"));
         msg.setSubject("PARALIZA ALMACEN(ES)"+alm);                                   
         msg.setContent(multiParte);
 
@@ -78,7 +78,7 @@ public class EmailUtility {
         //InternetAddress[] toAddresses = null;
 //        String recipient= "rquiroz@4eglobal.com";
        // String recipient = "rquiroz@4eglobal.com";
-        
+        	
         //msg.setFrom(new InternetAddress(userName));
         //String direcciones[]=recipient.split(" ");
         //Address []destinos = new Address[direcciones.length];
