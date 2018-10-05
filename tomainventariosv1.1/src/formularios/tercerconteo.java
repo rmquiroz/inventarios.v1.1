@@ -40,10 +40,13 @@ import javax.swing.Box;
 import javax.swing.SwingConstants;
 
 import primerconteo.primer;
+import usuarios.usuario;
+import utilerias.postgresql;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class segundoconteo extends JFrame {
+public class tercerconteo extends JFrame {
 
 	public static LinkedList contenedor=new LinkedList();
 	
@@ -63,7 +66,7 @@ public class segundoconteo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					segundoconteo frame = new segundoconteo();
+					tercerconteo frame = new tercerconteo();
 					frame.setVisible(true);
 					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
@@ -76,7 +79,7 @@ public class segundoconteo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public segundoconteo() {
+	public tercerconteo() {
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
@@ -91,8 +94,8 @@ public class segundoconteo extends JFrame {
 		btnLimpiarFormulario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 dispose();
-			      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
-					segundoconteo.setVisible(true);
+			      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+					tercerconteo.setVisible(true);
 				 
 				
 			}
@@ -148,7 +151,7 @@ public class segundoconteo extends JFrame {
 		menuBar.add(mnArchivo);
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
-		mntmSalir.setIcon(new ImageIcon(segundoconteo.class.getResource("/imagenes/salir.png")));
+		mntmSalir.setIcon(new ImageIcon(tercerconteo.class.getResource("/imagenes/salir.png")));
 		mntmSalir.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -191,7 +194,7 @@ public class segundoconteo extends JFrame {
  +" and m_locator.value not like '----------------------------------------' "
  +" and m_Warehouse.ad_Client_id not like '23C59575B9CF467C9620760EB255B389' "
  +" ORDER BY m_warehouse.name,m_locator.value ASC");*/
-					 PreparedStatement ps = con.prepareStatement("select almacen,hueco from ubicaciones where marbete like '"+marbete+"'");
+					 PreparedStatement ps = con.prepareStatement("select almacen,ubicacion from tercerconteo where marbete like '"+marbete+"'");
 
 					 rs = ps.executeQuery();
 				      System.out.println(" Termina Query.......");
@@ -215,7 +218,7 @@ public class segundoconteo extends JFrame {
 					e.printStackTrace();
 				} catch (SQLException e) {
 					System.out.println("Conexion BD NO CONECTA------>>>");
-					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Numero de Marbete no existe");
+					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Numero de Marbete no Confirmado para Tercer Conteo");
 					txtbuscar.setText("");
 					e.printStackTrace();
 				}
@@ -258,7 +261,7 @@ public class segundoconteo extends JFrame {
  +" and m_Warehouse.ad_Client_id not like '23C59575B9CF467C9620760EB255B389' "
  +" ORDER BY m_warehouse.name,m_locator.value ASC");*/
 					 
-					 PreparedStatement ps = con.prepareStatement("select almacen,hueco from ubicaciones where marbete like '"+marbete+"'");
+					 PreparedStatement ps = con.prepareStatement("select almacen,ubicacion from tercerconteo where marbete like '"+marbete+"'");
 
 					 rs = ps.executeQuery();
 				      System.out.println(" Termina Query.......");
@@ -282,7 +285,7 @@ public class segundoconteo extends JFrame {
 					e.printStackTrace();
 				} catch (SQLException e) {
 					System.out.println("Conexion BD NO CONECTA------>>>");
-					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Numero de Marbete no existe");
+					JOptionPane.showMessageDialog(contentPane, "Error ------>>>  Numero de Marbete no Confirmado para Tercer Conteo");
 					txtbuscar.setText("");
 					
 					e.printStackTrace();
@@ -299,7 +302,7 @@ public class segundoconteo extends JFrame {
 		txtbuscar.setBounds(217, 88, 127, 23);
 		contentPane.add(txtbuscar);
 		
-		JLabel lblNewLabel = new JLabel("Segundo Conteo");
+		JLabel lblNewLabel = new JLabel("Tercer Conteo");
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 30));
@@ -490,7 +493,7 @@ public class segundoconteo extends JFrame {
 					
 
 					
-					PreparedStatement psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
+					PreparedStatement psinsert = con.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
 					
 				rsupdate = psinsert.executeUpdate();
 				System.out.println("Termine la Insercion------>>>");
@@ -503,8 +506,8 @@ public class segundoconteo extends JFrame {
 				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
 				      
 				      dispose();
-				      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
-						segundoconteo.setVisible(true);
+				      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+						tercerconteo.setVisible(true);
 					 
 				} catch (ClassNotFoundException e) {
 
@@ -542,40 +545,136 @@ public class segundoconteo extends JFrame {
 				} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())).isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Cantidad");
 				} else {
-				Connection con = null;
-				try {
-					Class.forName("org.postgresql.Driver");
-					String url = "jdbc:postgresql://10.1.250.24:5932/inventarios";
-					String usuario = "postgres";
-					String pass = "s3st2m1s4e";
-					
-
-					con = DriverManager.getConnection(url, usuario, pass);
-					
-					int rsupdate;
-					Statement stmtupdate = con.createStatement();
-					
-					System.out.println("Inicio Insercion------>>>");
-					
-
-					
-					PreparedStatement psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-					
-				rsupdate = psinsert.executeUpdate();
-				System.out.println("Termine la Insercion------>>>");
-				stmtupdate.close();
-				con.close();
 				
-				System.out.println("Cerre la conexion------>>>");
-				
-				      btnValidar.setEnabled(false); 
-				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
-				      
-				      dispose();
-				      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
-						segundoconteo.setVisible(true);
-					 
-				} catch (ClassNotFoundException e) {
+					String valor=marbete+"."+codigo+"."+cantidad;
+					
+					System.out.println(valor);
+					
+					System.out.println("ESTOY CONCATENANDO EL VALOR");
+
+					System.out.println("HAGO VALIDACION");
+					 try
+					  {
+						 Class.forName("org.postgresql.Driver");
+							String url = "jdbc:postgresql://10.1.250.24:5932/inventarios";
+							String usuario = "postgres";
+							String pass = "s3st2m1s4e";	  
+						  
+						  Connection co =  DriverManager.getConnection(url, usuario, pass);		  
+						  System.out.println("Ejecutando Query.......");
+						  ResultSet rs = null;
+						  
+						  PreparedStatement ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
+								  									+"UNION "
+								  									+"select (marbete||'.'||codigo||'.'||cantidad) from SEGUNDOCONTEO where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'");
+						  rs=ps.executeQuery();
+						  co.close();
+						  if(rs.next()){
+							  
+								JOptionPane.showMessageDialog(contentPane, "VALIDACION ------>>> El conteo coincide con uno de los anteriores");
+							  
+								
+
+							co = DriverManager.getConnection(url, usuario, pass);
+							
+							int rsupdate;
+							Statement stmtupdate = co.createStatement();
+							
+							System.out.println("Inicio Insercion------>>>");
+							
+
+							
+							PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
+							
+						rsupdate = psinsert.executeUpdate();
+						System.out.println("Termine la Insercion------>>>");
+						stmtupdate.close();
+						co.close();
+						
+						System.out.println("Cerre la conexion------>>>");
+						
+						      btnValidar.setEnabled(false); 
+						      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
+						      
+						      dispose();
+						      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+								tercerconteo.setVisible(true);
+
+							  
+						  }
+						  else{
+							  
+							  JOptionPane.showMessageDialog(contentPane, "VERIFICACION ------>>> TU CONTEO NO COINCIDE CON NINGUNO DE LOS ANTERIORES ");
+							  
+							  JOptionPane.showMessageDialog(contentPane, "VERIFICACION ------>>> PARA CONFIRMAR EL TERCER CONTEO ES NECESARIO USUARIO Y CONTRASEÑA DEL SUPERADMINISTRADOR");
+							  
+							  
+						
+								
+/*
+								co = DriverManager.getConnection(url, usuario, pass);
+								
+								 ResultSet rs1 = null;
+								 PreparedStatement ps1 = co.prepareStatement("select usuario,pass from usuarios ");
+								 rs1 = ps1.executeQuery();
+							      System.out.println(" Termina Query.......");
+								 
+							      while(rs1.next()){
+							      
+							      String usu=rs1.getString(1);
+							      String contra=rs1.getString(2);
+							      
+							      
+							      co.close();
+							      System.out.println("cierro la conexcion de la base usuarios");*/
+							      
+							   
+						      String usu="admin";
+						      String contra="admin";
+						      
+							  
+							      String usuario_introducido="";
+							      String clave_introducida="";
+							      
+							      while (usuario_introducido.equals(usu)==false||clave_introducida.equals(contra)==false){
+							    	  usuario_introducido= JOptionPane.showInputDialog("Introduzca su Usuario");
+							    	  clave_introducida = JOptionPane.showInputDialog("Introduzca su Contraseña");
+							      
+							      }
+							      co = DriverManager.getConnection(url, usuario, pass);
+									
+									int rsupdate;
+									Statement stmtupdate = co.createStatement();
+									
+									System.out.println("Inicio Insercion------>>>");
+									
+
+									
+									PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
+									
+								rsupdate = psinsert.executeUpdate();
+								System.out.println("Termine la Insercion------>>>");
+								stmtupdate.close();
+								co.close();
+								
+								System.out.println("Cerre la conexion------>>>");
+								
+								      btnValidar.setEnabled(false); 
+								      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
+								      
+								      dispose();
+								      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+										tercerconteo.setVisible(true);
+
+							      
+							    	  
+	
+						  }
+					
+			  
+					
+					
+					  }catch (ClassNotFoundException e) {
 
 					System.out.println("Conexion Fallida DRIVER------>>>");
 
@@ -587,8 +686,10 @@ public class segundoconteo extends JFrame {
 					e.printStackTrace();
 				}
 				
+
 			}
 			}
+				 
 				
 		});
 		btnConfirmarConteo.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -597,7 +698,7 @@ public class segundoconteo extends JFrame {
 		contentPane.add(btnConfirmarConteo);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon(segundoconteo.class.getResource("/imagenes/fondo.jpg")));
+		lblNewLabel_5.setIcon(new ImageIcon(tercerconteo.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel_5.setBounds(0, 0, 855, 429);
 		contentPane.add(lblNewLabel_5);
 	}
