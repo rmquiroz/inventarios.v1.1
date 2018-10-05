@@ -181,6 +181,5 @@ public class diferenciasC
 	  System.out.print("Registros:" +registros);	  
 	  return mensaje;
   }
-/////////////////////////////////////METODO DE SEPARACIÓN CORRECTA DE ARCHIVO CSV////////////////////////////
   
 }

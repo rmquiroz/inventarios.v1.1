@@ -29,6 +29,8 @@ import java.awt.Insets;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
+import confirmaconteos.confirmarconteos;
+
 public class diferencias extends JFrame {
 
 	/**
@@ -187,8 +189,56 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				diferenciasC.diferenciasC i=new diferenciasC.diferenciasC();				
-				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes));
+				diferenciasC.diferenciasC i=new diferenciasC.diferenciasC();	
+				String validacion=i.main(almacenes);
+				JOptionPane.showMessageDialog(contentPane,validacion);
+				if(!validacion.equals("HAY HUECOS FALTANTES POR CONTABILIZAR")){
+				int a=JOptionPane.showConfirmDialog(contentPane,"¿Quiere confirmar los conteos?","Esta verificación no puede revertirse ni repetirse",JOptionPane.YES_NO_OPTION);
+				System.out.print("\nsec \n"+a);
+				
+				while(a<0)
+				{
+					if(a==-1){}
+					a=JOptionPane.showConfirmDialog(contentPane,"¿Quiere confirmar los conteos?","OPCION OLIGATORIA",JOptionPane.YES_NO_OPTION);
+					System.out.print("\nsec \n"+a);
+		}
+					if(a==0)
+					{
+						a=JOptionPane.showConfirmDialog(contentPane,"¿Está seguro que desea avanzar? \n Esta opción no puede revertirse","OPCION OLIGATORIA",JOptionPane.YES_NO_OPTION);
+						System.out.print("\nsec \n"+a);
+						while(a<0)
+						{
+							a=JOptionPane.showConfirmDialog(contentPane,"¿Está seguro que desea avanzar? \n Esta opción no puede revertirse","OPCION OLIGATORIA",JOptionPane.YES_NO_OPTION);
+							System.out.print("\nsec \n"+a);
+							
+							
+						}	
+						if(a==0)
+						{
+							confirmaconteos.confirmarconteos co=new confirmaconteos.confirmarconteos();
+							JOptionPane.showMessageDialog(contentPane,co.main(almacenes));
+						}
+						if(a==1)
+						{
+							JOptionPane.showMessageDialog(contentPane,"OPERACIÓN CANCELADA");			
+						}
+					}										
+					else if(a==1){
+						
+					}
+					
+				
+					
+				
+				
+				
+				
+				
+				
+				
+				
+				}
+				
 			}
 			else{
 				JOptionPane.showMessageDialog(contentPane,"SELECCIONA AL MENOS UN ALMACEN");				
