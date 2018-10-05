@@ -459,72 +459,169 @@ public class tercerconteo extends JFrame {
 		JButton btnConfirmarConteo = new JButton("Confirmar Conteo");
 		btnConfirmarConteo.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent arg0) {
-				String codigo= txtcodigo.getText();
-				String marbete= txtbuscar.getText();
-				//String cantidad= txtcantidad.getText();
-				int cantidad= Integer.parseInt(txtcantidad.getText());
-				String ubicacion= txtubicacion.getText();
-				String almacen= txtalmacen.getText();
-				
-				 if(codigo.isEmpty()) {
-					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Codigo");
+			public void keyPressed(KeyEvent arg0) {String codigo= txtcodigo.getText();
+			String marbete= txtbuscar.getText();
+			//String cantidad= txtcantidad.getText();
+			int cantidad= Integer.parseInt(txtcantidad.getText());
+			String ubicacion= txtubicacion.getText();
+			String almacen= txtalmacen.getText();
 			
-				} else if(marbete.isEmpty()) {
-					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Marbete");
-				//} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())) != null) {
-				} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())).isEmpty()) {
-					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Cantidad");
-				} else {
-				Connection con = null;
-				try {
-					Class.forName("org.postgresql.Driver");
-					String url = "jdbc:postgresql://10.1.250.24:5932/inventarios";
-					String usuario = "postgres";
-					String pass = "s3st2m1s4e";
-					
-
-					con = DriverManager.getConnection(url, usuario, pass);
-					
-					int rsupdate;
-					Statement stmtupdate = con.createStatement();
-					
-					System.out.println("Inicio Insercion------>>>");
-					
-
-					
-					PreparedStatement psinsert = con.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-					
-				rsupdate = psinsert.executeUpdate();
-				System.out.println("Termine la Insercion------>>>");
-				stmtupdate.close();
-				con.close();
+			 if(codigo.isEmpty()) {
+				JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Codigo");
+		
+			} else if(marbete.isEmpty()) {
+				JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Marbete");
+			//} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())) != null) {
+			} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())).isEmpty()) {
+				JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Cantidad");
+			} else {
+			
+				String valor=marbete+"."+codigo+"."+cantidad;
 				
-				System.out.println("Cerre la conexion------>>>");
+				System.out.println(valor);
 				
-				      btnValidar.setEnabled(false); 
-				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
-				      
-				      dispose();
-				      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
-						tercerconteo.setVisible(true);
-					 
-				} catch (ClassNotFoundException e) {
+				System.out.println("ESTOY CONCATENANDO EL VALOR");
 
-					System.out.println("Conexion Fallida DRIVER------>>>");
+				System.out.println("HAGO VALIDACION");
+				 try
+				  {
+					 Class.forName("org.postgresql.Driver");
+						String url = "jdbc:postgresql://10.1.250.24:5932/inventarios";
+						String usuario = "postgres";
+						String pass = "s3st2m1s4e";	  
+					  
+					  Connection co =  DriverManager.getConnection(url, usuario, pass);		  
+					  System.out.println("Ejecutando Query.......");
+					  ResultSet rs = null;
+					  
+					  PreparedStatement ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
+							  									+"UNION "
+							  									+"select (marbete||'.'||codigo||'.'||cantidad) from SEGUNDOCONTEO where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'");
+					  rs=ps.executeQuery();
+					  co.close();
+					  if(rs.next()){
+						  
+							JOptionPane.showMessageDialog(contentPane, "VALIDACION ------>>> El conteo coincide con uno de los anteriores");
+						  
+							
 
-					e.printStackTrace();
-				} catch (SQLException e) {
-					System.out.println("Conexion BD NO CONECTA------>>>");
-				//	JOptionPane.showMessageDialog(contentPane, "Infomacion Erronea favor de Verificar");
+						co = DriverManager.getConnection(url, usuario, pass);
+						
+						int rsupdate;
+						Statement stmtupdate = co.createStatement();
+						
+						System.out.println("Inicio Insercion------>>>");
+						
+
+						
+						PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
+						
+					rsupdate = psinsert.executeUpdate();
+					System.out.println("Termine la Insercion------>>>");
+					stmtupdate.close();
+					co.close();
 					
-					e.printStackTrace();
-				}
+					System.out.println("Cerre la conexion------>>>");
+					
+					      btnValidar.setEnabled(false); 
+					      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
+					      
+					      dispose();
+					      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+							tercerconteo.setVisible(true);
+
+						  
+					  }
+					  else{
+						  
+						  JOptionPane.showMessageDialog(contentPane, "VERIFICACION ------>>> TU CONTEO NO COINCIDE CON NINGUNO DE LOS ANTERIORES ");
+						  
+						  JOptionPane.showMessageDialog(contentPane, "VERIFICACION ------>>> PARA CONFIRMAR EL TERCER CONTEO ES NECESARIO USUARIO Y CONTRASEÑA DEL SUPERADMINISTRADOR");
+						  
+						  
+					
+							
+/*
+							co = DriverManager.getConnection(url, usuario, pass);
+							
+							 ResultSet rs1 = null;
+							 PreparedStatement ps1 = co.prepareStatement("select usuario,pass from usuarios ");
+							 rs1 = ps1.executeQuery();
+						      System.out.println(" Termina Query.......");
+							 
+						      while(rs1.next()){
+						      
+						      String usu=rs1.getString(1);
+						      String contra=rs1.getString(2);
+						      
+						      
+						      co.close();
+						      System.out.println("cierro la conexcion de la base usuarios");*/
+						      
+						   
+					      String usu="admin";
+					      String contra="admin";
+					      
+						  
+						      String usuario_introducido="";
+						      String clave_introducida="";
+						      
+						      while (usuario_introducido.equals(usu)==false||clave_introducida.equals(contra)==false){
+						    	  usuario_introducido= JOptionPane.showInputDialog("Introduzca su Usuario");
+						    	  clave_introducida = JOptionPane.showInputDialog("Introduzca su Contraseña");
+						      
+						      }
+						      co = DriverManager.getConnection(url, usuario, pass);
+								
+								int rsupdate;
+								Statement stmtupdate = co.createStatement();
+								
+								System.out.println("Inicio Insercion------>>>");
+								
+
+								
+								PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
+								
+							rsupdate = psinsert.executeUpdate();
+							System.out.println("Termine la Insercion------>>>");
+							stmtupdate.close();
+							co.close();
+							
+							System.out.println("Cerre la conexion------>>>");
+							
+							      btnValidar.setEnabled(false); 
+							      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
+							      
+							      dispose();
+							      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+									tercerconteo.setVisible(true);
+
+						      
+						    	  
+
+					  }
 				
+		  
+				
+				
+				  }catch (ClassNotFoundException e) {
+
+				System.out.println("Conexion Fallida DRIVER------>>>");
+
+				e.printStackTrace();
+			} catch (SQLException e) {
+				System.out.println("Conexion BD NO CONECTA------>>>");
+			//	JOptionPane.showMessageDialog(contentPane, "Infomacion Erronea favor de Verificar");
+				
+				e.printStackTrace();
 			}
-			}
-				
-		});
+			
+
+		}
+		}
+			 
+			
+	});
 
 		btnConfirmarConteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
