@@ -122,7 +122,7 @@ public class inicio extends JFrame {
 		mntmCapturaDeInventario_2.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnCapturaDeInventario.add(mntmCapturaDeInventario_2);
 		
-		JMenu mnInformes = new JMenu("Informes");
+		JMenu mnInformes = new JMenu("Acciones");
 		mnInformes.setFont(new Font("Dialog", Font.PLAIN, 14));
 		menuBar.add(mnInformes);
 		
@@ -165,6 +165,13 @@ public class inicio extends JFrame {
 		
 		JMenuItem menuItem = new JMenuItem("");
 		mnInformes.add(menuItem);
+		
+		JMenu mnInformes_1 = new JMenu("Informes");
+		mnInformes_1.setFont(new Font("Dialog", Font.PLAIN, 14));
+		menuBar.add(mnInformes_1);
+		
+		JMenuItem mntmInformeDeAvances = new JMenuItem("Informe de avances 1er y 2do conteo");
+		mnInformes_1.add(mntmInformeDeAvances);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 
