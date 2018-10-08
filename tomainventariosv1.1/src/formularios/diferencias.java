@@ -217,6 +217,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 						{
 							confirmaconteos.confirmarconteos co=new confirmaconteos.confirmarconteos();
 							JOptionPane.showMessageDialog(contentPane,co.main(almacenes));
+							JOptionPane.showMessageDialog(contentPane,i.GeneraTercer(almacenes));							
 						}
 						if(a==1)
 						{

@@ -66,7 +66,7 @@ public class EmailUtility {
         
         msg.setFrom(new InternetAddress("informesob3@4eglobal.com"));
         
-        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("jfarias@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("sistemaserp@4eglobal.com"));
         msg.setSubject("PARALIZA ALMACEN(ES)"+alm);                                   
         msg.setContent(multiParte);
 

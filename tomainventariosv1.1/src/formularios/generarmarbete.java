@@ -248,7 +248,8 @@ public class generarmarbete extends JFrame {
 		{
 		System.out.println("Se inicia conexion a bd");
 	    Class.forName("org.postgresql.Driver");
-	    Connection conexion = DriverManager.getConnection("jdbc:postgresql://10.1.250.20:5932/openbravo", "postgres", "s3st2m1s4e");
+	    //Connection conexion = DriverManager.getConnection("jdbc:postgresql://10.1.250.20:5932/openbravo", "postgres", "s3st2m1s4e");
+	    Connection conexion = DriverManager.getConnection("jdbc:postgresql://201.149.89.163:5932/openbravo", "postgres", "s3st2m1s4e");
 	    System.out.println("Se finaliza la prueba de conexion a postgresql");
 	    System.out.println("Se inicia la solicitud del reporte");
 	    Map<String,Object> parameters = new HashMap<String,Object>();

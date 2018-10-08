@@ -2,22 +2,28 @@ package diferenciasC;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 import correo.EmailUtility;
 public class diferenciasC
 {
@@ -181,5 +187,85 @@ public class diferenciasC
 	  System.out.print("Registros:" +registros);	  
 	  return mensaje;
   }
-  
+  public String GeneraTercer(String almacenes)
+  {
+	  try {
+		Class.forName("org.postgresql.Driver");
+		Connection cn = DriverManager.getConnection(inventarios, usuario, contra);
+		ResultSet rs=null;					
+		WritableWorkbook wb = Workbook.createWorkbook(new File("TercerConteo.xls"));
+		WritableFont wf = new WritableFont(WritableFont.TAHOMA, 10, WritableFont.NO_BOLD);
+		WritableCellFormat cf = new WritableCellFormat(wf);	        
+		String almacen[]=almacenes.split("\\|");
+		for(int x=0;x<almacen.length;x++)
+		  {						
+			System.out.println(almacen[x]);
+			PreparedStatement ps = cn.prepareStatement("SELECT almacen,marbete,ubicacion FROM tercerconteo WHERE almacen similar to ('"+almacen[x]+"') "
++ "ORDER BY almacen,ubicacion");
+			rs = ps.executeQuery();
+			ArrayList<String> col=new ArrayList<String>(); 
+			while (rs.next())
+			{
+				col.add(rs.getString(1));
+				col.add(rs.getString(2));
+				col.add(rs.getString(3));								
+				col.add("sp");
+			}	  			  			
+			System.out.println("HIZO ESTO");
+			WritableSheet ws = wb.createSheet("Almacen"+almacen[x], 0+x);			  			  
+			int column = 0;
+			int row = 0;
+			Iterator<String> i = col.iterator();	        
+			Label ec1 = new Label(column, row, "ALMACEN", cf);	        
+			ws.addCell(ec1);
+			column++;
+			Label ec2 = new Label(column, row, "MARBETE", cf);
+			ws.addCell(ec2);
+			column++;
+			Label ec3 = new Label(column, row, "HUECO", cf);
+			ws.addCell(ec3);
+			row = 1;
+			column = 0;
+			while (i.hasNext())
+			{
+				String campo = (String)i.next();
+				if (campo == null) 
+				{
+					campo = " ";
+				}
+				if (campo.equals("sp"))
+				{
+					i.remove();
+					row++;
+					column = 0;
+				}
+				else
+				{
+					Label l1 = new Label(column, row, campo, cf);
+					ws.addCell(l1);
+					column++;
+				}
+			}			
+			wb.write();
+			wb.close();
+		  }	
+		System.out.println("Y ESTO");
+		mensaje="ARCHIVO DE UBICACIONES MANDADAS A TERCER CONTEO HA SIDO GENERADO";
+		} catch (ClassNotFoundException e) {			
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RowsExceededException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (WriteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	  return mensaje;
+  }  
 }

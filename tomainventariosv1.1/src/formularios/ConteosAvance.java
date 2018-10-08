@@ -28,9 +28,7 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-
-import diferenciasC.diferenciasC;
-public class inventarioform extends JFrame {
+public class ConteosAvance extends JFrame {
 
 	/**
 	 * 
@@ -44,8 +42,8 @@ public class inventarioform extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {			
-					inventarioform frame = new inventarioform();
+				try {
+					ConteosAvance frame = new ConteosAvance();
 					frame.setVisible(true);
 					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
@@ -58,9 +56,9 @@ public class inventarioform extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public inventarioform() {
+	public ConteosAvance() {
+		setTitle("CONTEOS");
 		setResizable(false);
-		setTitle("INVENTARIO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
 		
@@ -102,8 +100,7 @@ public class inventarioform extends JFrame {
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);		
-	
+		contentPane.setLayout(null);			
 		final JCheckBox BRANDSEUA = new JCheckBox("4E BRANDS EUA");
 		BRANDSEUA.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox ETIQUETAS = new JCheckBox("4G_1D ETIQUETAS");
@@ -187,8 +184,9 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				inventario.inventario i=new inventario.inventario();				
-				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes));				
+				//inventario.inventario i=new inventario.inventario();
+				reporteConteos.ConteosExcel i=new reporteConteos.ConteosExcel(); 
+				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes));
 			}
 			else{
 				

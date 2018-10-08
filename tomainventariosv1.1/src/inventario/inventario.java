@@ -2,22 +2,28 @@ package inventario;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 import correo.EmailUtility;
 public class inventario
 {
@@ -45,7 +51,8 @@ public class inventario
 		  Connection co = DriverManager.getConnection(inventarios, usuario, contra);		  
 		  System.out.println("Ejecutando Query.......");
 		  ResultSet rs = null;
-		  PreparedStatement ps= co.prepareStatement("SELECT max(extract(doy FROM fecha)),extract(doy FROM now()) FROM "
+		  PreparedStatement ps= co.prepareStatement("SELECT (CASE WHEN max(extract(doy FROM fecha)) IS NULL THEN 0.0 ELSE "
++ "max(extract(doy FROM fecha)) END)::NUMERIC+to_char(now(),'YYYY')::numeric,extract(doy FROM now())+to_char(now(),'YYYY')::numeric FROM "
 + "inventario_teorico WHERE almacen similar to ('"+almacenes+"')");
 		  rs=ps.executeQuery();
 		  if(rs.next())
@@ -55,6 +62,7 @@ public class inventario
 		  }
 		  if(hoy-2>=fecha)
 		  {
+			  System.out.println("ENTRA AL IF");
 			  ps = cn.prepareStatement("SELECT m_warehouse.name,m_locator.value,m_product.value AS codigo,"
 + "REPLACE(m_product.description,',',' ') AS descripcion,round(sum(m_storage_detail.qtyonhAND),2) AS cantidad,"
 + "REPLACE(REPLACE(c_uom.name, 'Unit', 'UNIDAD'),'Kilogram','KILOGRAMO') AS unidad,round(sum(CASE WHEN m_product.value "
@@ -327,7 +335,7 @@ public class inventario
 				  Label ecs10 = new Label(column, row, "UOM", cf);
 				  ws2.addCell(ecs10);
 				  column++;
-				  Label ecs11 = new Label(column, row, "FecsHA_MOVIMIENTO", cf);
+				  Label ecs11 = new Label(column, row, "FECHA_MOVIMIENTO", cf);
 				  ws2.addCell(ecs11);
 				  column++;
 				  Label ecs12 = new Label(column, row, "DESCRIPCION", cf);
@@ -378,7 +386,7 @@ public class inventario
 			  }	  		  
 			  wb.write();
 			  wb.close();
-			  cn.close();	   		  
+			  	   		  
 	  ////////////////////////////////COMIENZA LECTURA DE ARCHIVO////////////////////////////////////
 			  String [] fields = null;		  
 			  BufferedReader br = null;
@@ -412,13 +420,15 @@ public class inventario
 			  String val8 = null;
 			  String val9 = null;
 	      /////////////////////////////////// TERMINA LECTURA DE ARCHIVO//////////////////////////////
-			  Iterator<String> s = arr.iterator();		         
+			  Iterator<String> 	s = arr.iterator();		         
 	      /////////////////////////////////// RECOLECTA DE DATOS DE CSV///////////////////////////////
-			  while(i.hasNext())
-			  {		    			    	   
-				  String inter=(String)i.next();			  
+			  while(s.hasNext())
+			  {		
+				  
+				  String inter=(String)s.next();			  
 				  if(a==9)
 				  {
+					  
 					  val1 =null;			    	
 					  val11=null;
 					  val1=inter;
@@ -426,6 +436,7 @@ public class inventario
 				  }		    
 				  else if(a==8)
 				  {
+					  
 					  val2 =null;
 					  val22=null;
 					  val2=inter;
@@ -433,6 +444,7 @@ public class inventario
 				  }
 				  else if(a==7)
 				  {
+					  
 					  val3 =null;
 					  val33=null;
 					  val3=inter;
@@ -440,44 +452,52 @@ public class inventario
 				  }
 				  else if(a==6)
 				  {
+					  
 					  val4 =null;
 					  val4=inter;
 					  a=5;			    		
 				  }
 				  else if(a==5)
 				  {
+					  
 					  val5 =null;
 					  val5=inter;
 					  a=4;			    		
 				  }
 				  else if(a==4)
 				  {
+					  
 					  val6 =null;
 					  val6=inter;
 					  a=3;			    		
 				  }
 				  else if(a==3)
 				  {
+					  
 					  val7 =null;
 					  val7=inter;
 					  a=2;			    		
 				  }
 				  else if(a==2)
 				  {
+					  
 					  val8 =null;
 					  val8=inter;
 					  a=0;			    		
 				  }			  
 				  else if(a==0)
 				  {
+					  
 					  a=9;
 					  val9 =null;
 					  val9=inter;
-					  ps=cn.prepareStatement("SELECT m_warehouse_id FROM m_warehouse  WHERE name ='"+val1+"'");
-					  rs=ps.executeQuery();
-					  if(rs.next())
+					  ResultSet rs1=null;
+					  PreparedStatement pas=cn.prepareStatement("SELECT m_warehouse_id FROM m_warehouse  WHERE name ='"+val1+"'");
+					  rs1=pas.executeQuery();
+					  System.out.println("CERO");
+					  if(rs1.next())
 					  {
-						  val11=rs.getString(1);
+						  val11=rs1.getString(1);
 					  }
 					  else 
 					  { 
@@ -485,6 +505,7 @@ public class inventario
 					  }
 					  ps=cn.prepareStatement("SELECT m_locator_id FROM m_locator WHERE value ='"+val2+"'");
 					  rs=ps.executeQuery();
+					  System.out.println("UNO");
 					  if(rs.next())
 					  {
 						  val22=rs.getString(1);
@@ -495,6 +516,7 @@ public class inventario
 					  }
 					  ps=cn.prepareStatement("SELECT m_product_id FROM m_product WHERE value ='"+val3+"'");
 					  rs=ps.executeQuery();
+					  System.out.println("DOS");
 					  if(rs.next())
 					  {
 						  val33=rs.getString(1);
@@ -506,7 +528,8 @@ public class inventario
 					  registros++;
 					  ps=co.prepareStatement("insert into inventario_teorico values((SELECT upper(LOWER( REPLACE("
 + "CAST(uuid_generate_v4()AS varchar(50)),'-','')))),'"+val11+"','"+val1+"','"+val2+"','"+val22+"','"+val3+"','"+val33
-+"','"+val4.replace("'","")+"','"+val5+"','"+val6+"','"+val7+"','"+val8+"','"+val9+"',now());");					  
++"','"+val4.replace("'","")+"','"+val5+"','"+val6+"','"+val7+"','"+val8+"','"+val9+"',now());");
+					  System.out.println("Inserta"+ps);
 					  ps.execute();				  													   						  
 				  }				        
 			  }
@@ -538,11 +561,22 @@ public class inventario
 		  } 
 		  cn.close();
 		  co.close();
-	  }catch (Exception e)
-	  {
-		  mensaje="Almacen cargado en rango de tiempo inválido";
-		  System.out.println(" "+e );
-	  }
+	  } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RowsExceededException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (WriteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  System.out.print("Registros:" +registros);	  
 	  return mensaje;
   }
@@ -556,4 +590,5 @@ public class inventario
 	  }
 	  return result;
   }
+  
 }
