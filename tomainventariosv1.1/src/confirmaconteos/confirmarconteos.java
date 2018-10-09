@@ -49,12 +49,7 @@ public class confirmarconteos
 			  
 			  mensaje="CONTEOS REGISTRADOS PREVIAMENTE NO PUEDE REALIZARSE NUEVAMENTE";
 		  }
-		  else{
-		  
-		  
-		  
-		  
-		  
+		  else{		  		  		  				  
 		  ps= co.prepareStatement("insert into tercerconteo (SELECT '' as codigo,UBICACIONES.MARBETE as marbete,'' as cantidad,null as fecha,"
 + "ubicaciones.hueco,ubicaciones.almacen FROM UBICACIONES LEFT OUTER JOIN (SELECT distinct PRIMER.marbete FROM primerconteo AS primer, segundoconteo AS segundo,(SELECT distinct "
 + "primer.marbete as a,STRING_AGG(CONCAT(primer.marbete,'.',primer.codigo,'.',primer.cantidad),'.') AS marbete FROM primerconteo AS primer GROUP BY primer.marbete) as cantidadp,("
