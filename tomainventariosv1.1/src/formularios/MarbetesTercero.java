@@ -51,7 +51,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
-public class generarmarbete extends JFrame {
+public class MarbetesTercero extends JFrame {
 
 	public static LinkedList contenedor=new LinkedList();
 	
@@ -67,7 +67,7 @@ public class generarmarbete extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					generarmarbete frame = new generarmarbete();
+					MarbetesTercero frame = new MarbetesTercero();
 					frame.setVisible(true);
 					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
@@ -80,7 +80,7 @@ public class generarmarbete extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public generarmarbete() {
+	public MarbetesTercero() {
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
@@ -221,15 +221,16 @@ public class generarmarbete extends JFrame {
 				if(almacenes.charAt(0)=='|')
 					almacenes=""+almacenes.substring(1, almacenes.length())+"";
 				System.out.println(almacenes);			
-				boolean listo = generarMarbete(almacenes);
+				marbetes.TercerConteo cont=new marbetes.TercerConteo();
+				String listo=cont.generarMarbete(almacenes);
 				almacenes="";
-				if(listo)
-					JOptionPane.showMessageDialog(contentPane, "Archivo generado satisfactoriamente");	
-				
+								
+					JOptionPane.showMessageDialog(contentPane,listo);	
+			}	
 				//SISI
 				
-				System.out.println("ARCHIVO GENERADO");
-			}
+				
+			
 			else
 			{
 				//Mensaje para seleccionar algo
@@ -248,8 +249,8 @@ public class generarmarbete extends JFrame {
 		{
 		System.out.println("Se inicia conexion a bd");
 	    Class.forName("org.postgresql.Driver");
-	    Connection conexion = DriverManager.getConnection("jdbc:postgresql://10.1.250.24:5932/inventarios", "postgres", "s3st2m1s4e");
-	    //Connection conexion = DriverManager.getConnection("jdbc:postgresql://201.149.89.163:5932/openbravo", "postgres", "s3st2m1s4e");
+	    //Connection conexion = DriverManager.getConnection("jdbc:postgresql://10.1.250.20:5932/openbravo", "postgres", "s3st2m1s4e");
+	    Connection conexion = DriverManager.getConnection("jdbc:postgresql://201.149.89.163:5932/openbravo", "postgres", "s3st2m1s4e");
 	    System.out.println("Se finaliza la prueba de conexion a postgresql");
 	    System.out.println("Se inicia la solicitud del reporte");
 	    Map<String,Object> parameters = new HashMap<String,Object>();

@@ -47,11 +47,12 @@ public class TercerConteo {
 	    exporter.exportReport();
 	    System.out.println("Termina ejecucion");
 	    conexion.close();
+	    mensaje="MARBETES GENERADOS";
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		mensaje="ERROR DE BASE DE DATOS";
 		e.printStackTrace();
 	} catch (Exception ex) {
-		// TODO: handle exception
+		mensaje="ERROR";
 		ex.printStackTrace();
 	}
 		return mensaje;		

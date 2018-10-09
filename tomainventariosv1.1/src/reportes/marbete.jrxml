@@ -2,36 +2,22 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marbete" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="16" bottomMargin="21" uuid="4afda7b2-9631-4612-a5a5-63cdb9ec69bf">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="233"/>
+	<property name="ireport.y" value="53"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Lenovo\\Documents\\Workspace\\Marbete\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="almacenes" class="java.lang.String"/>
 	<parameter name="IMG_DIR" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT m_warehouse.name as almacen,m_locator.value as ubicacion,
-case when char_length(m_locator.barcode) = 1 then ('00000'||m_locator.barcode)
-when char_length(m_locator.barcode) = 2 then ('0000'||m_locator.barcode)
-when char_length(m_locator.barcode) = 3 then ('000'||m_locator.barcode)
-when char_length(m_locator.barcode) = 4 then ('00'||m_locator.barcode)
-when char_length(m_locator.barcode) = 5 then ('0'||m_locator.barcode) else m_locator.barcode end as folio
- FROM m_locator,
- m_warehouse
-
- WHERE
- m_locator.m_warehouse_id=m_warehouse.m_warehouse_id
- AND m_warehouse.isactive='Y'
- and m_locator.isactive='Y'
- AND m_Warehouse.name NOT LIKE '4E_MP TEMPORAL'
- AND m_Warehouse.name NOT LIKE '4G_SMO m_productUCCION'
- AND m_Warehouse.name NOT LIKE '4G_1D ADUANA'
- AND m_Warehouse.name NOT LIKE '4E BRANDS EUA'
- AND m_Warehouse.name NOT LIKE '4G_1F REFACCIONES'
- AND m_Warehouse.name NOT LIKE 'ALMACEN_MERIDA'
- AND m_Warehouse.name similar to ($P!{almacenes})
- and m_locator.value not like '----------------------------------------'
- and m_Warehouse.ad_Client_id not like '23C59575B9CF467C9620760EB255B389'
- ORDER BY m_warehouse.name,m_locator.value ASC]]>
+		<![CDATA[SELECT ub.almacen as almacen,
+ub.hueco as ubicacion,
+case when char_length(ub.marbete) = 1 then ('00000'||ub.marbete)
+when char_length(ub.marbete) = 2 then ('0000'||ub.marbete)
+when char_length(ub.marbete) = 3 then ('000'||ub.marbete)
+when char_length(ub.marbete) = 4 then ('00'||ub.marbete)
+when char_length(ub.marbete) = 5 then ('0'||ub.marbete) else ub.marbete end as folio
+ FROM ubicaciones AS ub
+WHERE ub.almacen similar to ($P{almacenes})]]>
 	</queryString>
 	<field name="almacen" class="java.lang.String"/>
 	<field name="ubicacion" class="java.lang.String"/>
