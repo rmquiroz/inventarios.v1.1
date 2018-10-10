@@ -39,7 +39,8 @@ import java.util.LinkedList;
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
-import primerconteo.primer;
+
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -487,13 +488,23 @@ public class segundoconteo extends JFrame {
 					Statement stmtupdate = con.createStatement();
 					
 					System.out.println("Inicio Insercion------>>>");
-					
-
-					
-					PreparedStatement psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-					
+					validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+					String conteo="segundoconteo";
+					String result=vins.main(codigo, marbete,conteo);
+					PreparedStatement psinsert = null ;
+					System.out.println("IICIA" +result);
+					if(result.equals("UPDATE")){
+						System.out.println("UPDATE");
+						psinsert = con.prepareStatement("UPDATE segundoconteo SET  cantidad=cantidad::numeric+"+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
++ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+					}
+					else if(result.equals("INSERT")){
+						System.out.println("INSERT");
+						psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+					}
+										 							
 				rsupdate = psinsert.executeUpdate();
-				System.out.println("Termine la Insercion------>>>");
+								System.out.println("Termine la Insercion------>>>");
 				stmtupdate.close();
 				con.close();
 				
@@ -556,13 +567,23 @@ public class segundoconteo extends JFrame {
 					Statement stmtupdate = con.createStatement();
 					
 					System.out.println("Inicio Insercion------>>>");
-					
-
-					
-					PreparedStatement psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-					
+					validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+					String conteo="segundoconteo";
+					String result=vins.main(codigo, marbete,conteo);
+					PreparedStatement psinsert = null ;
+					System.out.println("IICIA" +result);
+					if(result.equals("UPDATE")){
+						System.out.println("UPDATE");
+						psinsert = con.prepareStatement("UPDATE segundoconteo SET  cantidad=cantidad::numeric+"+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
++ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+					}
+					else if(result.equals("INSERT")){
+						System.out.println("INSERT");
+						psinsert = con.prepareStatement("insert into segundoconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+					}
+										 							
 				rsupdate = psinsert.executeUpdate();
-				System.out.println("Termine la Insercion------>>>");
+								System.out.println("Termine la Insercion------>>>");
 				stmtupdate.close();
 				con.close();
 				

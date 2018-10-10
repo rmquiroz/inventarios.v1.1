@@ -484,11 +484,21 @@ public class primerconteo extends JFrame {
 					Statement stmtupdate = con.createStatement();
 					
 					System.out.println("Inicio Insercion------>>>");
-					
-
-					
-					PreparedStatement psinsert = con.prepareStatement("insert into primerconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-					
+					validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+					String conteo="primerconteo";
+					String result=vins.main(codigo, marbete,conteo);
+					PreparedStatement psinsert = null ;
+					System.out.println("IICIA" +result);
+					if(result.equals("UPDATE")){
+						System.out.println("UPDATE");
+						psinsert = con.prepareStatement("UPDATE primerconteo SET  cantidad=cantidad::numeric+"+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
++ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+					}
+					else if(result.equals("INSERT")){
+						System.out.println("INSERT");
+						psinsert = con.prepareStatement("insert into primerconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+					}
+										 							
 				rsupdate = psinsert.executeUpdate();
 				System.out.println("Termine la Insercion------>>>");
 				stmtupdate.close();
@@ -497,7 +507,7 @@ public class primerconteo extends JFrame {
 				System.out.println("Cerre la conexion------>>>");
 				
 				      btnValidar.setEnabled(false); 
-				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
+				      JOptionPane.showMessageDialog(contentPane, result+" EXITOSAMENTE");
 				      
 				      dispose();
 				      formularios.primerconteo primerconteo = new formularios.primerconteo();
@@ -520,6 +530,17 @@ public class primerconteo extends JFrame {
 				
 		});
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		btnConfirmarConteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -553,13 +574,23 @@ public class primerconteo extends JFrame {
 					Statement stmtupdate = con.createStatement();
 					
 					System.out.println("Inicio Insercion------>>>");
-					
-
-					
-					PreparedStatement psinsert = con.prepareStatement("insert into primerconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-					
+					validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+					String conteo="primerconteo";
+					String result=vins.main(codigo, marbete,conteo);
+					PreparedStatement psinsert = null ;
+					System.out.println("IICIA" +result);
+					if(result.equals("UPDATE")){
+						System.out.println("UPDATE");
+						psinsert = con.prepareStatement("UPDATE primerconteo SET  cantidad=cantidad::numeric+"+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
++ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+					}
+					else if(result.equals("INSERT")){
+						System.out.println("INSERT");
+						psinsert = con.prepareStatement("insert into primerconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+					}
+										 							
 				rsupdate = psinsert.executeUpdate();
-				System.out.println("Termine la Insercion------>>>");
+								System.out.println("Termine la Insercion------>>>");
 				stmtupdate.close();
 				con.close();
 				
@@ -588,6 +619,20 @@ public class primerconteo extends JFrame {
 			}
 				
 		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		btnConfirmarConteo.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnConfirmarConteo.setVerticalAlignment(SwingConstants.TOP);
 		btnConfirmarConteo.setBounds(342, 374, 155, 28);

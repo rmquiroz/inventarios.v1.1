@@ -477,7 +477,7 @@ public class tercerconteo extends JFrame {
 			} else {
 			
 				String valor=marbete+"."+codigo+"."+cantidad;
-				
+				String cantidadinsertada;
 				System.out.println(valor);
 				
 				System.out.println("ESTOY CONCATENANDO EL VALOR");
@@ -493,8 +493,24 @@ public class tercerconteo extends JFrame {
 					  Connection co =  DriverManager.getConnection(url, usuario, pass);		  
 					  System.out.println("Ejecutando Query.......");
 					  ResultSet rs = null;
+					
+					  PreparedStatement ps= co.prepareStatement("SELECT cantidad FROM tercerconteofinal WHERE marbete='"+marbete+"' AND codigo='"+codigo+"'");
+					  rs=ps.executeQuery();
+					  while(rs.next()){
+						  cantidad=cantidad+rs.getInt(1);
+					  }
+					valor=marbete+"."+codigo+"."+cantidad;
+					
+					System.out.println(valor);
+					
+					System.out.println("ESTOY CONCATENANDO EL VALOR");
+
+					System.out.println("HAGO VALIDACION");
+
+					   
+
 					  
-					  PreparedStatement ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
+					ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
 							  									+"UNION "
 							  									+"select (marbete||'.'||codigo||'.'||cantidad) from SEGUNDOCONTEO where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'");
 					  rs=ps.executeQuery();
@@ -511,12 +527,22 @@ public class tercerconteo extends JFrame {
 						Statement stmtupdate = co.createStatement();
 						
 						System.out.println("Inicio Insercion------>>>");
-						
-
-						
-						PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-						
-					rsupdate = psinsert.executeUpdate();
+						validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+						String conteo="tercerconteofinal";
+						String result=vins.main(codigo, marbete,conteo);
+						PreparedStatement psinsert = null ;
+						System.out.println("IICIA" +result);
+						if(result.equals("UPDATE")){
+							System.out.println("UPDATE");
+							psinsert = co.prepareStatement("UPDATE tercerconteofinal SET  cantidad="+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
+	+ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+						}
+						else if(result.equals("INSERT")){
+							System.out.println("INSERT");
+							psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+						}
+											 							
+					rsupdate = psinsert.executeUpdate();					
 					System.out.println("Termine la Insercion------>>>");
 					stmtupdate.close();
 					co.close();
@@ -577,13 +603,24 @@ public class tercerconteo extends JFrame {
 								Statement stmtupdate = co.createStatement();
 								
 								System.out.println("Inicio Insercion------>>>");
-								
-
-								
-								PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-								
+								validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+								String conteo="tercerconteofinal";
+								String result=vins.main(codigo, marbete,conteo);
+								PreparedStatement psinsert = null ;
+								System.out.println("IICIA" +result);
+								if(result.equals("UPDATE")){
+									
+									psinsert = co.prepareStatement("UPDATE tercerconteofinal SET  cantidad="+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
+			+ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+									System.out.println("UPDATE "+ psinsert);
+								}
+								else if(result.equals("INSERT")){
+									System.out.println("INSERT");
+									psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+								}
+													 							
 							rsupdate = psinsert.executeUpdate();
-							System.out.println("Termine la Insercion------>>>");
+								System.out.println("Termine la Insercion------>>>");
 							stmtupdate.close();
 							co.close();
 							
@@ -642,17 +679,9 @@ public class tercerconteo extends JFrame {
 				} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())).isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Cantidad");
 				} else {
-				
-					String valor=marbete+"."+codigo+"."+cantidad;
-					
-					System.out.println(valor);
-					
-					System.out.println("ESTOY CONCATENANDO EL VALOR");
-
-					System.out.println("HAGO VALIDACION");
-					 try
+					  try
 					  {
-						 Class.forName("org.postgresql.Driver");
+						  Class.forName("org.postgresql.Driver");
 							String url = "jdbc:postgresql://10.1.250.24:5932/inventarios";
 							String usuario = "postgres";
 							String pass = "s3st2m1s4e";	  
@@ -660,8 +689,22 @@ public class tercerconteo extends JFrame {
 						  Connection co =  DriverManager.getConnection(url, usuario, pass);		  
 						  System.out.println("Ejecutando Query.......");
 						  ResultSet rs = null;
-						  
-						  PreparedStatement ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
+						
+						  PreparedStatement ps= co.prepareStatement("SELECT cantidad FROM tercerconteofinal WHERE marbete='"+marbete+"' AND codigo='"+codigo+"'");
+						  rs=ps.executeQuery();
+						  while(rs.next()){
+							  cantidad=cantidad+rs.getInt(1);
+						  }
+						String valor=marbete+"."+codigo+"."+cantidad;
+						
+						System.out.println(valor);
+						
+						System.out.println("ESTOY CONCATENANDO EL VALOR");
+
+						System.out.println("HAGO VALIDACION");
+
+						   
+						  ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
 								  									+"UNION "
 								  									+"select (marbete||'.'||codigo||'.'||cantidad) from SEGUNDOCONTEO where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'");
 						  rs=ps.executeQuery();
@@ -678,13 +721,24 @@ public class tercerconteo extends JFrame {
 							Statement stmtupdate = co.createStatement();
 							
 							System.out.println("Inicio Insercion------>>>");
-							
-
-							
-							PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-							
+							validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+							String conteo="tercerconteofinal";
+							String result=vins.main(codigo, marbete,conteo);
+							PreparedStatement psinsert = null ;
+							System.out.println("IICIA" +result);
+							if(result.equals("UPDATE")){
+								System.out.println("UPDATE");
+								psinsert = co.prepareStatement("UPDATE tercerconteofinal SET  cantidad="+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
+		+ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+							}
+							else if(result.equals("INSERT")){
+								System.out.println("INSERT");
+								psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+							}
+												 							
 						rsupdate = psinsert.executeUpdate();
-						System.out.println("Termine la Insercion------>>>");
+					
+							System.out.println("Termine la Insercion------>>>");
 						stmtupdate.close();
 						co.close();
 						
@@ -744,13 +798,23 @@ public class tercerconteo extends JFrame {
 									Statement stmtupdate = co.createStatement();
 									
 									System.out.println("Inicio Insercion------>>>");
-									
-
-									
-									PreparedStatement psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')"); 		
-									
+									validainsertar.ValidaInsAct vins=new validainsertar.ValidaInsAct();
+									String conteo="tercerconteofinal";
+									String result=vins.main(codigo, marbete,conteo);
+									PreparedStatement psinsert = null ;
+									System.out.println("IICIA" +result);
+									if(result.equals("UPDATE")){
+										System.out.println("UPDATE");
+										psinsert = co.prepareStatement("UPDATE tercerconteofinal SET  cantidad="+cantidad+" where codigo like '"+codigo+"' and marbete like '"+marbete+"' "
+				+ "AND fecha >  now()::DATE - CAST('4 days' AS INTERVAL)");
+									}
+									else if(result.equals("INSERT")){
+										System.out.println("INSERT");
+										psinsert = co.prepareStatement("insert into tercerconteofinal values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
+									}
+														 							
 								rsupdate = psinsert.executeUpdate();
-								System.out.println("Termine la Insercion------>>>");
+							System.out.println("Termine la Insercion------>>>");
 								stmtupdate.close();
 								co.close();
 								
