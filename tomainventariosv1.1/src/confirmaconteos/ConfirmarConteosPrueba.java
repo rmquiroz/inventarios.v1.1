@@ -58,7 +58,7 @@ public class ConfirmarConteosPrueba
 + "segundo.marbete) as cantidads where (primer.marbete||primer.codigo||primer.cantidad)!=(segundo.marbete||segundo.codigo||segundo.cantidad) AND primer.marbete=cantidadp.a AND "
 + "primer.marbete=cantidads.as AND cantidads.marbete=cantidadp.marbete AND primer .almacen similar to ('"+almacenes+"')) AS TERCER  ON ubicaciones.marbete=tercer.marbete where "
 + "ubicaciones.almacen similar to ('"+almacenes+"') and tercer.marbete is null) AS diferentes WHERE primer.marbete=diferentes.marbete AND seg.marbete=diferentes.marbete "
-+ "AND diferentes.marbete NOT IN (SELECT marbete FROM tercerconteo));"); 
++ "AND diferentes.marbete NOT IN (SELECT marbete FROM tercerconteo) GROUP BY diferentes.marbete,diferentes.hueco,diferentes.almacen);"); 
 		  System.out.println("NO INSERTA");
 		  ps.execute();
 		  System.out.println("HIZO");
