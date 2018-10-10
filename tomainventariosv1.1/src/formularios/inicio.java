@@ -84,7 +84,7 @@ public class inicio extends JFrame {
 		mnCapturaDeInventario.setFont(new Font("Dialog", Font.PLAIN, 14));
 		menuBar.add(mnCapturaDeInventario);
 		
-		JMenuItem mntmNuevaCaptura = new JMenuItem("Consultar Inventario");
+		JMenuItem mntmNuevaCaptura = new JMenuItem("Paralizar Inventario");
 		mntmNuevaCaptura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -118,6 +118,19 @@ public class inicio extends JFrame {
 		mnCapturaDeInventario.add(mntmCapturaDeInventario_1);
 		
 		JMenuItem mntmCapturaDeInventario_2 = new JMenuItem("Captura de Inventario 3er Conteo");
+		mntmCapturaDeInventario_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+				tercerconteo.setVisible(true);
+				
+				
+			}
+		});
 		mntmCapturaDeInventario_2.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/tres.png")));
 		mntmCapturaDeInventario_2.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnCapturaDeInventario.add(mntmCapturaDeInventario_2);
@@ -126,7 +139,7 @@ public class inicio extends JFrame {
 		mnInformes.setFont(new Font("Dialog", Font.PLAIN, 14));
 		menuBar.add(mnInformes);
 		
-		JMenuItem mntmGeneracionDeMarbetes = new JMenuItem("Generacion de Marbetes");
+		JMenuItem mntmGeneracionDeMarbetes = new JMenuItem("Generacion de Marbetes conteo 1 y 2");
 		mntmGeneracionDeMarbetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -141,13 +154,18 @@ public class inicio extends JFrame {
 		mntmGeneracionDeMarbetes.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnInformes.add(mntmGeneracionDeMarbetes);
 		
-		JMenuItem mntmInformeDeer = new JMenuItem("Informe Comparativo");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Generacion Marbetes 3er Conteo");
+		mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 12));
+		mntmNewMenuItem.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/tag.png")));
+		mnInformes.add(mntmNewMenuItem);
+		
+		JMenuItem mntmInformeDeer = new JMenuItem("Ejecutar Diferencias");
 		mntmInformeDeer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				dispose();
 				//con esto muestro la ventana inicial
-				formularios.diferencias diferencias = new formularios.diferencias();
+				formularios.DiferenciasPrueba diferencias = new formularios.DiferenciasPrueba();
 				diferencias.setVisible(true);
 				
 				
@@ -158,11 +176,6 @@ public class inicio extends JFrame {
 		mntmInformeDeer.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnInformes.add(mntmInformeDeer);
 		
-		JMenuItem mntmFaltantesYSobrantes = new JMenuItem("Faltantes y Sobrantes");
-		mntmFaltantesYSobrantes.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
-		mntmFaltantesYSobrantes.setFont(new Font("Dialog", Font.PLAIN, 12));
-		mnInformes.add(mntmFaltantesYSobrantes);
-		
 		JMenuItem menuItem = new JMenuItem("");
 		mnInformes.add(menuItem);
 		
@@ -170,7 +183,19 @@ public class inicio extends JFrame {
 		mnInformes_1.setFont(new Font("Dialog", Font.PLAIN, 14));
 		menuBar.add(mnInformes_1);
 		
-		JMenuItem mntmInformeDeAvances = new JMenuItem("Informe de avances 1er y 2do conteo");
+		JMenuItem mntmInformeDeAvances = new JMenuItem("Informe de Avances de Conteos");
+		mntmInformeDeAvances.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.ConteosAvance conteosavance = new formularios.ConteosAvance();
+				conteosavance.setVisible(true);
+				
+				
+			}
+		});
 		mnInformes_1.add(mntmInformeDeAvances);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);

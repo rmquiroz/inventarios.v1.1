@@ -114,6 +114,7 @@ public class primerconteo extends JFrame {
 		txtalmacen.setColumns(10);
 		
 		JLabel lblUbicacin = new JLabel("Ubicaci\u00F3n:");
+		lblUbicacin.setForeground(Color.WHITE);
 		lblUbicacin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUbicacin.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblUbicacin.setBounds(379, 124, 127, 28);
@@ -123,20 +124,21 @@ public class primerconteo extends JFrame {
 		txtuom.setFont(new Font("Dialog", Font.PLAIN, 11));
 		txtuom.setEditable(false);
 		txtuom.setColumns(10);
-		txtuom.setBounds(520, 235, 78, 21);
+		txtuom.setBounds(580, 236, 78, 21);
 		contentPane.add(txtuom);
 		
 		JLabel UOM = new JLabel("UOM:");
+		UOM.setForeground(Color.WHITE);
 		UOM.setVerticalAlignment(SwingConstants.BOTTOM);
-		UOM.setFont(new Font("Dialog", Font.PLAIN, 14));
-		UOM.setBounds(481, 236, 63, 19);
+		UOM.setFont(new Font("Dialog", Font.BOLD, 16));
+		UOM.setBounds(507, 236, 63, 19);
 		contentPane.add(UOM);
 		
 		txtdescripcion = new JTextField();
 		txtdescripcion.setEditable(false);
 		txtdescripcion.setFont(new Font("Dialog", Font.PLAIN, 11));
 		txtdescripcion.setColumns(10);
-		txtdescripcion.setBounds(112, 236, 359, 21);
+		txtdescripcion.setBounds(122, 235, 359, 21);
 		contentPane.add(txtdescripcion);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -297,6 +299,7 @@ public class primerconteo extends JFrame {
 		contentPane.add(txtbuscar);
 		
 		JLabel lblNewLabel = new JLabel("Primer Conteo");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 30));
@@ -304,12 +307,14 @@ public class primerconteo extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Numero de Marbete:");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNewLabel_1.setBounds(24, 88, 197, 21);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Almacen:");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNewLabel_2.setBounds(34, 125, 127, 28);
@@ -321,6 +326,7 @@ public class primerconteo extends JFrame {
 		contentPane.add(label);
 		
 		JLabel lblCodigo = new JLabel("Codigo: ");
+		lblCodigo.setForeground(Color.WHITE);
 		lblCodigo.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblCodigo.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblCodigo.setBounds(24, 203, 73, 21);
@@ -433,15 +439,17 @@ public class primerconteo extends JFrame {
 		contentPane.add(btnValidar);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion.setForeground(Color.WHITE);
 		lblDescripcion.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblDescripcion.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblDescripcion.setBounds(24, 235, 87, 23);
+		lblDescripcion.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblDescripcion.setBounds(24, 235, 106, 23);
 		contentPane.add(lblDescripcion);
 		
 		JLabel lblNewLabel_4 = new JLabel("Cantidad:");
+		lblNewLabel_4.setForeground(Color.WHITE);
 		lblNewLabel_4.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel_4.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_4.setBounds(275, 286, 63, 19);
+		lblNewLabel_4.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNewLabel_4.setBounds(236, 286, 102, 19);
 		contentPane.add(lblNewLabel_4);
 		
 		txtcantidad = new JTextField();
@@ -507,7 +515,7 @@ public class primerconteo extends JFrame {
 				System.out.println("Cerre la conexion------>>>");
 				
 				      btnValidar.setEnabled(false); 
-				      JOptionPane.showMessageDialog(contentPane, result+" EXITOSAMENTE");
+				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");
 				      
 				      dispose();
 				      formularios.primerconteo primerconteo = new formularios.primerconteo();

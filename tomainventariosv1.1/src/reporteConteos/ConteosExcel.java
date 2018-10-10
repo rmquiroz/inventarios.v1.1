@@ -251,13 +251,15 @@ public class ConteosExcel {
 									  ws3.addCell(l1);
 									  column++;
 								  }
-							  }			
+							  }		
+							  
 							  
 		  }		
 		  wb.write();
 		  wb.close();
 		  co.close();
 		  cn.close();
+		  mensaje="Informe Generado Correctamente";
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
