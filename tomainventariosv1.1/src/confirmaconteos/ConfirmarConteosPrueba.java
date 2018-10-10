@@ -50,16 +50,18 @@ public class ConfirmarConteosPrueba
 			  mensaje="CONTEOS REGISTRADOS PREVIAMENTE NO PUEDE REALIZARSE NUEVAMENTE";
 		  }
 		  else{		  		  		  				  
-		  ps= co.prepareStatement("insert into tercerconteo (SELECT ''  as codigo2,dif.marbete,'' as cantidad2,null as fecha2,dif.hueco,dif.almacen FROM primerconteo AS pri,"
+		  ps= co.prepareStatement("insert into tercerconteo (SELECT ''  as codigo2,dif.marbete,'' as cantidad2,null::date as fecha2,dif.hueco,dif.almacen FROM primerconteo AS pri,"
 + "(SELECT  ''  as codigo,diferentes.marbete,'' as cantidad,null as fecha,diferentes.hueco,diferentes.almacen FROM segundoconteo AS seg,(SELECT UBICACIONES.MARBETE as marbete,"
 + "ubicaciones.hueco,ubicaciones.almacen FROM UBICACIONES,(SELECT distinct PRIMER.marbete FROM primerconteo AS primer, segundoconteo AS segundo,(SELECT distinct primer.marbete as a,"
 + "STRING_AGG(CONCAT(primer.marbete,'.',primer.codigo,'.',primer.cantidad),'.') AS marbete FROM primerconteo AS primer where codigo is not null GROUP BY primer.marbete) as cantidadp,"
 + "(SELECT distinct segundo.marbete as as,STRING_AGG(CONCAT(segundo.marbete,'.',segundo.codigo,'.',segundo.cantidad),'.') AS marbete FROM segundoconteo AS segundo where codigo is not "
 + "null GROUP BY segundo.marbete) as cantidads where (primer.marbete||primer.codigo||primer.cantidad)!=(segundo.marbete||segundo.codigo||segundo.cantidad) "
-+ "AND primer.marbete=cantidadp.a AND primer.marbete=cantidads.as AND cantidads.marbete=cantidadp.marbete AND primer.almacen similar to ('4E BRANDS EUA')) AS TERCER "
-+ "where ubicaciones.almacen similar to ('4E BRANDS EUA') AND ubicaciones.marbete!=tercer.marbete) AS diferentes where diferentes.marbete=seg.marbete) AS dif "
++ "AND primer.marbete=cantidadp.a AND primer.marbete=cantidads.as AND cantidads.marbete=cantidadp.marbete AND primer.almacen similar to ('"+almacenes+"')) AS TERCER "
++ "where ubicaciones.almacen similar to ('"+almacenes+"') AND ubicaciones.marbete!=tercer.marbete) AS diferentes where diferentes.marbete=seg.marbete) AS dif "
 + "WHERE dif.marbete=pri.marbete GROUP BY codigo2,dif.marbete,cantidad2,fecha2,dif.hueco,dif.almacen);");
+		  System.out.println("NO INSERTA");
 		  ps.execute();
+		  System.out.println("HIZO");
 		  ps= co.prepareStatement("insert into inventariofinal (SELECT upper(LOWER( REPLACE(CAST(uuid_generate_v4()AS varchar(50)),'-',''))),ubicaciones.almacen,ubicaciones.hueco,"
 + "UBICACIONES.MARBETE,segundoconteo.codigo,segundoconteo.cantidad ,'' AS camuno,'' AS camdos,now() FROM UBICACIONES LEFT OUTER JOIN (SELECT distinct PRIMER.marbete FROM primerconteo "
 + "AS primer, segundoconteo AS segundo,(SELECT distinct primer.marbete as a,STRING_AGG(CONCAT(primer.marbete,'.',primer.codigo,'.',primer.cantidad),'.') AS marbete FROM primerconteo AS "
@@ -67,8 +69,10 @@ public class ConfirmarConteosPrueba
 + "segundoconteo AS segundo GROUP BY segundo.marbete) as cantidads where (primer.marbete||primer.codigo||primer.cantidad)!=(segundo.marbete||segundo.codigo||segundo.cantidad) AND "
 + "primer.marbete=cantidadp.a AND primer.marbete=cantidads.as AND cantidads.marbete=cantidadp.marbete AND primer.almacen similar to ('"+almacenes+"')) AS TERCER ON "
 + "ubicaciones.marbete=tercer.marbete left outer join segundoconteo on ubicaciones.marbete=segundoconteo.marbete where ubicaciones.almacen similar to ('"+almacenes+"') and "
-+ "tercer.marbete not in (SELECT marbete FROM inventariofinal))");
-		  ps.execute();				  		  
++ "tercer.marbete not in (SELECT marbete FROM inventariofinal) AND codigo is not null)");
+		  System.out.println("NO INSERTA 2");
+		  ps.execute();				  		
+		  System.out.println("INSERTA 2");
 		  co.close();
 		  
 		  mensaje="CONTEOS REGISTRADOS";
@@ -76,8 +80,7 @@ public class ConfirmarConteosPrueba
 				  		  
 	  } catch(Exception e)
 		  {
-		  
-		  System.out.println("Error:"+e);
+		  e.printStackTrace();		  
 		  }
 	  System.out.print("Registros:" +registros);	  
 	  return mensaje;

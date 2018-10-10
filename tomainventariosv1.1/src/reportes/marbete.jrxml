@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marbete" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="16" bottomMargin="21" uuid="4afda7b2-9631-4612-a5a5-63cdb9ec69bf">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="316"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Lenovo\\Documents\\Workspace\\Marbete\\"]]></defaultValueExpression>
 	</parameter>
@@ -15,13 +15,14 @@ case when char_length(ub.marbete) = 1 then ('00000'||ub.marbete)
 when char_length(ub.marbete) = 2 then ('0000'||ub.marbete)
 when char_length(ub.marbete) = 3 then ('000'||ub.marbete)
 when char_length(ub.marbete) = 4 then ('00'||ub.marbete)
-when char_length(ub.marbete) = 5 then ('0'||ub.marbete) else ub.marbete end as folio
+when char_length(ub.marbete) = 5 then ('0'||ub.marbete) else ub.marbete end as folio,to_char(now(),'DD-MM-YYY')
  FROM ubicaciones AS ub
 WHERE ub.almacen similar to ($P{almacenes})]]>
 	</queryString>
 	<field name="almacen" class="java.lang.String"/>
 	<field name="ubicacion" class="java.lang.String"/>
 	<field name="folio" class="java.lang.String"/>
+	<field name="to_char" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -917,7 +918,7 @@ WHERE ub.almacen similar to ($P{almacenes})]]>
 				<textFieldExpression><![CDATA[$F{almacen}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="7bef639e-4c07-42a0-9425-c5ec26b83449" x="0" y="493" width="751" height="82"/>
+				<reportElement uuid="7bef639e-4c07-42a0-9425-c5ec26b83449" x="67" y="493" width="684" height="82"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
 					<font size="54" isBold="true"/>
 				</textElement>
@@ -925,8 +926,20 @@ WHERE ub.almacen similar to ($P{almacenes})]]>
 			</textField>
 			<image hAlign="Center" vAlign="Middle">
 				<reportElement uuid="d1a2b2a7-7be5-423f-8f10-698b47bc7f23" positionType="FixRelativeToBottom" x="0" y="0" width="751" height="574"/>
-				<imageExpression><![CDATA["\\4E-DESARROLLODESISTEMAS.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{IMG_DIR}+"\\4E-DESARROLLODESISTEMAS.png"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement uuid="e4560f04-1452-4308-9eaf-b05d1184464c" x="2" y="492" width="65" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="bdec84a7-5008-4867-a8cc-6d73c8788461" x="0" y="509" width="66" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{to_char}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

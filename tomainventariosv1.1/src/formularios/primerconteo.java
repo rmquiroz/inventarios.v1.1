@@ -595,10 +595,9 @@ public class primerconteo extends JFrame {
 					else if(result.equals("INSERT")){
 						System.out.println("INSERT");
 						psinsert = con.prepareStatement("insert into primerconteo values('"+codigo+"','"+marbete+"','"+cantidad+"',now(),'"+ubicacion+"','"+almacen+"')");
-					}
-										 							
+					}										 							
 				rsupdate = psinsert.executeUpdate();
-								System.out.println("Termine la Insercion------>>>");
+				System.out.println("Termine la Insercion------>>>");
 				stmtupdate.close();
 				con.close();
 				
@@ -626,21 +625,7 @@ public class primerconteo extends JFrame {
 			}
 			}
 				
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		});		
 		btnConfirmarConteo.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnConfirmarConteo.setVerticalAlignment(SwingConstants.TOP);
 		btnConfirmarConteo.setBounds(342, 374, 155, 28);
