@@ -526,11 +526,14 @@ public class inventario
 						  val33="";
 					  }
 					  registros++;
+					  if(val11.equals("")){}
+					  else{
 					  ps=co.prepareStatement("insert into inventario_teorico values((SELECT upper(LOWER( REPLACE("
 + "CAST(uuid_generate_v4()AS varchar(50)),'-','')))),'"+val11+"','"+val1+"','"+val2+"','"+val22+"','"+val3+"','"+val33
 +"','"+val4.replace("'","")+"','"+val5+"','"+val6+"','"+val7+"','"+val8+"','"+val9+"',now());");
 					  System.out.println("Inserta"+ps);
-					  ps.execute();				  													   						  
+					  ps.execute();
+					  }
 				  }				        
 			  }
 			  br.close();

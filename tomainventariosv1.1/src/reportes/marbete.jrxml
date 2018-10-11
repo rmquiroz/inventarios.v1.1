@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marbete" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="16" bottomMargin="21" uuid="4afda7b2-9631-4612-a5a5-63cdb9ec69bf">
-	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="273"/>
-	<property name="ireport.y" value="36"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marbete" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="16" uuid="4afda7b2-9631-4612-a5a5-63cdb9ec69bf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="105"/>
+	<property name="ireport.y" value="319"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Lenovo\\Documents\\Workspace\\Marbete\\"]]></defaultValueExpression>
 	</parameter>
@@ -610,7 +610,7 @@ WHERE ub.almacen similar to ($P{almacenes})]]>
 				<text><![CDATA[11.-]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="22fee77d-c104-4296-b014-300eb34739eb" x="-19" y="186" width="790" height="1"/>
+				<reportElement uuid="22fee77d-c104-4296-b014-300eb34739eb" x="-19" y="184" width="790" height="1"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineStyle="Dashed"/>
 				</graphicElement>
@@ -746,7 +746,7 @@ WHERE ub.almacen similar to ($P{almacenes})]]>
 				<reportElement uuid="c8fe0c75-08ac-4043-b993-d4db46eb7b0e" x="260" y="216" width="492" height="1"/>
 			</line>
 			<line>
-				<reportElement uuid="36c8f1ef-9e8f-4ef6-b3a8-4d63bf762769" x="-20" y="387" width="790" height="1"/>
+				<reportElement uuid="36c8f1ef-9e8f-4ef6-b3a8-4d63bf762769" x="-20" y="389" width="790" height="1"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineStyle="Dashed"/>
 				</graphicElement>

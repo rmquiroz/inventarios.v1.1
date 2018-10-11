@@ -475,7 +475,11 @@ public class tercerconteo extends JFrame {
 			} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())).isEmpty()) {
 				JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Cantidad");
 			} else {
-			
+				validainsertar.ValidarTercerConteo vins1=new validainsertar.ValidarTercerConteo();
+				String tabla="tercerconteo";
+				String tabla2="inventariofinal";
+				String result1=vins1.main(marbete);
+				if(result1.equals("NO")){
 				String valor=marbete+"."+codigo+"."+cantidad;
 				String cantidadinsertada;
 				System.out.println(valor);
@@ -655,6 +659,12 @@ public class tercerconteo extends JFrame {
 			
 
 		}
+				 else{
+				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");				 
+				 }
+				
+			}
+				
 		}
 			 
 			
