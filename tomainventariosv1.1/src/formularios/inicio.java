@@ -165,11 +165,20 @@ public class inicio extends JFrame {
 		mnInformes.add(mntmGeneracionDeMarbetes);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Generacion Marbetes 3er Conteo");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.MarbetesTercero MarbetesTercero = new formularios.MarbetesTercero();
+				MarbetesTercero.setVisible(true);
+			}
+		});
 		mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mntmNewMenuItem.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/tag.png")));
 		mnInformes.add(mntmNewMenuItem);
 		
-		JMenuItem mntmInformeDeer = new JMenuItem("Ejecutar Diferencias");
+		JMenuItem mntmInformeDeer = new JMenuItem("Ejecutar Diferencias Primer y Segundo Conteo");
 		mntmInformeDeer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -186,14 +195,30 @@ public class inicio extends JFrame {
 		mntmInformeDeer.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnInformes.add(mntmInformeDeer);
 		
-		JMenuItem menuItem = new JMenuItem("");
-		mnInformes.add(menuItem);
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Confirmar 3er Conteo");
+		mntmNewMenuItem_2.setFont(new Font("Dialog", Font.PLAIN, 12));
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.CerrarTercerConteo cerrartercer = new formularios.CerrarTercerConteo();
+				cerrartercer.setVisible(true);
+				
+				
+			}
+		});
+		mntmNewMenuItem_2.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/informe.png")));
+		mnInformes.add(mntmNewMenuItem_2);
 		
 		JMenu mnInformes_1 = new JMenu("Informes");
 		mnInformes_1.setFont(new Font("Dialog", Font.PLAIN, 14));
 		menuBar.add(mnInformes_1);
 		
 		JMenuItem mntmInformeDeAvances = new JMenuItem("Informe de Avances de Conteos");
+		mntmInformeDeAvances.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
 		mntmInformeDeAvances.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -209,6 +234,7 @@ public class inicio extends JFrame {
 		mnInformes_1.add(mntmInformeDeAvances);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Informe de Avances de  Inventario Fisico");
+		mntmNewMenuItem_1.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -221,6 +247,20 @@ public class inicio extends JFrame {
 			}
 		});
 		mnInformes_1.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmInformeInventarioTeorico = new JMenuItem("Informe Inventario Teorico");
+		mntmInformeInventarioTeorico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.InformeTeorico informeteorico = new formularios.InformeTeorico();
+				informeteorico.setVisible(true);
+					
+			}
+		});
+		mntmInformeInventarioTeorico.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
+		mnInformes_1.add(mntmInformeInventarioTeorico);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 
@@ -228,23 +268,36 @@ public class inicio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel lblBienvenido = new JLabel("BIENVENIDO");
+		lblBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBienvenido.setForeground(Color.WHITE);
+		lblBienvenido.setFont(new Font("Dialog", Font.PLAIN, 26));
+		lblBienvenido.setBounds(-10, 0, 855, 58);
+		contentPane.add(lblBienvenido);
+		
 		JLabel lblSistemaDeToma = new JLabel("SISTEMA DE TOMA DE INVENTARIO VENTANA PRINCIPAL");
 		lblSistemaDeToma.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSistemaDeToma.setForeground(Color.WHITE);
 		lblSistemaDeToma.setFont(new Font("Dialog", Font.PLAIN, 26));
-		lblSistemaDeToma.setBounds(0, 11, 855, 58);
+		lblSistemaDeToma.setBounds(0, 45, 855, 58);
 		contentPane.add(lblSistemaDeToma);
 		
 		JLabel lblDesarrolloDeSistemas = new JLabel("      DESARROLLO  DE  SISTEMAS  ERP");
 		lblDesarrolloDeSistemas.setForeground(Color.WHITE);
 		lblDesarrolloDeSistemas.setFont(new Font("Dialog", Font.PLAIN, 18));
-		lblDesarrolloDeSistemas.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/ob3.png")));
-		lblDesarrolloDeSistemas.setBounds(145, 115, 560, 186);
+		lblDesarrolloDeSistemas.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/4E-DESARROLLODESISTEMAS-final.png")));
+		lblDesarrolloDeSistemas.setBounds(158, 285, 540, 112);
 		contentPane.add(lblDesarrolloDeSistemas);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel.setBounds(0, 0, 855, 408);
 		contentPane.add(lblNewLabel);
+		
+		JLabel label = new JLabel("1.-Seleccionar el Menu \"Inventario\"---\"Paralizar Inventario\"");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Dialog", Font.PLAIN, 14));
+		label.setBounds(10, 190, 422, 31);
+		contentPane.add(label);
 	}
 }

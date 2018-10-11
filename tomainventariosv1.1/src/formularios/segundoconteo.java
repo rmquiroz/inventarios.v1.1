@@ -554,8 +554,8 @@ public class segundoconteo extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "ESTE MARBETE ESTA YA ESTA REGISTRADO COMO TERCER CONTEO O INVENTARIO FINAL");
 					 
 				      dispose();
-				      formularios.primerconteo primerconteo = new formularios.primerconteo();
-						primerconteo.setVisible(true);
+				      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
+						segundoconteo.setVisible(true);
 				}
 				}
 					
@@ -648,8 +648,8 @@ public class segundoconteo extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "ESTE MARBETE ESTA YA ESTA REGISTRADO COMO TERCER CONTEO O INVENTARIO FINAL");
 					 
 				      dispose();
-				      formularios.primerconteo primerconteo = new formularios.primerconteo();
-						primerconteo.setVisible(true);
+				      formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
+						segundoconteo.setVisible(true);
 				}
 				}
 					
