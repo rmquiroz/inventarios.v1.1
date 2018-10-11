@@ -41,6 +41,8 @@ import javax.swing.SwingConstants;
 
 
 
+
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -472,6 +474,17 @@ public class segundoconteo extends JFrame {
 				String ubicacion= txtubicacion.getText();
 				String almacen= txtalmacen.getText();
 				
+				validainsertar.validatercerconteoinsertar vins1=new validainsertar.validatercerconteoinsertar();
+				String tabla="tercerconteo";
+				String tabla2="inventariofinal";
+				String result1=vins1.main(marbete,tabla,tabla2);
+				System.out.println("IICIA" +result1);
+				if(result1.equals("NO")){
+					System.out.println("NO HAY NADA");
+				
+				
+				
+				
 				 if(codigo.isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Codigo");
 			
@@ -537,10 +550,16 @@ public class segundoconteo extends JFrame {
 				}
 				
 			}
-			}
-				
-		});
-
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "ESTE MARBETE ESTA YA ESTA REGISTRADO COMO TERCER CONTEO O INVENTARIO FINAL");
+					 
+				      dispose();
+				      formularios.primerconteo primerconteo = new formularios.primerconteo();
+						primerconteo.setVisible(true);
+				}
+				}
+					
+			});
 		btnConfirmarConteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -551,6 +570,15 @@ public class segundoconteo extends JFrame {
 				String ubicacion= txtubicacion.getText();
 				String almacen= txtalmacen.getText();
 				
+				
+				validainsertar.validatercerconteoinsertar vins1=new validainsertar.validatercerconteoinsertar();
+				String tabla="tercerconteo";
+				String tabla2="inventariofinal";
+				String result1=vins1.main(marbete,tabla,tabla2);
+				System.out.println("IICIA" +result1);
+				if(result1.equals("NO")){
+					System.out.println("NO HAY NADA");
+				
 				 if(codigo.isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Codigo");
 			
@@ -616,9 +644,16 @@ public class segundoconteo extends JFrame {
 				}
 				
 			}
-			}
-				
-		});
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "ESTE MARBETE ESTA YA ESTA REGISTRADO COMO TERCER CONTEO O INVENTARIO FINAL");
+					 
+				      dispose();
+				      formularios.primerconteo primerconteo = new formularios.primerconteo();
+						primerconteo.setVisible(true);
+				}
+				}
+					
+			});	
 		btnConfirmarConteo.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnConfirmarConteo.setVerticalAlignment(SwingConstants.TOP);
 		btnConfirmarConteo.setBounds(342, 374, 155, 28);
