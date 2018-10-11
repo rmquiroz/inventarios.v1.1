@@ -29,7 +29,7 @@ public class ConteoFinal {
 		int h=0;
 		  System.out.println("Ejecutando Query.......");
 		  ResultSet rs = null,rsp = null;
-		  WritableWorkbook wb = Workbook.createWorkbook(new File("Conteos.xls"));
+		  WritableWorkbook wb = Workbook.createWorkbook(new File("InventarioFinal.xls"));
 		  almacen=almacenes.split("\\|");
 		  for(int x=0;x<almacen.length;x++)
 		  {		

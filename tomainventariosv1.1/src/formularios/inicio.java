@@ -113,6 +113,16 @@ public class inicio extends JFrame {
 		mnCapturaDeInventario.add(mntmCapturaDeInventario);
 		
 		JMenuItem mntmCapturaDeInventario_1 = new JMenuItem("Captura de Inventario 2do Conteo");
+		mntmCapturaDeInventario_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//dispose();
+				//con esto muestro la ventana inicial
+				formularios.segundoconteo segundoconteo = new formularios.segundoconteo();
+				segundoconteo.setVisible(true);
+				
+				
+			}
+		});
 		mntmCapturaDeInventario_1.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/dos.png")));
 		mntmCapturaDeInventario_1.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mnCapturaDeInventario.add(mntmCapturaDeInventario_1);
@@ -197,6 +207,20 @@ public class inicio extends JFrame {
 			}
 		});
 		mnInformes_1.add(mntmInformeDeAvances);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Informe de Avances de  Inventario Fisico");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();
+				//con esto muestro la ventana inicial
+				formularios.InformeFinal infomefinal = new formularios.InformeFinal();
+				infomefinal.setVisible(true);
+				
+				
+			}
+		});
+		mnInformes_1.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 
