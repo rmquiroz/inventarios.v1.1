@@ -660,7 +660,11 @@ public class tercerconteo extends JFrame {
 
 		}
 				 else{
-				      JOptionPane.showMessageDialog(contentPane, "Registrado Correctamente");				 
+				      JOptionPane.showMessageDialog(contentPane, "ERROR: UBICACION REGISTRADA EN INVENTARIO FINAL");	
+
+				      dispose();
+				      formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
+						tercerconteo.setVisible(true);
 				 }
 				
 			}
