@@ -197,7 +197,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 		btnAceptar.setBounds(530, 270, 185, 65);
 		contentPane.add(btnAceptar);
 		
-		JLabel lblElegirLosAlmacenes = new JLabel("Eliga los Almacenes de los Cuales desa saber el avance");
+		JLabel lblElegirLosAlmacenes = new JLabel("EliJa los almacenes de los cu\u00E1les desea saber el Inventario Te\u00F3rico");
 		lblElegirLosAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblElegirLosAlmacenes.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblElegirLosAlmacenes.setForeground(Color.WHITE);
