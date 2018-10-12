@@ -241,45 +241,4 @@ public class MarbetesTercero extends JFrame {
 			}
 		});
 	}
-	private boolean generarMarbete(String almacenes) 
-	{
-		System.out.println(almacenes);
-		boolean listo = false;
-		try
-		{
-		System.out.println("Se inicia conexion a bd");
-	    Class.forName("org.postgresql.Driver");
-	    //Connection conexion = DriverManager.getConnection("jdbc:postgresql://10.1.250.20:5932/openbravo", "postgres", "s3st2m1s4e");
-	    Connection conexion = DriverManager.getConnection("jdbc:postgresql://201.149.89.163:5932/openbravo", "postgres", "s3st2m1s4e");
-	    System.out.println("Se finaliza la prueba de conexion a postgresql");
-	    System.out.println("Se inicia la solicitud del reporte");
-	    Map<String,Object> parameters = new HashMap<String,Object>();
-	    parameters.put("almacenes",new String(almacenes));	    
-	    System.out.println(parameters.put("almacenes",new String(almacenes)));
-	    parameters.put("IMG_DIR",new String("src/reportes/"));
-	    System.out.println(parameters.put("IMG_DIR",new String("src/reportes/")));	    
-	    JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile("src/reportes/marbete.jasper");
-	    System.out.println(reporte);
-	    System.out.println(parameters);
-	    System.out.println(conexion);
-	    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parameters, conexion);
-	    System.out.println("Se solicita la impresion del reporte");
-	    JRExporter exporter = new JRPdfExporter();
-	    System.out.println("Imprime reporte");
-	    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-	    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("Marbetes.pdf"));
-	    exporter.exportReport();
-	    System.out.println("Termina ejecucion");	    
-	    listo = true;
-	    conexion.close();
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (Exception ex) {
-		// TODO: handle exception
-		ex.printStackTrace();
-	}
-		return listo;		
-	}
 }

@@ -4,6 +4,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +20,8 @@ import net.sf.jasperreports.engine.util.JRLoader;
 
 public class TercerConteo {
 	String mensaje;
+	static Date date = new Date();
+	static DateFormat hourFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
 	public String generarMarbete(String almacenes) 
 	{
 		System.out.println(almacenes);		
@@ -43,7 +48,7 @@ public class TercerConteo {
 	    System.out.println("Imprime reporte");
 	    
 	    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-	    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("MarbetesTercer.pdf"));
+	    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("/INFORMES/"+"MarbetesTercer"+almacenes+hourFormat.format(date)+".pdf"));
 	    exporter.exportReport();
 	    System.out.println("Termina ejecucion");
 	    conexion.close();

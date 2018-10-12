@@ -9,8 +9,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.mail.MessagingException;
@@ -38,10 +41,15 @@ public class diferenciasC
 	public static String mensaje="";
 	public static int hoy=0;
 	static String resultMessage = "";
+	static  Date date = new Date();
+	static		DateFormat hourFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
   public static String main(String almacenes)
   {
+	
+		
 	  try
 	  {
+		  
 		  Class.forName("org.postgresql.Driver");		  
 		  
 		  Connection co = DriverManager.getConnection(inventarios, usuario, contra);		  
@@ -55,7 +63,7 @@ public class diferenciasC
 				  		  System.out.println("UNO");
 				  		  if(rs.next())
 				  		  {
-				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("FaltantesdePrimerConteo.xls"));
+				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+"FaltantesdePrimerConteo"+hourFormat.format(date)+".xls"));
 				  			  WritableFont wf = new WritableFont(WritableFont.TAHOMA, 10, WritableFont.NO_BOLD);
 				  			  WritableCellFormat cf = new WritableCellFormat(wf);
 				  			  String almacene[]=almacenes.split("\\|");
@@ -119,7 +127,7 @@ public class diferenciasC
 				  		System.out.println("TRES");
 				  		  if(rs.next())
 				  		  {
-				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("FaltantesdeSegundoConteo.xls"));
+				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+"FaltantesdeSegundoConteo"+hourFormat.format(date)+".xls"));
 				  			  WritableFont wf = new WritableFont(WritableFont.TAHOMA, 10, WritableFont.NO_BOLD);
 				  			  WritableCellFormat cf = new WritableCellFormat(wf);
 				  			  String almacene[]=almacenes.split("\\|");
@@ -193,7 +201,7 @@ public class diferenciasC
 		Class.forName("org.postgresql.Driver");
 		Connection cn = DriverManager.getConnection(inventarios, usuario, contra);
 		ResultSet rs=null;					
-		WritableWorkbook wb = Workbook.createWorkbook(new File("TercerConteo.xls"));
+		WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+"TercerConteo"+hourFormat.format(date)+".xls"));
 		WritableFont wf = new WritableFont(WritableFont.TAHOMA, 10, WritableFont.NO_BOLD);
 		WritableCellFormat cf = new WritableCellFormat(wf);	        
 		String almacen[]=almacenes.split("\\|");

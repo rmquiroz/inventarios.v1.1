@@ -17,7 +17,7 @@
 	<classpathentry kind="lib" path="src/libs/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="src/libs/javax.mail-1.5.1.jar"/>
 	<classpathentry kind="lib" path="src/libs/javax.mail-api-1.4.7.jar"/>
-	<classpathentry kind="lib" path="src/libs/jxl.jar"/>
+	<classpathentry kind="lib" path="src/libs/jxl.jar" sourcepath="C:/Users/Admin/AppData/Local/Temp/.org.sf.feeling.decompiler1539297775332/source/jxl-2.6.12-sources.jar"/>
 	<classpathentry kind="lib" path="src/libs/postgresql-8.4-703.jdbc3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

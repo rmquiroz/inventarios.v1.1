@@ -15,7 +15,9 @@ import javax.mail.Authenticator;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.internet.AddressException;
- 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date; 
 /**
  * A utility class for sending e-mail messages
  * @author www.codejava.net
@@ -25,7 +27,11 @@ public class EmailUtility {
 	public static void sendEmail(String host, String port,
             final String userName, final String password, String toAddress,
             String subject, String message,String alm) throws AddressException,
-            MessagingException { 
+            MessagingException {
+		Date date = new Date();
+		DateFormat hourFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+		System.out.println("Hora: "+hourFormat.format(date));
+		//Caso 2: obtener la fecha y salida por pantalla con formato:		
         // sets SMTP server properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);
@@ -49,13 +55,13 @@ public class EmailUtility {
         texto.setText("Inventario de almacen(es) y ultima Remision y Movimientos de"+alm);
                 
         BodyPart adjunto = new MimeBodyPart();               
-        adjunto.setDataHandler(new DataHandler(new FileDataSource(alm+"/Inventario.csv")));
+        adjunto.setDataHandler(new DataHandler(new FileDataSource("/INFORMES/"+alm+"/Inventario.csv")));
         System.out.println("dato"+adjunto.getDataHandler());
-        adjunto.setFileName(alm+".csv");
+        adjunto.setFileName(alm+hourFormat.format(date)+".csv");
         
         BodyPart adjunto2 = new MimeBodyPart();               
-        adjunto2.setDataHandler(new DataHandler(new FileDataSource(alm+"/Ultimoscambios_almacen.xls")));        
-        adjunto2.setFileName("RemsMovs"+alm+".xls");                
+        adjunto2.setDataHandler(new DataHandler(new FileDataSource("/INFORMES/"+alm+"/Ultimoscambios_almacen.xls")));        
+        adjunto2.setFileName("RemsMovs"+alm+hourFormat.format(date)+".xls");                
         
         MimeMultipart multiParte = new MimeMultipart();
         multiParte.addBodyPart(texto);

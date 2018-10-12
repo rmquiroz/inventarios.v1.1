@@ -79,7 +79,7 @@ public class inventario
 + "m_product.value LIKE '8%'  THEN 1*m_storage_detail.qtyonhAND WHEN m_product.value LIKE '4%'  THEN piezas_Caja::NUMERIC*"
 + "m_storage_detail.qtyonhAND  WHEN m_product.value LIKE '5%' THEN piezas_pallet::NUMERIC*m_storage_detail.qtyonhAND ELSE "
 + "1*m_storage_detail.qtyonhAND end ),2))*(case when m_Warehouse.name like '%4E BRANDS EUA%' THEN m_product.campoabcdeuno"
-+ "::numeric else m_product.coststd end) AS std,chr(13) AS sp,to_char(now(),'DD-MM-YYYY HH:MI:SS') FROM m_storage_detail LEFT JOIN m_attributesetinstance ON "
++ "::numeric else m_product.coststd end) AS std,chr(13) AS sp,to_char(now(),'DD-MM-YYYY HH:mi:ss') FROM m_storage_detail LEFT JOIN m_attributesetinstance ON "
 + "m_storage_detail.m_attributesetinstance_id=m_attributesetinstance.m_attributesetinstance_id,m_product,m_locator,"
 + "m_warehouse, c_uom  WHERE m_storage_detail.m_product_id = m_product.m_product_id AND m_storage_detail.qtyonhAND <> 0 "
 + "AND m_storage_detail.m_locator_id=m_locator.m_locator_id  AND m_locator.m_warehouse_id=m_warehouse.m_warehouse_id AND "
@@ -102,11 +102,12 @@ public class inventario
 				  nombre=rs.getString(11);
 			  }
 			  valor=valor.replace("null"," ");
-			  File folder = new File(almacenes.replace(" ","-").replace("|", "-")+"");
-			  folder.mkdir();
-			  PrintWriter in = new PrintWriter(folder+"/Inventario.csv");		  
+			  File folder = new File("/INFORMES/"+almacenes.replace(" ","-").replace("|", "-")+"");			  
+			  System.out.print(folder.mkdir());
+			  System.out.print("Existe: "+folder.exists());
+			  PrintWriter in = new PrintWriter(folder+"/Inventario.csv");
 			  in.write("ALMACEN,HUECO,CODIGO,DESCRIPCION,CANTIDAD,UNIDAD,PIEZAS,COSTO ESTANDAR,COSTO TOTAL ESTANDAR" 
-+ valor);            
++ valor);
 			  in.close();
 			  System.out.println("ESCRITURA TERMINADA");	
 	  ////////////////////////////////TERMINA ESCRITURA DE ARCHIVO///////////////////////////////////		  		  		  		  		 
@@ -152,7 +153,7 @@ public class inventario
 				  col.add(rs.getString(19));
 				  col.add(rs.getString(20));
 			  }
-			  WritableWorkbook wb = Workbook.createWorkbook(new File(folder+"/Ultimoscambios_almacen.xls"));
+			  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+almacenes.replace(" ","-")+"/Ultimoscambios_almacen.xls"));
 			  WritableSheet ws = wb.createSheet("ReporteEntradas-salidas:", 0);		  
 			  WritableFont wf = new WritableFont(WritableFont.TAHOMA, 10, WritableFont.NO_BOLD);
 			  WritableCellFormat cf = new WritableCellFormat(wf);	        

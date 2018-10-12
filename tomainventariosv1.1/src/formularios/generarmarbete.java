@@ -32,6 +32,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -52,7 +55,9 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 public class generarmarbete extends JFrame {
-
+	  static Date date = new Date();
+	  static DateFormat hourFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+	
 	public static LinkedList contenedor=new LinkedList();
 	
 	private JPanel contentPane;
@@ -266,7 +271,7 @@ public class generarmarbete extends JFrame {
 	    JRExporter exporter = new JRPdfExporter();
 	    System.out.println("Imprime reporte");
 	    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-	    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("Marbetes.pdf"));
+	    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("/INFORMES/"+"Marbetes"+almacenes+hourFormat.format(date)+".pdf"));
 	    exporter.exportReport();
 	    System.out.println("Termina ejecucion");	    
 	    listo = true;
