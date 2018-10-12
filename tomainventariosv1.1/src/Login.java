@@ -159,6 +159,11 @@ public class Login extends JFrame {
 				inicio bienvenido = new inicio();
 				bienvenido.setVisible(true);
 			}			
+			if(usu.equals("4"))
+			{
+				formularios.tercerconteo  bienvenido = new formularios.tercerconteo();
+				bienvenido.setVisible(true);
+			}			
 			
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "Datos incorectos",

@@ -154,7 +154,7 @@ public class primerconteo extends JFrame {
 		mntmSalir.setFont(new Font("Dialog", Font.PLAIN, 12));
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		mnArchivo.add(mntmSalir);

@@ -133,7 +133,7 @@ public class inicio extends JFrame {
 				
 				
 
-				dispose();
+				//dispose();
 				//con esto muestro la ventana inicial
 				formularios.tercerconteo tercerconteo = new formularios.tercerconteo();
 				tercerconteo.setVisible(true);
