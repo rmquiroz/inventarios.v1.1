@@ -208,7 +208,8 @@ public class diferenciasC
 		for(int x=0;x<almacen.length;x++)
 		  {						
 			System.out.println(almacen[x]);
-			PreparedStatement ps = cn.prepareStatement("SELECT almacen,marbete,ubicacion FROM tercerconteo WHERE almacen similar to ('"+almacen[x]+"') "
+			PreparedStatement ps = cn.prepareStatement("SELECT almacen,marbete,ubicacion FROM tercerconteo WHERE almacen "
++ "similar to ('"+almacen[x]+"') AND marbete NOT IN (SELECT marbete FROM inventariofinal)"
 + "ORDER BY almacen,ubicacion");
 			rs = ps.executeQuery();
 			ArrayList<String> col=new ArrayList<String>(); 

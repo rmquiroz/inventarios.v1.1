@@ -260,9 +260,9 @@ public class generarmarbete extends JFrame {
 	    Map<String,Object> parameters = new HashMap<String,Object>();
 	    parameters.put("almacenes",new String(almacenes));	    
 	    System.out.println(parameters.put("almacenes",new String(almacenes)));
-	    parameters.put("IMG_DIR",new String("src/reportes/"));
-	    System.out.println(parameters.put("IMG_DIR",new String("src/reportes/")));	    
-	    JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile("src/reportes/marbete.jasper");
+	    parameters.put("IMG_DIR",new String("/INFORMES/imagenes/"));
+	    System.out.println(parameters.put("IMG_DIR",new String("/INFORMES/imagenes")));	    
+	    JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile("/INFORMES/reportes/marbete.jasper");
 	    System.out.println(reporte);
 	    System.out.println(parameters);
 	    System.out.println(conexion);
