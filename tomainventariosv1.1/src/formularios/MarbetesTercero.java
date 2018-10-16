@@ -148,6 +148,9 @@ public class MarbetesTercero extends JFrame {
 		final JCheckBox mpPlanta_chbx = new JCheckBox("MP_PLANTA 2C");
 		mpPlanta_chbx.setBackground(Color.BLACK);
 		mpPlanta_chbx.setForeground(Color.WHITE);
+		final JCheckBox mpPlanta_chbxB = new JCheckBox("MP_PLANTA 2B");
+		mpPlanta_chbxB.setBackground(Color.BLACK);
+		mpPlanta_chbxB.setForeground(Color.WHITE);
 		final JCheckBox smoPT_chbx = new JCheckBox("SMO_J1_PT");
 		smoPT_chbx.setBackground(Color.BLACK);
 		smoPT_chbx.setForeground(Color.WHITE);
@@ -161,6 +164,7 @@ public class MarbetesTercero extends JFrame {
 		smoMP_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
 		c5_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
 		mpPlanta_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
+		mpPlanta_chbxB.setFont(new Font("Dialog", Font.BOLD, 14));
 		smoPT_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 30));
 		btnGenerarMarbete.setFont(new Font("Candara", Font.PLAIN, 14));
@@ -171,11 +175,12 @@ public class MarbetesTercero extends JFrame {
 		quimicos_chbx.setBounds(48, 235, 210, 23);
 		smoMP_chbx.setBounds(453, 235, 210, 23);
 		c5_chbx.setBounds(453, 142, 210, 23);
-		mpPlanta_chbx.setBounds(453, 96, 210, 23);
+		mpPlanta_chbx.setBounds(453, 96, 210, 23);		
 		smoPT_chbx.setBounds(453, 188, 210, 23);
 		lblNewLabel.setBounds(0, 32, 855, 39);
 		btnGenerarMarbete.setBounds(624, 367, 155, 23);
 		lblNewLabel_5.setBounds(0, 0, 855, 429);
+		mpPlanta_chbxB.setBounds(453, 116, 210, 23);
 		
 		btnGenerarMarbete.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -189,7 +194,8 @@ public class MarbetesTercero extends JFrame {
 		contentPane.add(quimicos_chbx);		
 		contentPane.add(smoMP_chbx);		
 		contentPane.add(c5_chbx);		
-		contentPane.add(mpPlanta_chbx);		
+		contentPane.add(mpPlanta_chbx);	
+		contentPane.add(mpPlanta_chbxB);	
 		contentPane.add(smoPT_chbx);		
 		contentPane.add(lblNewLabel);
 		contentPane.add(lblNewLabel_5);
@@ -205,6 +211,8 @@ public class MarbetesTercero extends JFrame {
 					almacenes = almacenes + "|" + smoPT_chbx.getText();
 				if(mpPlanta_chbx.isSelected())
 					almacenes = almacenes + "|" + mpPlanta_chbx.getText();
+				if(mpPlanta_chbxB.isSelected())
+					almacenes = almacenes + "|" + mpPlanta_chbxB.getText();
 				if(c5_chbx.isSelected())
 					almacenes = almacenes + "|" + c5_chbx.getText();
 				if(smoMP_chbx.isSelected())

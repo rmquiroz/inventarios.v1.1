@@ -2,6 +2,7 @@ package formularios;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.TextField;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -40,6 +41,7 @@ import javax.swing.Box;
 import javax.swing.SwingConstants;
 
 import primerconteo.primer;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -50,7 +52,7 @@ public class primerconteo extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtbuscar;
 	private JTextField txtcodigo;
-	private JTextField txtcantidad;
+	private TextField txtcantidad;
 	private JTextField txtdescripcion;
 	private JTextField txtuom;
 	private JTextField txtalmacen;
@@ -452,8 +454,23 @@ public class primerconteo extends JFrame {
 		lblNewLabel_4.setBounds(236, 286, 102, 19);
 		contentPane.add(lblNewLabel_4);
 		
-		txtcantidad = new JTextField();
-		txtcantidad.setFont(new Font("Dialog", Font.PLAIN, 11));
+		txtcantidad = new TextField();
+		txtcantidad.setForeground(Color.BLACK);
+		txtcantidad.setBackground(Color.WHITE);
+		txtcantidad.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent a) {
+				char c = a.getKeyChar();
+				if((c<'0' || c>'9') && c != a.VK_BACK_SPACE)  //<<>>
+				{
+					System.out.println("Char "+a.getKeyChar());
+					getToolkit().beep();
+					 a.consume();
+					 
+				}
+			}
+		});
+		txtcantidad.setFont(new Font("DFKai-SB", Font.PLAIN, 11));
 		txtcantidad.setBounds(344, 286, 114, 20);
 		contentPane.add(txtcantidad);
 		txtcantidad.setColumns(10);
@@ -567,9 +584,7 @@ public class primerconteo extends JFrame {
 		
 		
 		btnConfirmarConteo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
+			public void actionPerformed(ActionEvent arg0) {								
 				
 				
 				

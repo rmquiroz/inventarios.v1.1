@@ -111,6 +111,8 @@ public class InformeFinal extends JFrame {
 		QUIMICOS.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox MPPLANTA = new JCheckBox("MP_PLANTA 2C");
 		MPPLANTA.setFont(new Font("Dialog", Font.BOLD, 12));
+		final JCheckBox MPPLANTAB = new JCheckBox("MP_PLANTA 2B");
+		MPPLANTAB.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox PRINCIPAL_C5 = new JCheckBox("PRINCIPAL_C5");
 		PRINCIPAL_C5.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox SMO_J1_PT = new JCheckBox("SMO_J1_PT");
@@ -157,7 +159,12 @@ public class InformeFinal extends JFrame {
 		SMO_MATERIA.setBackground(Color.BLACK);
 		SMO_MATERIA.setForeground(Color.WHITE);
 		SMO_MATERIA.setBounds(23,360, 168, 23);		
-		contentPane.add(SMO_MATERIA);		
+		contentPane.add(SMO_MATERIA);
+		
+		MPPLANTAB.setBackground(Color.BLACK);
+		MPPLANTAB.setForeground(Color.WHITE);
+		MPPLANTAB.setBounds(23,270, 168, 23);
+		contentPane.add(MPPLANTAB);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -173,6 +180,8 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 				if(QUIMICOS.isSelected())
 					almacenes=almacenes+"|"+QUIMICOS.getText();
 				if(MPPLANTA.isSelected())
+					almacenes=almacenes+"|"+MPPLANTA.getText();
+				if(MPPLANTAB.isSelected())
 					almacenes=almacenes+"|"+MPPLANTA.getText();
 				if(PRINCIPAL_C5.isSelected())
 					almacenes=almacenes+"|"+PRINCIPAL_C5.getText();
