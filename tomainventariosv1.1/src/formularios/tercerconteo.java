@@ -457,7 +457,7 @@ public class tercerconteo extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent a) {
 				char c = a.getKeyChar();
-				if((c<'0' || c>'9') && c != a.VK_BACK_SPACE)  //<<>>
+				if((c<'0' || c>'9') && c != a.VK_BACK_SPACE && c != '.')  //<<>>
 				{
 					System.out.println("Char "+a.getKeyChar());
 					getToolkit().beep();
