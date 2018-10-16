@@ -61,7 +61,6 @@ public class DiferenciasPrueba extends JFrame {
 	 * Create the frame.
 	 */
 	public DiferenciasPrueba() {
-		setResizable(false);
 		setTitle("DIFERENCIAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
@@ -167,7 +166,7 @@ public class DiferenciasPrueba extends JFrame {
 		
 		MPPLANTAB.setBackground(Color.BLACK);
 		MPPLANTAB.setForeground(Color.WHITE);
-		MPPLANTAB.setBounds(23,270, 168, 23);
+		MPPLANTAB.setBounds(23,390, 168, 23);
 		contentPane.add(MPPLANTAB);
 		
 		JButton btnAceptar = new JButton("Aceptar");

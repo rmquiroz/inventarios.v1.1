@@ -83,6 +83,7 @@ public class segundoconteo extends JFrame {
 	 * Create the frame.
 	 */
 	public segundoconteo() {
+		setResizable(false);
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);

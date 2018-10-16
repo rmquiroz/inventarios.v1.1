@@ -79,6 +79,7 @@ public class primerconteo extends JFrame {
 	 * Create the frame.
 	 */
 	public primerconteo() {
+		setResizable(false);
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);

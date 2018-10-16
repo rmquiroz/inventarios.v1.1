@@ -57,8 +57,8 @@ public class CerrarTercerConteo extends JFrame {
 	 * Create the frame.
 	 */
 	public CerrarTercerConteo() {
-		setTitle("CONTEOS");
 		setResizable(false);
+		setTitle("CONTEOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
 		

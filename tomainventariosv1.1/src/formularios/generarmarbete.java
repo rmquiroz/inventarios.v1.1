@@ -86,6 +86,7 @@ public class generarmarbete extends JFrame {
 	 * Create the frame.
 	 */
 	public generarmarbete() {
+		setResizable(false);
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
@@ -178,7 +179,7 @@ public class generarmarbete extends JFrame {
 		etiquetas_chbx.setBounds(48, 142, 210, 23);
 		mp_chbx.setBounds(48, 188, 210, 23);
 		quimicos_chbx.setBounds(48, 235, 210, 23);
-		mpPlanta_chbxB.setBounds(48, 240, 210, 23);
+		mpPlanta_chbxB.setBounds(48, 274, 210, 23);
 		smoMP_chbx.setBounds(453, 235, 210, 23);
 		c5_chbx.setBounds(453, 142, 210, 23);
 		mpPlanta_chbx.setBounds(453, 96, 210, 23);

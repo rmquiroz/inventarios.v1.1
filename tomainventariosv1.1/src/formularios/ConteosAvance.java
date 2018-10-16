@@ -57,8 +57,8 @@ public class ConteosAvance extends JFrame {
 	 * Create the frame.
 	 */
 	public ConteosAvance() {
-		setTitle("CONTEOS");
 		setResizable(false);
+		setTitle("CONTEOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
 		
@@ -163,7 +163,7 @@ public class ConteosAvance extends JFrame {
 		
 		MPPLANTAB.setBackground(Color.BLACK);
 		MPPLANTAB.setForeground(Color.WHITE);
-		MPPLANTAB.setBounds(23,270, 168, 23);
+		MPPLANTAB.setBounds(23,390, 168, 23);
 		contentPane.add(MPPLANTAB);
 		
 		

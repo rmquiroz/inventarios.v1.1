@@ -48,6 +48,7 @@ public class inicio extends JFrame {
 	 * Create the frame.
 	 */
 	public inicio() {
+		setResizable(false);
 		setTitle("VENTANA PRINCIPAL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);

@@ -163,7 +163,7 @@ public class InformeFinal extends JFrame {
 		
 		MPPLANTAB.setBackground(Color.BLACK);
 		MPPLANTAB.setForeground(Color.WHITE);
-		MPPLANTAB.setBounds(23,270, 168, 23);
+		MPPLANTAB.setBounds(23,390, 168, 23);
 		contentPane.add(MPPLANTAB);
 		
 		JButton btnAceptar = new JButton("Aceptar");
