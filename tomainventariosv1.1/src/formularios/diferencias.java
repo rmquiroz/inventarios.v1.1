@@ -197,7 +197,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
 				diferenciasC.diferenciasC i=new diferenciasC.diferenciasC();	
-				String validacion=i.main(almacenes);
+				String validacion=i.main(almacenes,"");
 				JOptionPane.showMessageDialog(contentPane,validacion);
 				if(!validacion.equals("HAY HUECOS FALTANTES POR CONTABILIZAR")){
 				int a=JOptionPane.showConfirmDialog(contentPane,"¿Quiere confirmar los conteos?","Esta verificación no puede revertirse ni repetirse",JOptionPane.YES_NO_OPTION);

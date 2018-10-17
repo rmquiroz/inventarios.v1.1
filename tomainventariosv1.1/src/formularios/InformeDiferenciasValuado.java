@@ -28,7 +28,7 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-public class InformeTeorico extends JFrame {
+public class InformeDiferenciasValuado extends JFrame {
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class InformeTeorico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InformeTeorico frame = new InformeTeorico();
+					InformeDiferenciasValuado frame = new InformeDiferenciasValuado();
 					frame.setVisible(true);
 					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
@@ -56,9 +56,9 @@ public class InformeTeorico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InformeTeorico() {
-		setTitle("CONTEOS");
+	public InformeDiferenciasValuado() {
 		setResizable(false);
+		setTitle("CONTEOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
 		
@@ -143,7 +143,8 @@ public class InformeTeorico extends JFrame {
 		MPPLANTA.setBackground(Color.BLACK);
 		MPPLANTA.setForeground(Color.WHITE);
 		MPPLANTA.setBounds(23,270, 168, 23);
-		contentPane.add(MPPLANTA);		
+		contentPane.add(MPPLANTA);
+		
 		
 		PRINCIPAL_C5.setBackground(Color.BLACK);
 		PRINCIPAL_C5.setForeground(Color.WHITE);
@@ -164,6 +165,7 @@ public class InformeTeorico extends JFrame {
 		MPPLANTAB.setForeground(Color.WHITE);
 		MPPLANTAB.setBounds(23,390, 168, 23);
 		contentPane.add(MPPLANTAB);
+		
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -193,8 +195,10 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
 				//inventario.inventario i=new inventario.inventario();
-				reporteConteos.ConteoTeorico i=new reporteConteos.ConteoTeorico(); 				
-				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes,""));
+				//reporteConteos.ConteosExcel i=new reporteConteos.ConteosExcel();
+				reporteConteos.DiferenciasValuado fvst=new reporteConteos.DiferenciasValuado();
+				String repositorio="";
+				JOptionPane.showMessageDialog(contentPane,  fvst.main(almacenes,repositorio));
 			}
 			else{
 				
@@ -205,7 +209,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 		btnAceptar.setBounds(530, 270, 185, 65);
 		contentPane.add(btnAceptar);
 		
-		JLabel lblElegirLosAlmacenes = new JLabel("EliJa los almacenes de los cu\u00E1les desea saber el Inventario Te\u00F3rico");
+		JLabel lblElegirLosAlmacenes = new JLabel("Elija los Almacenes de los cu\u00E1les desea obtener el Inventario de Diferencias Valuado");
 		lblElegirLosAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblElegirLosAlmacenes.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblElegirLosAlmacenes.setForeground(Color.WHITE);

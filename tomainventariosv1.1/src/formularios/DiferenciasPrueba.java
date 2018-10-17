@@ -196,8 +196,9 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				diferenciasC.diferenciasC i=new diferenciasC.diferenciasC();	
-				String validacion=i.main(almacenes);
+				diferenciasC.diferenciasC i=new diferenciasC.diferenciasC();
+				
+				String validacion=i.main(almacenes,"");
 				JOptionPane.showMessageDialog(contentPane,validacion);
 				
 				int a=JOptionPane.showConfirmDialog(contentPane,"¿Quiere confirmar los conteos?","----",JOptionPane.YES_NO_OPTION);

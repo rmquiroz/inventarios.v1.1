@@ -22,10 +22,15 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 public class ConteoFinal {
-	static String mensaje,inventarios="jdbc:postgresql://10.1.250.24:5932/inventarios",usuario="postgres",contra="s3st2m1s4e",productivo="jdbc:postgresql://10.1.250.20:5932/openbravo";
+	static String mensaje;
+	//static String inventarios="jdbc:postgresql://201.149.89.164:5932/inventarios";
+	//static String productivo="jdbc:postgresql://201.149.89.163:5932/openbravo";
+	static String inventarios="jdbc:postgresql://10.1.250.24:5932/inventarios";
+	static String usuario="postgres",contra="s3st2m1s4e";
+	static String productivo="jdbc:postgresql://10.1.250.20:5932/openbravo";
 	static Date date = new Date();
 	static DateFormat hourFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
-	public static String main(String almacenes){
+	public static String main(String almacenes, String repositorio){
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -35,7 +40,7 @@ public class ConteoFinal {
 		int h=0;
 		  System.out.println("Ejecutando Query.......");
 		  ResultSet rs = null,rsp = null;
-		  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+"InventarioFinal"+almacenes.replace("|","-")+hourFormat.format(date)+".xls"));
+		  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+repositorio+"InventarioFinal"+almacenes.replace("|","-")+hourFormat.format(date)+".xls"));
 		  almacen=almacenes.split("\\|");
 		  for(int x=0;x<almacen.length;x++)
 		  {		

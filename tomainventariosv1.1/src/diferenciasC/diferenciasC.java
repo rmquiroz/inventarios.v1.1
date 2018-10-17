@@ -33,8 +33,9 @@ public class diferenciasC
 	public static final String SEPARATOR=",";
 	public static final String QUOTE=",";
 	public static int registros = 0;
-	public static String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
-	public static String inventarios= "jdbc:postgresql://10.1.250.24:5932/inventarios";
+	public static String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";// http://201.149.89.163
+	public static String inventarios= "jdbc:postgresql://10.1.250.24:5932/inventarios";// http://201.149.89.164/
+	//public static String inventarios= "jdbc:postgresql://201.149.89.164:5932/inventarios";
 	public static String usuario="postgres";
 	public static String contra="s3st2m1s4e";
 	public static int fecha=0;
@@ -43,7 +44,7 @@ public class diferenciasC
 	static String resultMessage = "";
 	static  Date date = new Date();
 	static		DateFormat hourFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
-  public static String main(String almacenes)
+  public static String main(String almacenes,String repositorio)
   {
 	
 		
@@ -63,7 +64,7 @@ public class diferenciasC
 				  		  System.out.println("UNO");
 				  		  if(rs.next())
 				  		  {
-				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+"FaltantesdePrimerConteo"+hourFormat.format(date)+".xls"));
+				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+repositorio+"FaltantesdePrimerConteo"+hourFormat.format(date)+".xls"));
 				  			  WritableFont wf = new WritableFont(WritableFont.TAHOMA, 10, WritableFont.NO_BOLD);
 				  			  WritableCellFormat cf = new WritableCellFormat(wf);
 				  			  String almacene[]=almacenes.split("\\|");
@@ -127,7 +128,7 @@ public class diferenciasC
 				  		System.out.println("TRES");
 				  		  if(rs.next())
 				  		  {
-				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+"FaltantesdeSegundoConteo"+hourFormat.format(date)+".xls"));
+				  			  WritableWorkbook wb = Workbook.createWorkbook(new File("/INFORMES/"+repositorio+"FaltantesdeSegundoConteo"+hourFormat.format(date)+".xls"));
 				  			  WritableFont wf = new WritableFont(WritableFont.TAHOMA, 10, WritableFont.NO_BOLD);
 				  			  WritableCellFormat cf = new WritableCellFormat(wf);
 				  			  String almacene[]=almacenes.split("\\|");

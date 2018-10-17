@@ -111,6 +111,18 @@ public class inicio extends JFrame {
 				primerconteo.setVisible(true);
 			}
 		});
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Reactivar Inventario");
+		mntmNewMenuItem_6.setFont(new Font("Dialog", Font.PLAIN, 12));
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				formularios.InventarioCerrar ice=new formularios.InventarioCerrar();
+				ice.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_6.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/buscar.png")));
+		mnCapturaDeInventario.add(mntmNewMenuItem_6);
 		mnCapturaDeInventario.add(mntmCapturaDeInventario);
 		
 		JMenuItem mntmCapturaDeInventario_1 = new JMenuItem("Captura de Inventario 2do Conteo");
@@ -249,7 +261,7 @@ public class inicio extends JFrame {
 		});
 		mnInformes_1.add(mntmNewMenuItem_1);
 		
-		JMenuItem mntmInformeInventarioTeorico = new JMenuItem("Informe Inventario Teorico");
+		JMenuItem mntmInformeInventarioTeorico = new JMenuItem("Informe Inventario Te\u00F3rico");
 		mntmInformeInventarioTeorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -262,6 +274,40 @@ public class inicio extends JFrame {
 		});
 		mntmInformeInventarioTeorico.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
 		mnInformes_1.add(mntmInformeInventarioTeorico);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Informe de Diferencias Valuado");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				formularios.InformeDiferenciasValuado dv=new formularios.InformeDiferenciasValuado();
+				dv.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_3.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
+		mnInformes_1.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Informe comparativo Fisico-Te\u00F3rico");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				formularios.InformeFisicovsTeorico fis=new formularios.InformeFisicovsTeorico();
+				fis.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_4.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
+		mnInformes_1.add(mntmNewMenuItem_4);
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Informe comparativo cantidades Te\u00F3rico-Fisico ");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				formularios.InformeTeoricovsFisicoCantidades fi=new formularios.InformeTeoricovsFisicoCantidades();
+				fi.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_5.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/inventariofinal.png")));
+		mnInformes_1.add(mntmNewMenuItem_5);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 

@@ -195,7 +195,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 				System.out.println("Variable:"+almacenes);
 				//inventario.inventario i=new inventario.inventario();
 				reporteConteos.ConteoFinal i=new reporteConteos.ConteoFinal(); 
-				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes));
+				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes,""));
 			}
 			else{
 				

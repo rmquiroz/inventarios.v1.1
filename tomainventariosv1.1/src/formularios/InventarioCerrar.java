@@ -28,7 +28,9 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-public class InformeTeorico extends JFrame {
+
+
+public class InventarioCerrar extends JFrame {
 
 	/**
 	 * 
@@ -42,8 +44,8 @@ public class InformeTeorico extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					InformeTeorico frame = new InformeTeorico();
+				try {			
+					InventarioCerrar frame = new InventarioCerrar();
 					frame.setVisible(true);
 					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
@@ -56,9 +58,9 @@ public class InformeTeorico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InformeTeorico() {
-		setTitle("CONTEOS");
+	public InventarioCerrar() {
 		setResizable(false);
+		setTitle("INVENTARIO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
 		
@@ -100,7 +102,8 @@ public class InformeTeorico extends JFrame {
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);			
+		contentPane.setLayout(null);		
+	
 		final JCheckBox BRANDSEUA = new JCheckBox("4E BRANDS EUA");
 		BRANDSEUA.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox ETIQUETAS = new JCheckBox("4G_1D ETIQUETAS");
@@ -192,9 +195,26 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				//inventario.inventario i=new inventario.inventario();
-				reporteConteos.ConteoTeorico i=new reporteConteos.ConteoTeorico(); 				
-				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes,""));
+				String repositorio="FINAL/";
+				inventario.GeneraValuado gen=new inventario.GeneraValuado();
+				inventario.UltimaRem movs=new inventario.UltimaRem();
+				reporteConteos.ConteoFinal cfi= new reporteConteos.ConteoFinal();
+				reporteConteos.ConteosExcel cex= new reporteConteos.ConteosExcel();
+				reporteConteos.ConteoTeorico cte= new reporteConteos.ConteoTeorico();
+				reporteConteos.DiferenciasValuado dval= new reporteConteos.DiferenciasValuado();
+				reporteConteos.FisicovsTeorico fvst= new reporteConteos.FisicovsTeorico();
+				reporteConteos.TeoricovsFisicoCantidades tvsf= new reporteConteos.TeoricovsFisicoCantidades();
+				diferenciasC.diferenciasC dif=new diferenciasC.diferenciasC();
+				gen.main(almacenes, repositorio);
+				dval.main(almacenes, repositorio);
+				cte.main(almacenes, repositorio);
+				cex.main(almacenes, repositorio);
+				cfi.main(almacenes, repositorio);				
+				dif.main(almacenes, repositorio);
+				movs.main(almacenes, repositorio);
+				fvst.main(almacenes, repositorio);
+				tvsf.main(almacenes, repositorio);
+				
 			}
 			else{
 				
@@ -205,7 +225,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 		btnAceptar.setBounds(530, 270, 185, 65);
 		contentPane.add(btnAceptar);
 		
-		JLabel lblElegirLosAlmacenes = new JLabel("EliJa los almacenes de los cu\u00E1les desea saber el Inventario Te\u00F3rico");
+		JLabel lblElegirLosAlmacenes = new JLabel("OBTENER EL CIERRE DE INVENTARIO");
 		lblElegirLosAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblElegirLosAlmacenes.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblElegirLosAlmacenes.setForeground(Color.WHITE);
