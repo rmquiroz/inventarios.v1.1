@@ -33,6 +33,7 @@ public class gestionusuario {
 					nivel=rs.getString(6);
 					
 				}
+				con.close();
 								
 	} catch (Exception e) {
 		System.out.println("error en obtener usuario");

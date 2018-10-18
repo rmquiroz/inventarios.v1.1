@@ -71,8 +71,15 @@ public class EmailUtility {
         MimeMessage msg = new MimeMessage(session);
         
         msg.setFrom(new InternetAddress("informesob3@4eglobal.com"));
-        
+        //ogutierrez@kcc.com
         msg.addRecipient(Message.RecipientType.TO, new InternetAddress("sistemaserp@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("lmartinez@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("ogutierrez@kcc.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("jfarias@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("jpgomez@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("lcao@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("jvelazquez@4eglobal.com"));
+        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("jcgonzalez@4eglobal.com"));
         msg.setSubject("PARALIZA ALMACEN(ES)"+alm);                                   
         msg.setContent(multiParte);
 

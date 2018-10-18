@@ -23,8 +23,7 @@ public class CierreTercerConteo{
 		String auxiliar="";
 		try {
 			Class.forName("org.postgresql.Driver");
-		Connection cn = DriverManager.getConnection(inventarios, usuario, contra);		  
-		Connection co = DriverManager.getConnection(productivo, usuario, contra);
+		Connection cn = DriverManager.getConnection(inventarios, usuario, contra);		  		
 		String[] almacen;
 		int h=0;
 		  System.out.println("Ejecutando Query.......");
@@ -55,6 +54,7 @@ public class CierreTercerConteo{
 + "cantidad,'' as campouno,'' as campodos,now() FROM tercerconteofinal WHERE marbete not in (SELECT marbete FROM inventariofinal))");
 				ps.execute();			   
 			  }
+			  cn.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

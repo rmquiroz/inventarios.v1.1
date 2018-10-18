@@ -214,6 +214,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 				movs.main(almacenes, repositorio);
 				fvst.main(almacenes, repositorio);
 				tvsf.main(almacenes, repositorio);
+				JOptionPane.showMessageDialog(contentPane,"REPORTES FINALES GENERADOS EN CARPETA FINAL");
 				
 			}
 			else{

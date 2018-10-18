@@ -15,7 +15,8 @@ when char_length(marbete) = 2 then ('0000'||marbete)
 when char_length(marbete) = 3 then ('000'||marbete)
 when char_length(marbete) = 4 then ('00'||marbete)
 when char_length(marbete) = 5 then ('0'||marbete) else marbete end as folio,to_char(now(),'DD-MM-YYYY')
- FROM tercerconteo WHERE almacen similar to ($P{almacenes})]]>
+ FROM tercerconteo WHERE almacen similar to ($P{almacenes})
+ORDER BY marbete::numeric]]>
 	</queryString>
 	<field name="almacen" class="java.lang.String"/>
 	<field name="ubicacion" class="java.lang.String"/>

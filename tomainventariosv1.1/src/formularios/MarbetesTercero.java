@@ -56,8 +56,8 @@ public class MarbetesTercero extends JFrame {
 	public static LinkedList contenedor=new LinkedList();
 	
 	private JPanel contentPane;
-	//la pao
-	//dhadkjhdsfkjahfkjsdhfkahsf
+	
+	
 	String almacenes="";
 
 	/**

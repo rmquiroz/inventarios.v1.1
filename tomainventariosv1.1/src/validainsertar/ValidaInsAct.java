@@ -27,6 +27,7 @@ public class ValidaInsAct
 				  mensaje="INSERT";
 			  }
 			  System.out.println("Valida"+mensaje);
+			  co.close();
 			  } catch(Exception e)
 			  {
 			  

@@ -27,6 +27,7 @@ public class ValidarTercerConteo
 				  mensaje="NO";
 			  }
 			  System.out.println("Valida"+mensaje);
+			  co.close();
 			  } catch(Exception e)
 			  {
 			  
