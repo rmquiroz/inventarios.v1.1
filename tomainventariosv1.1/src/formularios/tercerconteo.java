@@ -818,8 +818,8 @@ public class tercerconteo extends JFrame {
 							      System.out.println("cierro la conexcion de la base usuarios");*/
 							      
 							   
-						      String usu="admin";
-						      String contra="admin";
+						      String usu="japena";
+						      String contra="JORGE1980";
 						      
 							  
 							      String usuario_introducido="";
