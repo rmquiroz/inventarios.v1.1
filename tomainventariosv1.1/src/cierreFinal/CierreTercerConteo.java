@@ -34,26 +34,13 @@ public class CierreTercerConteo{
 		  for(int x=0;x<almacen.length;x++)
 		  {		
 			  			  
-			  PreparedStatement ps = cn.prepareStatement("SELECT * FROM tercerconteo as ter WHERE ter.marbete NOT IN (SELECT marbete FROM tercerconteofinal WHERE "
-+ "almacen='"+almacen[x]+"') AND ter.almacen='"+almacen[x]+"'");
-			  rs = ps.executeQuery();			   
-			  if(rs.next())
-			  {
-				  auxiliar=auxiliar+" "+almacen[x];
-			  }
-			  else{
-				  
-				  
-			  }
-			  
-		  }
-			  if(auxiliar.equals(""))
-			  {
 				  auxiliar="TERCER CONTEO CERRADO";
-				  PreparedStatement  ps = cn.prepareStatement("insert into inventariofinal(select upper(LOWER( REPLACE(CAST(uuid_generate_v4()AS varchar(50)),'-',''))),almacen,ubicacion,marbete,codigo,"
+				  PreparedStatement   ps = cn.prepareStatement("insert into inventariofinal (select upper(LOWER( REPLACE(CAST(uuid_generate_v4()AS varchar(50)),'-',''))),almacen,ubicacion,marbete,codigo,"
 + "cantidad,'' as campouno,'' as campodos,now() FROM tercerconteofinal WHERE marbete not in (SELECT marbete FROM inventariofinal))");
 				ps.execute();			   
-			  }
+			
+		  }
+			  
 			  cn.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
