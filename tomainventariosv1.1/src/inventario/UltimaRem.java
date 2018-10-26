@@ -21,10 +21,10 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 public class UltimaRem
 {
-	public static String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
-	public static String inventarios= "jdbc:postgresql://10.1.250.24:5932/inventarios";
-	//static String inventarios="jdbc:postgresql://201.149.89.164:5932/inventarios";
-	//static String url="jdbc:postgresql://201.149.89.163:5932/openbravo";
+	//public static String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
+	//public static String inventarios= "jdbc:postgresql://10.1.250.24:5932/inventarios";
+	static String inventarios="jdbc:postgresql://201.149.89.164:5932/inventarios";
+	static String url="jdbc:postgresql://201.149.89.163:5932/openbravo";
 	public static String usuario="postgres";
 	public static String contra="s3st2m1s4e";
 	public static String mensaje="HECHO";

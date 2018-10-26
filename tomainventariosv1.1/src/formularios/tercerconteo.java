@@ -486,7 +486,7 @@ public class tercerconteo extends JFrame {
 			public void keyPressed(KeyEvent arg0) {String codigo= txtcodigo.getText();
 			String marbete= txtbuscar.getText();
 			//String cantidad= txtcantidad.getText();
-			int cantidad= Integer.parseInt(txtcantidad.getText());
+			double cantidad= Double.parseDouble(txtcantidad.getText());
 			String ubicacion= txtubicacion.getText();
 			String almacen= txtalmacen.getText();
 			
@@ -496,15 +496,31 @@ public class tercerconteo extends JFrame {
 			} else if(marbete.isEmpty()) {
 				JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Marbete");
 			//} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())) != null) {
-			} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())).isEmpty()) {
+			} else if(String.valueOf(Double.parseDouble(txtcantidad.getText())).isEmpty()) {
 				JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Cantidad");
 			} else {
 				validainsertar.ValidarTercerConteo vins1=new validainsertar.ValidarTercerConteo();
 				String tabla="tercerconteo";
 				String tabla2="inventariofinal";
 				String result1=vins1.main(marbete);
+				String auxiliar=""+cantidad;
+				System.out.println("A"+auxiliar);
+				String valor="";
+				if(Math.ceil(cantidad)>cantidad)				
+				{					
+					valor=marbete+"."+codigo+"."+cantidad;
+				}
+				else{					
+					String cant=cantidad+"";
+					cant=cant.substring(0,cant.indexOf("."));
+					System.out.println("ELSE"+cant);
+										
+					valor=marbete+"."+codigo+"."+cant;
+					
+				}
 				if(result1.equals("NO")){
-				String valor=marbete+"."+codigo+"."+cantidad;
+					
+				
 				String cantidadinsertada;
 				System.out.println(valor);
 				
@@ -527,7 +543,23 @@ public class tercerconteo extends JFrame {
 					  while(rs.next()){
 						  cantidad=cantidad+rs.getInt(1);
 					  }
-					valor=marbete+"."+codigo+"."+cantidad;
+					  auxiliar=""+cantidad;
+					  System.out.println("SUMA"+Math.ceil(cantidad)+"\n"+cantidad);
+					  
+					  if(Math.ceil(cantidad)>cantidad)				
+						{					
+						  valor=marbete+"."+codigo+"."+cantidad;
+						}
+						else{
+							String cant=cantidad+"";
+							cant=cant.substring(0,cant.indexOf("."));
+							System.out.println("ELSE"+cant);
+												
+							valor=marbete+"."+codigo+"."+cant+".00";
+							
+						}										 
+					  System.out.println("CANTIDAD"+cantidad);  
+					
 					
 					System.out.println(valor);
 					
@@ -538,9 +570,15 @@ public class tercerconteo extends JFrame {
 					   
 
 					  
-					ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
-							  									+"UNION "
-							  									+"select (marbete||'.'||codigo||'.'||cantidad) from SEGUNDOCONTEO where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'");
+					ps= co.prepareStatement("select "
++ "(marbete||'.'||codigo||'.'||round(cantidad::numeric,2)) "
++ "from primerconteo where "
++ "(marbete||'.'||codigo||'.'||round(cantidad::numeric,2))='"+valor+"'"
++"UNION "
++"select "
++ "(marbete||'.'||codigo||'.'||round(cantidad::numeric,2)) "
++ "from SEGUNDOCONTEO where "
++ "(marbete||'.'||codigo||'.'||round(cantidad::numeric,2))='"+valor+"'");
 					  rs=ps.executeQuery();
 					  co.close();
 					  if(rs.next()){
@@ -704,7 +742,7 @@ public class tercerconteo extends JFrame {
 				String codigo= txtcodigo.getText();
 				String marbete= txtbuscar.getText();
 				//String cantidad= txtcantidad.getText();
-				int cantidad= Integer.parseInt(txtcantidad.getText());
+				double cantidad= Double.parseDouble(txtcantidad.getText());
 				String ubicacion= txtubicacion.getText();
 				String almacen= txtalmacen.getText();
 				
@@ -714,7 +752,7 @@ public class tercerconteo extends JFrame {
 				} else if(marbete.isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Marbete");
 				//} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())) != null) {
-				} else if(String.valueOf(Integer.parseInt(txtcantidad.getText())).isEmpty()) {
+				} else if(String.valueOf(Double.parseDouble(txtcantidad.getText())).isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Error ------>>> Verifique el contenido de Cantidad");
 				} else {
 					  try
@@ -733,7 +771,23 @@ public class tercerconteo extends JFrame {
 						  while(rs.next()){
 							  cantidad=cantidad+rs.getInt(1);
 						  }
-						String valor=marbete+"."+codigo+"."+cantidad;
+						  String auxiliar=""+cantidad;
+						  System.out.println("A"+auxiliar);
+						  String valor;
+						  if(Math.ceil(cantidad)>cantidad)				
+							{					
+								valor=marbete+"."+codigo+"."+cantidad;
+							}
+							else{					
+								String cant=cantidad+"";
+								cant=cant.substring(0,cant.indexOf("."));
+								System.out.println("ELSE"+cant);
+													
+								valor=marbete+"."+codigo+"."+cant+".00";
+								
+							}
+							
+						
 						
 						System.out.println(valor);
 						
@@ -742,9 +796,12 @@ public class tercerconteo extends JFrame {
 						System.out.println("HAGO VALIDACION");
 
 						   
-						  ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||cantidad) from primerconteo where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'"
-								  									+"UNION "
-								  									+"select (marbete||'.'||codigo||'.'||cantidad) from SEGUNDOCONTEO where (marbete||'.'||codigo||'.'||cantidad)='"+valor+"'");
+						  ps= co.prepareStatement("select (marbete||'.'||codigo||'.'||round(cantidad::numeric,2)) "
++ "from primerconteo where (marbete||'.'||codigo||'.'||round(cantidad::numeric,2))='"+valor+"'"
++"UNION "
++"select (marbete||'.'||codigo||'.'||round(cantidad::numeric,2)) "
++ "from SEGUNDOCONTEO where "
++ "(marbete||'.'||codigo||'.'||round(cantidad::numeric,2))='"+valor+"'");
 						  rs=ps.executeQuery();
 						  co.close();
 						  if(rs.next()){

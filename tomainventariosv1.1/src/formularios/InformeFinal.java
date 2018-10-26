@@ -170,7 +170,8 @@ public class InformeFinal extends JFrame {
 		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() || 
+			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() ||
+					MPPLANTAB.isSelected() ||
 PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()){
 				almacenes="";
 				if(BRANDSEUA.isSelected())
@@ -182,7 +183,7 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 				if(MPPLANTA.isSelected())
 					almacenes=almacenes+"|"+MPPLANTA.getText();
 				if(MPPLANTAB.isSelected())
-					almacenes=almacenes+"|"+MPPLANTA.getText();
+					almacenes=almacenes+"|"+MPPLANTAB.getText();
 				if(PRINCIPAL_C5.isSelected())
 					almacenes=almacenes+"|"+PRINCIPAL_C5.getText();
 				if(SMO_J1_PT.isSelected())

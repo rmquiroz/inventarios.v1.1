@@ -173,8 +173,8 @@ public class DiferenciasPrueba extends JFrame {
 		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() || 
-PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()){
+			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() ||
+MPPLANTAB.isSelected() ||PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()){
 				almacenes="";
 				if(BRANDSEUA.isSelected())
 					almacenes=almacenes+"|"+BRANDSEUA.getText();

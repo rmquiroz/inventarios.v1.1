@@ -204,7 +204,8 @@ public class MarbetesTercero extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				
-			if(smoPT_chbx.isSelected() || mpPlanta_chbx.isSelected() || c5_chbx.isSelected() || smoMP_chbx.isSelected() || quimicos_chbx.isSelected() 
+			if(smoPT_chbx.isSelected() || mpPlanta_chbx.isSelected() || c5_chbx.isSelected() 
+					|| smoMP_chbx.isSelected() || quimicos_chbx.isSelected()||mpPlanta_chbxB.isSelected() 
 					|| mp_chbx.isSelected() || etiquetas_chbx.isSelected() || brandsEUA_chbx.isSelected())
 			{
 				if(smoPT_chbx.isSelected())

@@ -15,7 +15,8 @@ when char_length(marbete) = 2 then ('0000'||marbete)
 when char_length(marbete) = 3 then ('000'||marbete)
 when char_length(marbete) = 4 then ('00'||marbete)
 when char_length(marbete) = 5 then ('0'||marbete) else marbete end as folio,to_char(now(),'DD-MM-YYYY')
- FROM tercerconteo WHERE almacen similar to ($P{almacenes})
+ FROM tercerconteo
+WHERE ubicacion similar to ('A-1-B|A-2-B|A-3-A|A-3-B|A-5-A|B-1-A|B-1-B|B-3-A|B-4-A|B-5-A|B-6-A|B-6-B|BUFFER_MP_C5|BUFFER_PT_C5|BUFFER_TIN_C5|C-1-B|C-3-B|C-4-A|C-4-B|C-5-A|C-5-B|C-6-B|CP-02-B|CP-02-C|CP-02-D|CP_MP|CP-MP-3|CP-MP-4|CP-MP-5|D-1-A|D-1-B|D-2-A|D-2-B|D-3-A|D-3-B|D-4-A|D-4-B|D-5-A|D-5-B|D-6-A|D-6-B|DEVOLUCION_MP_C5|E-1-B|E-2-A|E-2-B|E-3-A|E-3-B|F-1-B|F-2-A|F-2-B|F-3-A|F-4-A|F-5-B|F-6-B|INTERMEDIO|RECHA_PT_C5|TIN-01-A|TIN-01-B|TIN-01-C|TIN-01-D|TIN-02-A|TIN-02-B|TIN-02-C|TIN-02-D|TIN-03-A|TIN-03-B|TIN-03-C|TIN-03-D|TIN-04-A|TIN-04-B|TIN-04-C|TIN-04-D|TIN-05-A|TIN-05-B|TIN-05-C|TIN-05-D|XK-01-B|XK-01-C|XK-01-D|XK-01-E')
 ORDER BY marbete::numeric]]>
 	</queryString>
 	<field name="almacen" class="java.lang.String"/>
