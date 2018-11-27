@@ -1,34 +1,14 @@
 package confirmaconteos;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
-import jxl.Workbook;
-import jxl.write.Label;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableFont;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-import correo.EmailUtility;
+import utilerias.postgresql;
 public class ConfirmarConteosPrueba
 {
 	public static final String SEPARATOR=",";
 	public static final String QUOTE=",";
 	public static int registros = 0;
-	public static String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
-	public static String inventarios= "jdbc:postgresql://10.1.250.24:5932/inventarios";
-	public static String usuario="postgres";
-	public static String contra="s3st2m1s4e";
 	public static int fecha=0;
 	public static String mensaje="";
 	public static int hoy=0;
@@ -39,7 +19,7 @@ public class ConfirmarConteosPrueba
 	  {
 		  Class.forName("org.postgresql.Driver");		  
 		  
-		  Connection co = DriverManager.getConnection(inventarios, usuario, contra);		  
+		  Connection co = postgresql.getConexion();		  
 		  System.out.println("Ejecutando Query.......");
 		  ResultSet rs = null;
 		  //mensaje="NO RESTAN UBICACIONES POR CONTABILIZAR";
@@ -131,6 +111,7 @@ public class ConfirmarConteosPrueba
 		  System.out.println("NO INSERTA 2");
 		  ps.execute();				  		
 		  System.out.println("INSERTA 2");
+		  rs.close();
 		  co.close();
 		  
 		  mensaje="CONTEOS REGISTRADOS";

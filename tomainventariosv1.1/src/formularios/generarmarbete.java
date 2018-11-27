@@ -1,6 +1,4 @@
 package formularios;
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -24,10 +22,7 @@ import javax.swing.ImageIcon;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 
-import java.awt.Component;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,14 +31,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
-import javax.swing.Box;
 import javax.swing.SwingConstants;
-
-import primerconteo.primer;
-
 import javax.swing.JCheckBox;
 
 import net.sf.jasperreports.engine.JRExporter;
@@ -54,11 +44,15 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
+@SuppressWarnings("deprecation")
 public class generarmarbete extends JFrame {
-	  static Date date = new Date();
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	static Date date = new Date();
 	  static DateFormat hourFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
 	
-	public static LinkedList contenedor=new LinkedList();
 	
 	private JPanel contentPane;
 	//la pao
@@ -86,6 +80,9 @@ public class generarmarbete extends JFrame {
 	 * Create the frame.
 	 */
 	public generarmarbete() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Generar Marbetes: "+usu);
 		setResizable(false);
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -279,7 +276,7 @@ public class generarmarbete extends JFrame {
 	    System.out.println(conexion);
 	    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parameters, conexion);
 	    System.out.println("Se solicita la impresion del reporte");
-	    JRExporter exporter = new JRPdfExporter();
+	    JRExporter<?, ?, ?, ?> exporter = new JRPdfExporter();
 	    System.out.println("Imprime reporte");
 	    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
 	    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("/INFORMES/"+"Marbetes"+almacenes+hourFormat.format(date)+".pdf"));

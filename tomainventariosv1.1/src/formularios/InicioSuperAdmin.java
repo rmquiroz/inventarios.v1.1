@@ -1,5 +1,4 @@
 package formularios;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -24,7 +23,8 @@ import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 
 import java.awt.Insets;
-public class inicio extends JFrame {
+
+public class InicioSuperAdmin extends JFrame {
 
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class inicio extends JFrame {
 			public void run() {
 				try {
 					System.out.println("hola");
-					inicio frame = new inicio();
+					InicioSuperAdmin frame = new InicioSuperAdmin();
 					frame.setVisible(true);
 					frame.setIconImage(new ImageIcon(getClass().getResource("/imagenes/4e.jpg")).getImage());
 				} catch (Exception e) {
@@ -53,7 +53,7 @@ public class inicio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public inicio() {
+	public InicioSuperAdmin() {
 		setResizable(false);
 		setTitle("VENTANA PRINCIPAL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +84,19 @@ public class inicio extends JFrame {
 			}
 		});
 		mnArchivo.add(mntmCerrarSesion);
+		
+		JMenuItem mntmCrearUsuario = new JMenuItem("Crear Usuario");
+		mntmCrearUsuario.setFont(new Font("Dialog", Font.PLAIN, 12));
+		mntmCrearUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				formularios.CrearUsuarios CrearUsuarios = new formularios.CrearUsuarios();
+				CrearUsuarios.setVisible(true);
+			}
+		});
+		
+		
+		mnArchivo.add(mntmCrearUsuario);
 		
 		mnArchivo.add(mntmSalir);
 		

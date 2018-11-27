@@ -28,6 +28,8 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+
+import cierreFinal.CierreTercerConteo;
 public class CerrarTercerConteo extends JFrame {
 
 	/**
@@ -57,6 +59,9 @@ public class CerrarTercerConteo extends JFrame {
 	 * Create the frame.
 	 */
 	public CerrarTercerConteo() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Tercer Conteo Cerrar: "+usu);
 		setResizable(false);
 		setTitle("CONTEOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,9 +200,8 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				//inventario.inventario i=new inventario.inventario();
-				cierreFinal.CierreTercerConteo i=new cierreFinal.CierreTercerConteo(); 
-				JOptionPane.showMessageDialog(contentPane,i.main(almacenes));
+				//inventario.inventario i=new inventario.inventario();			
+				JOptionPane.showMessageDialog(contentPane,CierreTercerConteo.main(almacenes));
 			}
 			else{
 				

@@ -57,6 +57,9 @@ public class InformeDiferenciasValuado extends JFrame {
 	 * Create the frame.
 	 */
 	public InformeDiferenciasValuado() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Informe Diferencias Valuado: "+usu);
 		setResizable(false);
 		setTitle("CONTEOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

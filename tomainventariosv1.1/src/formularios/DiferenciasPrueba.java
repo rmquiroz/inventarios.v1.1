@@ -1,35 +1,27 @@
 package formularios;
-
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
-import java.awt.Font;
 import java.awt.Color;
-
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JOptionPane;
-
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-
-import java.awt.SystemColor;
-
-import javax.swing.SwingConstants;
-
-import java.awt.Insets;
-
-import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-import confirmaconteos.confirmarconteos;
+import confirmaconteos.ConfirmarConteosPrueba;
+import diferenciasC.diferenciasC;
 
 public class DiferenciasPrueba extends JFrame {
 
@@ -61,6 +53,9 @@ public class DiferenciasPrueba extends JFrame {
 	 * Create the frame.
 	 */
 	public DiferenciasPrueba() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Diferencias: "+usu);
 		setTitle("DIFERENCIAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);
@@ -126,47 +121,47 @@ public class DiferenciasPrueba extends JFrame {
 		
 		BRANDSEUA.setBackground(Color.BLACK);
 		BRANDSEUA.setForeground(Color.WHITE);
-		BRANDSEUA.setBounds(23, 150, 168, 23);
+		BRANDSEUA.setBounds(23, 138, 168, 23);
 		contentPane.add(BRANDSEUA);		
 		
 		ETIQUETAS.setBackground(Color.BLACK);
 		ETIQUETAS.setForeground(Color.WHITE);
-		ETIQUETAS.setBounds(23,180, 168, 23);		
+		ETIQUETAS.setBounds(23,168, 168, 23);		
 		contentPane.add(ETIQUETAS);		
 		
 		UDMP.setBackground(Color.BLACK);
 		UDMP.setForeground(Color.WHITE);
-		UDMP.setBounds(23,210, 168, 23);
+		UDMP.setBounds(23,198, 168, 23);
 		contentPane.add(UDMP);		
 		
 		QUIMICOS.setBackground(Color.BLACK);
 		QUIMICOS.setForeground(Color.WHITE);
-		QUIMICOS.setBounds(23,240, 168, 23);		
+		QUIMICOS.setBounds(23,228, 168, 23);		
 		contentPane.add(QUIMICOS);
 		
 		MPPLANTA.setBackground(Color.BLACK);
 		MPPLANTA.setForeground(Color.WHITE);
-		MPPLANTA.setBounds(23,270, 168, 23);
+		MPPLANTA.setBounds(23,258, 168, 23);
 		contentPane.add(MPPLANTA);		
 		
 		PRINCIPAL_C5.setBackground(Color.BLACK);
 		PRINCIPAL_C5.setForeground(Color.WHITE);
-		PRINCIPAL_C5.setBounds(23,300, 168, 23);		
+		PRINCIPAL_C5.setBounds(23,288, 168, 23);		
 		contentPane.add(PRINCIPAL_C5);		
 		
 		SMO_J1_PT.setBackground(Color.BLACK);
 		SMO_J1_PT.setForeground(Color.WHITE);
-		SMO_J1_PT.setBounds(23,330, 168, 23);
+		SMO_J1_PT.setBounds(23,318, 168, 23);
 		contentPane.add(SMO_J1_PT);		
 		
 		SMO_MATERIA.setBackground(Color.BLACK);
 		SMO_MATERIA.setForeground(Color.WHITE);
-		SMO_MATERIA.setBounds(23,360, 168, 23);		
+		SMO_MATERIA.setBounds(23,348, 168, 23);		
 		contentPane.add(SMO_MATERIA);		
 		
 		MPPLANTAB.setBackground(Color.BLACK);
 		MPPLANTAB.setForeground(Color.WHITE);
-		MPPLANTAB.setBounds(23,390, 168, 23);
+		MPPLANTAB.setBounds(23,378, 168, 23);
 		contentPane.add(MPPLANTAB);
 		
 		JButton btnAceptar = new JButton("Aceptar");
@@ -195,10 +190,8 @@ MPPLANTAB.isSelected() ||PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || 
 				if(ETIQUETAS.isSelected())
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
-				System.out.println("Variable:"+almacenes);
-				diferenciasC.diferenciasC i=new diferenciasC.diferenciasC();
-				
-				String validacion=i.main(almacenes,"");
+				System.out.println("Variable:"+almacenes);				
+				String validacion=diferenciasC.main(almacenes,"");
 				JOptionPane.showMessageDialog(contentPane,validacion);
 				
 				int a=JOptionPane.showConfirmDialog(contentPane,"¿Quiere confirmar los conteos?","----",JOptionPane.YES_NO_OPTION);
@@ -217,15 +210,12 @@ MPPLANTAB.isSelected() ||PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || 
 						while(a<0)
 						{
 							a=JOptionPane.showConfirmDialog(contentPane,"¿Está seguro que desea avanzar? \n Esta opción no puede revertirse","OPCION OLIGATORIA",JOptionPane.YES_NO_OPTION);
-							System.out.print("\nsec \n"+a);
-							
-							
+							System.out.print("\nsec \n"+a);														
 						}	
 						if(a==0)
-						{
-							confirmaconteos.ConfirmarConteosPrueba co=new confirmaconteos.ConfirmarConteosPrueba();
-							JOptionPane.showMessageDialog(contentPane,co.main(almacenes));
-							JOptionPane.showMessageDialog(contentPane,i.GeneraTercer(almacenes));							
+						{							
+							JOptionPane.showMessageDialog(contentPane,ConfirmarConteosPrueba.main(almacenes));
+							JOptionPane.showMessageDialog(contentPane,diferenciasC.GeneraTercer(almacenes));							
 						}
 						if(a==1)
 						{
@@ -234,20 +224,7 @@ MPPLANTAB.isSelected() ||PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || 
 					}										
 					else if(a==1){
 						
-					}
-					
-				
-					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+					}																			
 			}
 			else{
 				JOptionPane.showMessageDialog(contentPane,"SELECCIONA AL MENOS UN ALMACEN");				

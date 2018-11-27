@@ -59,6 +59,9 @@ public class InventarioCerrar extends JFrame {
 	 * Create the frame.
 	 */
 	public InventarioCerrar() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Inventario Cerrar: "+usu);
 		setResizable(false);
 		setTitle("INVENTARIO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

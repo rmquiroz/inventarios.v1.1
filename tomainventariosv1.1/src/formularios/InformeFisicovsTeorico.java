@@ -57,6 +57,9 @@ public class InformeFisicovsTeorico extends JFrame {
 	 * Create the frame.
 	 */
 	public InformeFisicovsTeorico() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Informe Fisico vs Teorico: "+usu);
 		setResizable(false);
 		setTitle("CONTEOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

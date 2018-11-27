@@ -1,5 +1,4 @@
 package formularios;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -29,8 +28,8 @@ import java.awt.Insets;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import confirmaconteos.confirmarconteos;
-
+import confirmaconteos.ConfirmarConteosPrueba;
+import diferenciasC.diferenciasC;
 public class diferencias extends JFrame {
 
 	/**
@@ -195,9 +194,8 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 				if(ETIQUETAS.isSelected())
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
-				System.out.println("Variable:"+almacenes);
-				diferenciasC.diferenciasC i=new diferenciasC.diferenciasC();	
-				String validacion=i.main(almacenes,"");
+				System.out.println("Variable:"+almacenes);				
+				String validacion=diferenciasC.main(almacenes,"");
 				JOptionPane.showMessageDialog(contentPane,validacion);
 				if(!validacion.equals("HAY HUECOS FALTANTES POR CONTABILIZAR")){
 				int a=JOptionPane.showConfirmDialog(contentPane,"¿Quiere confirmar los conteos?","Esta verificación no puede revertirse ni repetirse",JOptionPane.YES_NO_OPTION);
@@ -222,9 +220,9 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 						}	
 						if(a==0)
 						{
-							confirmaconteos.confirmarconteos co=new confirmaconteos.confirmarconteos();
-							JOptionPane.showMessageDialog(contentPane,co.main(almacenes));
-							JOptionPane.showMessageDialog(contentPane,i.GeneraTercer(almacenes));							
+					
+							JOptionPane.showMessageDialog(contentPane,ConfirmarConteosPrueba.main(almacenes));
+							JOptionPane.showMessageDialog(contentPane,diferenciasC.GeneraTercer(almacenes));							
 						}
 						if(a==1)
 						{

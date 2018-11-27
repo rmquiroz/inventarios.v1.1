@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import utilerias.postgresql;
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
@@ -21,12 +22,6 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 public class UltimaRem
 {
-	//public static String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
-	//public static String inventarios= "jdbc:postgresql://10.1.250.24:5932/inventarios";
-	static String inventarios="jdbc:postgresql://201.149.89.164:5932/inventarios";
-	static String url="jdbc:postgresql://201.149.89.163:5932/openbravo";
-	public static String usuario="postgres";
-	public static String contra="s3st2m1s4e";
 	public static String mensaje="HECHO";
 	public static String main(String almacenes,String repositorio)
 	{
@@ -35,7 +30,7 @@ public class UltimaRem
 			int column = 0;
 			int row = 0;
 			Class.forName("org.postgresql.Driver");		
-			Connection cn = DriverManager.getConnection(url, usuario, contra);				  
+			Connection cn = postgresql.getConexionOpen();				  
 			System.out.println("Ejecutando Query.......");
 			ResultSet rs = null;
 			String documento="";

@@ -1,5 +1,4 @@
 package formularios;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -28,8 +27,9 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-public class ConteosAvance extends JFrame {
 
+import reporteConteos.ConteosExcel;
+public class ConteosAvance extends JFrame {
 	/**
 	 * 
 	 */
@@ -57,6 +57,9 @@ public class ConteosAvance extends JFrame {
 	 * Create the frame.
 	 */
 	public ConteosAvance() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Conteos Avance: "+usu);
 		setResizable(false);
 		setTitle("CONTEOS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,9 +198,8 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				//inventario.inventario i=new inventario.inventario();
-				reporteConteos.ConteosExcel i=new reporteConteos.ConteosExcel(); 
-				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes,""));
+				//inventario.inventario i=new inventario.inventario();		 
+				JOptionPane.showMessageDialog(contentPane,  ConteosExcel.main(almacenes,""));
 			}
 			else{
 				

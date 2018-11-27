@@ -97,6 +97,9 @@ public class inventarioform extends JFrame {
 		mnArchivo.add(mntmSalir);
 		
 	
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Inventarios: "+usu);
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
@@ -104,7 +107,7 @@ public class inventarioform extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);		
 	
-		final JCheckBox BRANDSEUA = new JCheckBox("4E BRANDS EUA");
+		final JCheckBox BRANDSEUA = new JCheckBox("4E BRANDS EUrA");
 		BRANDSEUA.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox ETIQUETAS = new JCheckBox("4G_1D ETIQUETAS");
 		ETIQUETAS.setFont(new Font("Dialog", Font.BOLD, 12));

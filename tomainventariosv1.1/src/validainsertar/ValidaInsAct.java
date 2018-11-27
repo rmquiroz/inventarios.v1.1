@@ -1,19 +1,20 @@
 package validainsertar;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import utilerias.postgresql;
+
 public class ValidaInsAct 
 {
-	static String mensaje,inventarios="jdbc:postgresql://10.1.250.24:5932/inventarios",usuario="postgres",contra="s3st2m1s4e";
+	static String mensaje;
 	public static String main(String codigo,String marbete,String conteo)
 	  {			  
 		  try
 		  {
 			  Class.forName("org.postgresql.Driver");		  			  
-			  Connection co = DriverManager.getConnection(inventarios, usuario, contra);		  
+			  Connection co = postgresql.getConexion();		  
 			  System.out.println("Ejecutando Query.......");
 			  ResultSet rs = null;
 			  //mensaje="NO RESTAN UBICACIONES POR CONTABILIZAR";

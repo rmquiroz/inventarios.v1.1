@@ -10,8 +10,7 @@
 	<parameter name="IMG_DIR" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT almacen,hueco as ubicacion,marbete as folio,to_char(now(),'DD-MM-YYYY HH:MI:SS') FROM ubicaciones
-WHERE
-marbete::numeric BETWEEN 16236 AND   16333]]>
+WHERE almacen similar to ($P{almacenes})]]>
 	</queryString>
 	<field name="almacen" class="java.lang.String"/>
 	<field name="ubicacion" class="java.lang.String"/>

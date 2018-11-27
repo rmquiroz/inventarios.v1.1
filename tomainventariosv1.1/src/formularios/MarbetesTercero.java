@@ -39,8 +39,6 @@ import java.util.Map;
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
-import primerconteo.primer;
-
 import javax.swing.JCheckBox;
 
 import net.sf.jasperreports.engine.JRExporter;
@@ -81,6 +79,9 @@ public class MarbetesTercero extends JFrame {
 	 * Create the frame.
 	 */
 	public MarbetesTercero() {
+		usuarios.usuario gestionusuario = new usuarios.usuario();
+		String usu = gestionusuario.getUsuario();
+		System.out.println("Usuario Marbetes Tercero: "+usu);
 		setBackground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 871, 468);

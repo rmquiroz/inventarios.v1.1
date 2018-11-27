@@ -16,6 +16,7 @@ import java.util.Iterator;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import utilerias.postgresql;
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
@@ -30,12 +31,7 @@ public class inventario
 	public static final String SEPARATOR=",";
 	public static final String QUOTE=",";
 	public static int registros = 0;
-	//public static String url = "jdbc:postgresql://10.1.250.20:5932/openbravo";
-	//public static String inventarios= "jdbc:postgresql://10.1.250.24:5932/inventarios";
-	public static String url= "jdbc:postgresql://201.149.89.163:5932/openbravo";
-	public static String inventarios= "jdbc:postgresql://201.149.89.164:5932/inventarios";
-	public static String usuario="postgres";
-	public static String contra="s3st2m1s4e";
+	
 	public static int fecha=0;
 	public static String mensaje="";
 	public static int hoy=0;
@@ -47,10 +43,11 @@ public class inventario
   public static String main(String almacenes)
   {
 	  try
-	  {
-		  Class.forName("org.postgresql.Driver");		  
-		  Connection cn = DriverManager.getConnection(url, usuario, contra);
-		  Connection co = DriverManager.getConnection(inventarios, usuario, contra);		  
+	  {		  		  		  
+		  Connection cn = postgresql.getConexionOpen();
+				  //DriverManager.getConnection(url, usuario, contra);
+		  Connection co = postgresql.getConexion();
+		  //DriverManager.getConnection(inventarios, usuario, contra);		  
 		  System.out.println("Ejecutando Query.......");
 		  ResultSet rs = null;
 		  PreparedStatement ps= co.prepareStatement("SELECT (CASE WHEN max(extract(doy FROM fecha)) IS NULL THEN 0.0 ELSE "
@@ -249,10 +246,7 @@ public class inventario
 		  } 
 		  cn.close();
 		  co.close();
-	  } catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+	  } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
