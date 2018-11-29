@@ -107,7 +107,7 @@ public class inventarioform extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);		
 	
-		final JCheckBox BRANDSEUA = new JCheckBox("4E BRANDS EUrA");
+		final JCheckBox BRANDSEUA = new JCheckBox("4E BRANDS EUA");
 		BRANDSEUA.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox ETIQUETAS = new JCheckBox("4G_1D ETIQUETAS");
 		ETIQUETAS.setFont(new Font("Dialog", Font.BOLD, 12));
