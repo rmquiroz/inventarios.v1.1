@@ -1,5 +1,7 @@
 package formularios;
 
+import inventario.inventario;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -28,6 +30,8 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+
+import reporteConteos.ConteoTeorico;
 public class InformeTeorico extends JFrame {
 
 	/**
@@ -196,9 +200,9 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+ETIQUETAS.getText();
 				almacenes=almacenes.substring(1);
 				System.out.println("Variable:"+almacenes);
-				//inventario.inventario i=new inventario.inventario();
-				reporteConteos.ConteoTeorico i=new reporteConteos.ConteoTeorico(); 				
-				JOptionPane.showMessageDialog(contentPane,  i.main(almacenes,""));
+				 				
+				JOptionPane.showMessageDialog(contentPane,  ConteoTeorico.main(almacenes,""));
+				inventario.main(almacenes);
 			}
 			else{
 				
