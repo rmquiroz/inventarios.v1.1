@@ -201,6 +201,13 @@ public class generarmarbete extends JFrame {
 		contentPane.add(mpPlanta_chbx);	
 		contentPane.add(mpPlanta_chbxB);	
 		contentPane.add(smoPT_chbx);		
+		
+		final JCheckBox chckbxMpplantad = new JCheckBox("MP_PLANTA 2D");
+		chckbxMpplantad.setForeground(Color.WHITE);
+		chckbxMpplantad.setFont(new Font("Dialog", Font.BOLD, 14));
+		chckbxMpplantad.setBackground(Color.BLACK);
+		chckbxMpplantad.setBounds(453, 276, 210, 23);
+		contentPane.add(chckbxMpplantad);
 		contentPane.add(lblNewLabel);
 		contentPane.add(lblNewLabel_5);
 		
@@ -210,10 +217,14 @@ public class generarmarbete extends JFrame {
 				
 			if(smoPT_chbx.isSelected() || mpPlanta_chbx.isSelected() || c5_chbx.isSelected() 
 					|| smoMP_chbx.isSelected() || quimicos_chbx.isSelected() ||mpPlanta_chbxB.isSelected() 
-					|| mp_chbx.isSelected() || etiquetas_chbx.isSelected() || brandsEUA_chbx.isSelected())
+					|| mp_chbx.isSelected() || etiquetas_chbx.isSelected() || brandsEUA_chbx.isSelected() || chckbxMpplantad.isSelected() )
 			{
+				if(chckbxMpplantad.isSelected())
+					almacenes = almacenes + "|" + chckbxMpplantad.getText();
+				
 				if(smoPT_chbx.isSelected())
 					almacenes = almacenes + "|" + smoPT_chbx.getText();
+				
 				if(mpPlanta_chbx.isSelected())
 					almacenes = almacenes + "|" + mpPlanta_chbx.getText();
 				if(mpPlanta_chbxB.isSelected())
