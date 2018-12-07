@@ -62,13 +62,11 @@ public class inventario
 		  if(hoy-2>=fecha)
 		  {
 			  System.out.println("ENTRA AL IF");
-			  GeneraValuado gen=new GeneraValuado();
-			  gen.main(almacenes,"");			  			  			  	  			  			  			  
+			  GeneraValuado.main(almacenes,"");			  			  			  	  			  			  			  
 			  
 			  System.out.println("ESCRITURA TERMINADA");	
 	  ////////////////////////////////TERMINA ESCRITURA DE ARCHIVO///////////////////////////////////		  		  		  		  		 
-			  UltimaRem rem=new UltimaRem();
-			  rem.main(almacenes, "");
+			  UltimaRem.main(almacenes, "");
 	  ////////////////////////////////COMIENZA LECTURA DE ARCHIVO////////////////////////////////////
 			  String [] fields = null;		  
 			  BufferedReader br = null;
@@ -105,76 +103,66 @@ public class inventario
 			  Iterator<String> 	s = arr.iterator();		         
 	      /////////////////////////////////// RECOLECTA DE DATOS DE CSV///////////////////////////////
 			  while(s.hasNext())
-			  {		
-				  
+			  {						  
 				  String inter=(String)s.next();			  
 				  if(a==9)
-				  {
-					  
+				  {					  
 					  val1 =null;			    	
 					  val11=null;
 					  val1=inter;
 					  a=8;			    		
 				  }		    
 				  else if(a==8)
-				  {
-					  
+				  {					  
 					  val2 =null;
 					  val22=null;
 					  val2=inter;
 					  a=7;			    		
 				  }
 				  else if(a==7)
-				  {
-					  
+				  {					  
 					  val3 =null;
 					  val33=null;
 					  val3=inter;
 					  a=6;			    		
 				  }
 				  else if(a==6)
-				  {
-					  
+				  {					  
 					  val4 =null;
 					  val4=inter;
 					  a=5;			    		
 				  }
 				  else if(a==5)
-				  {
-					  
+				  {					  
 					  val5 =null;
 					  val5=inter;
 					  a=4;			    		
 				  }
 				  else if(a==4)
-				  {
-					  
+				  {				  
 					  val6 =null;
 					  val6=inter;
 					  a=3;			    		
 				  }
 				  else if(a==3)
-				  {
-					  
+				  {					  
 					  val7 =null;
 					  val7=inter;
 					  a=2;			    		
 				  }
 				  else if(a==2)
-				  {
-					  
+				  {					  
 					  val8 =null;
 					  val8=inter;
 					  a=0;			    		
 				  }			  
 				  else if(a==0)
-				  {
-					  
+				  {					  
 					  a=9;
 					  val9 =null;
 					  val9=inter;
 					  ResultSet rs1=null;
-					  PreparedStatement pas=cn.prepareStatement("SELECT m_warehouse_id FROM m_warehouse  WHERE name ='"+val1+"'");
+					  PreparedStatement pas=cn.prepareStatement("SELECT m_warehouse_id FROM m_warehouse WHERE name ='"+val1+"'");
 					  rs1=pas.executeQuery();
 					  System.out.println("CERO");
 					  if(rs1.next())

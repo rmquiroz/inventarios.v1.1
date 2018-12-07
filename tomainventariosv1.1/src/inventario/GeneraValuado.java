@@ -106,7 +106,7 @@ public class GeneraValuado
 + "m_product.piezas_pallet,"
 + "c_uom.name,"
 + "m_product.coststd,"
-+ "m_product.campoabcdeuno "
++ "m_product.campoabcdeuno,"
 + "ORDER BY m_warehouse.name,"
 + "m_locator.value,"
 + "codigo ASC");		 
@@ -118,15 +118,14 @@ public class GeneraValuado
 				valor =valor +"" + rs.getString(10) + rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) 
 + ","+rs.getString(4)+ "," + rs.getString(5) + ","+ rs.getString(6) + "," + rs.getString(7) + "," + rs.getString(8) 
 + ","+rs.getString(9)+ " " ;
-				nombre=rs.getString(11);
+				nombre=rs.getString(10);
 			}
 			valor=valor.replace("null"," ");
 			File folder = new File("/INFORMES/"+repositorio+almacenes.replace(" ","-").replace("|", "-")+"");
 			System.out.print(folder.mkdirs());
 			System.out.print("Existe: "+folder.exists());
 			PrintWriter in = new PrintWriter(folder+"/Inventario.csv");
-			in.write("ALMACEN,HUECO,CODIGO,DESCRIPCION,CANTIDAD,UNIDAD,PIEZAS,COSTO ESTANDAR,COSTO TOTAL ESTANDAR" 
-+ valor);
+			in.write("ALMACEN,HUECO,CODIGO,DESCRIPCION,ATRIBUTO,CANTIDAD,UNIDAD,PIEZAS,COSTO ESTANDAR,COSTO TOTAL ESTANDAR"+ valor);
 			in.close();
 			cn.close();
 		} catch (ClassNotFoundException e) 

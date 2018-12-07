@@ -28,8 +28,6 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-
-import diferenciasC.diferenciasC;
 public class inventarioform extends JFrame {
 
 	/**
@@ -125,47 +123,50 @@ public class inventarioform extends JFrame {
 		SMO_MATERIA.setFont(new Font("Dialog", Font.BOLD, 12));
 
 		final JCheckBox MPPLANTAB = new JCheckBox("MP_PLANTA 2B");
-		MPPLANTAB.setBounds(23, 386, 168, 23);
+		MPPLANTAB.setFont(new Font("Dialog", Font.BOLD, 12));
+		MPPLANTAB.setBackground(Color.BLACK);
+		MPPLANTAB.setForeground(Color.WHITE);
+		MPPLANTAB.setBounds(23, 375, 168, 23);
 		contentPane.add(MPPLANTAB);
 		
 		BRANDSEUA.setBackground(Color.BLACK);
 		BRANDSEUA.setForeground(Color.WHITE);
-		BRANDSEUA.setBounds(23, 150, 168, 23);
+		BRANDSEUA.setBounds(23, 85, 168, 23);
 		contentPane.add(BRANDSEUA);		
 		
 		ETIQUETAS.setBackground(Color.BLACK);
 		ETIQUETAS.setForeground(Color.WHITE);
-		ETIQUETAS.setBounds(23,180, 168, 23);		
+		ETIQUETAS.setBounds(23,121, 168, 23);		
 		contentPane.add(ETIQUETAS);		
 		
 		UDMP.setBackground(Color.BLACK);
 		UDMP.setForeground(Color.WHITE);
-		UDMP.setBounds(23,210, 168, 23);
+		UDMP.setBounds(23,157, 168, 23);
 		contentPane.add(UDMP);		
 		
 		QUIMICOS.setBackground(Color.BLACK);
 		QUIMICOS.setForeground(Color.WHITE);
-		QUIMICOS.setBounds(23,240, 168, 23);		
+		QUIMICOS.setBounds(23,193, 168, 23);		
 		contentPane.add(QUIMICOS);
 		
 		MPPLANTA.setBackground(Color.BLACK);
 		MPPLANTA.setForeground(Color.WHITE);
-		MPPLANTA.setBounds(23,270, 168, 23);
+		MPPLANTA.setBounds(23,229, 168, 23);
 		contentPane.add(MPPLANTA);		
 		
 		PRINCIPAL_C5.setBackground(Color.BLACK);
 		PRINCIPAL_C5.setForeground(Color.WHITE);
-		PRINCIPAL_C5.setBounds(23,300, 168, 23);		
+		PRINCIPAL_C5.setBounds(23,266, 168, 23);		
 		contentPane.add(PRINCIPAL_C5);		
 		
 		SMO_J1_PT.setBackground(Color.BLACK);
 		SMO_J1_PT.setForeground(Color.WHITE);
-		SMO_J1_PT.setBounds(23,330, 168, 23);
+		SMO_J1_PT.setBounds(23,305, 168, 23);
 		contentPane.add(SMO_J1_PT);		
 		
 		SMO_MATERIA.setBackground(Color.BLACK);
 		SMO_MATERIA.setForeground(Color.WHITE);
-		SMO_MATERIA.setBounds(23,360, 168, 23);		
+		SMO_MATERIA.setBounds(23,343, 168, 23);		
 		contentPane.add(SMO_MATERIA);
 		
 		JButton btnAceptar = new JButton("Aceptar");
