@@ -115,59 +115,59 @@ public class inventarioform extends JFrame {
 		QUIMICOS.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox MPPLANTA = new JCheckBox("MP_PLANTA 2C");
 		MPPLANTA.setFont(new Font("Dialog", Font.BOLD, 12));
-		final JCheckBox PRINCIPAL_C5 = new JCheckBox("PRINCIPAL_C5");
-		PRINCIPAL_C5.setFont(new Font("Dialog", Font.BOLD, 12));
+		final JCheckBox MPPLANTA2D = new JCheckBox("MP_PLANTA 2D");
+		MPPLANTA2D.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox SMO_J1_PT = new JCheckBox("SMO_J1_PT");
 		SMO_J1_PT.setFont(new Font("Dialog", Font.BOLD, 12));
 		final JCheckBox SMO_MATERIA = new JCheckBox("SMO_MATERIA PRIMA");
 		SMO_MATERIA.setFont(new Font("Dialog", Font.BOLD, 12));
-
 		final JCheckBox MPPLANTAB = new JCheckBox("MP_PLANTA 2B");
 		MPPLANTAB.setFont(new Font("Dialog", Font.BOLD, 12));
-		MPPLANTAB.setBackground(Color.BLACK);
-		MPPLANTAB.setForeground(Color.WHITE);
-		MPPLANTAB.setBounds(23, 375, 168, 23);
-		contentPane.add(MPPLANTAB);
-		
+
 		BRANDSEUA.setBackground(Color.BLACK);
 		BRANDSEUA.setForeground(Color.WHITE);
-		BRANDSEUA.setBounds(23, 85, 168, 23);
+		BRANDSEUA.setBounds(23, 71, 168, 23);
 		contentPane.add(BRANDSEUA);		
 		
 		ETIQUETAS.setBackground(Color.BLACK);
 		ETIQUETAS.setForeground(Color.WHITE);
-		ETIQUETAS.setBounds(23,121, 168, 23);		
-		contentPane.add(ETIQUETAS);		
-		
+		ETIQUETAS.setBounds(23,105, 168, 23);		
+		contentPane.add(ETIQUETAS);	
+
 		UDMP.setBackground(Color.BLACK);
 		UDMP.setForeground(Color.WHITE);
-		UDMP.setBounds(23,157, 168, 23);
+		UDMP.setBounds(23,139, 168, 23);
 		contentPane.add(UDMP);		
 		
 		QUIMICOS.setBackground(Color.BLACK);
 		QUIMICOS.setForeground(Color.WHITE);
-		QUIMICOS.setBounds(23,193, 168, 23);		
+		QUIMICOS.setBounds(23,173, 168, 23);		
 		contentPane.add(QUIMICOS);
+		
+		MPPLANTAB.setBackground(Color.BLACK);
+		MPPLANTAB.setForeground(Color.WHITE);
+		MPPLANTAB.setBounds(23, 207, 168, 23);
+		contentPane.add(MPPLANTAB);
 		
 		MPPLANTA.setBackground(Color.BLACK);
 		MPPLANTA.setForeground(Color.WHITE);
-		MPPLANTA.setBounds(23,229, 168, 23);
+		MPPLANTA.setBounds(23,241, 168, 23);
 		contentPane.add(MPPLANTA);		
 		
-		PRINCIPAL_C5.setBackground(Color.BLACK);
-		PRINCIPAL_C5.setForeground(Color.WHITE);
-		PRINCIPAL_C5.setBounds(23,266, 168, 23);		
-		contentPane.add(PRINCIPAL_C5);		
+		MPPLANTA2D.setBackground(Color.BLACK);
+		MPPLANTA2D.setForeground(Color.WHITE);
+		MPPLANTA2D.setBounds(23,275, 168, 23);		
+		contentPane.add(MPPLANTA2D);		
+				
+		SMO_MATERIA.setBackground(Color.BLACK);
+		SMO_MATERIA.setForeground(Color.WHITE);
+		SMO_MATERIA.setBounds(23,309, 168, 23);		
+		contentPane.add(SMO_MATERIA);
 		
 		SMO_J1_PT.setBackground(Color.BLACK);
 		SMO_J1_PT.setForeground(Color.WHITE);
-		SMO_J1_PT.setBounds(23,305, 168, 23);
+		SMO_J1_PT.setBounds(23,343, 168, 23);
 		contentPane.add(SMO_J1_PT);		
-		
-		SMO_MATERIA.setBackground(Color.BLACK);
-		SMO_MATERIA.setForeground(Color.WHITE);
-		SMO_MATERIA.setBounds(23,343, 168, 23);		
-		contentPane.add(SMO_MATERIA);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -175,7 +175,7 @@ public class inventarioform extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() || 
 					MPPLANTAB.isSelected() || 
-PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()){
+MPPLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()){
 				almacenes="";
 				if(BRANDSEUA.isSelected())
 					almacenes=almacenes+"|"+BRANDSEUA.getText();
@@ -187,8 +187,8 @@ PRINCIPAL_C5.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() 
 					almacenes=almacenes+"|"+MPPLANTA.getText();
 				if(MPPLANTAB.isSelected())
 					almacenes=almacenes+"|"+MPPLANTAB.getText();
-				if(PRINCIPAL_C5.isSelected())
-					almacenes=almacenes+"|"+PRINCIPAL_C5.getText();
+				if(MPPLANTA2D.isSelected())
+					almacenes=almacenes+"|"+MPPLANTA2D.getText();
 				if(SMO_J1_PT.isSelected())
 					almacenes=almacenes+"|"+SMO_J1_PT.getText();
 				if(SMO_MATERIA.isSelected())

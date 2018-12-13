@@ -143,9 +143,9 @@ public class MarbetesTercero extends JFrame {
 		final JCheckBox smoMP_chbx = new JCheckBox("SMO_MATERIA PRIMA");
 		smoMP_chbx.setBackground(Color.BLACK);
 		smoMP_chbx.setForeground(Color.WHITE);
-		final JCheckBox c5_chbx = new JCheckBox("PRINCIPAL_C5");
-		c5_chbx.setBackground(Color.BLACK);
-		c5_chbx.setForeground(Color.WHITE);
+		final JCheckBox MP_PLANTA2D = new JCheckBox("MP_PLANTA 2D");
+		MP_PLANTA2D.setBackground(Color.BLACK);
+		MP_PLANTA2D.setForeground(Color.WHITE);
 		final JCheckBox mpPlanta_chbx = new JCheckBox("MP_PLANTA 2C");
 		mpPlanta_chbx.setBackground(Color.BLACK);
 		mpPlanta_chbx.setForeground(Color.WHITE);
@@ -163,25 +163,28 @@ public class MarbetesTercero extends JFrame {
 		mp_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
 		quimicos_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
 		smoMP_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
-		c5_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
+		MP_PLANTA2D.setFont(new Font("Dialog", Font.BOLD, 14));
 		mpPlanta_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
 		mpPlanta_chbxB.setFont(new Font("Dialog", Font.BOLD, 14));
 		smoPT_chbx.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 30));
 		btnGenerarMarbete.setFont(new Font("Candara", Font.PLAIN, 14));
 		
-		brandsEUA_chbx.setBounds(48, 96, 210, 23);
-		etiquetas_chbx.setBounds(48, 142, 210, 23);
-		mp_chbx.setBounds(48, 188, 210, 23);
-		quimicos_chbx.setBounds(48, 235, 210, 23);
-		smoMP_chbx.setBounds(453, 235, 210, 23);
-		c5_chbx.setBounds(453, 142, 210, 23);
-		mpPlanta_chbx.setBounds(453, 96, 210, 23);		
-		smoPT_chbx.setBounds(453, 188, 210, 23);
+		
 		lblNewLabel.setBounds(0, 32, 855, 39);
+		brandsEUA_chbx.setBounds(48, 96, 210, 23);
+		mpPlanta_chbx.setBounds(453, 96, 210, 23);
+		etiquetas_chbx.setBounds(48, 142, 210, 23);		
+		mp_chbx.setBounds(453, 142, 210, 23);
+		smoPT_chbx.setBounds(48, 188, 210, 23);//46		
+		quimicos_chbx.setBounds(453, 188, 210, 23);
+		mpPlanta_chbxB.setBounds(48, 234, 210, 23);
+		smoMP_chbx.setBounds(453, 234, 210, 23);				
 		btnGenerarMarbete.setBounds(624, 367, 155, 23);
 		lblNewLabel_5.setBounds(0, 0, 855, 429);
-		mpPlanta_chbxB.setBounds(453, 116, 210, 23);
+		MP_PLANTA2D.setBounds(48, 276, 210, 23);
+		
+		
 		
 		btnGenerarMarbete.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -194,7 +197,7 @@ public class MarbetesTercero extends JFrame {
 		contentPane.add(mp_chbx);		
 		contentPane.add(quimicos_chbx);		
 		contentPane.add(smoMP_chbx);		
-		contentPane.add(c5_chbx);		
+		contentPane.add(MP_PLANTA2D);		
 		contentPane.add(mpPlanta_chbx);	
 		contentPane.add(mpPlanta_chbxB);	
 		contentPane.add(smoPT_chbx);		
@@ -205,7 +208,7 @@ public class MarbetesTercero extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				
-			if(smoPT_chbx.isSelected() || mpPlanta_chbx.isSelected() || c5_chbx.isSelected() 
+			if(smoPT_chbx.isSelected() || mpPlanta_chbx.isSelected() || MP_PLANTA2D.isSelected() 
 					|| smoMP_chbx.isSelected() || quimicos_chbx.isSelected()||mpPlanta_chbxB.isSelected() 
 					|| mp_chbx.isSelected() || etiquetas_chbx.isSelected() || brandsEUA_chbx.isSelected())
 			{
@@ -215,8 +218,8 @@ public class MarbetesTercero extends JFrame {
 					almacenes = almacenes + "|" + mpPlanta_chbx.getText();
 				if(mpPlanta_chbxB.isSelected())
 					almacenes = almacenes + "|" + mpPlanta_chbxB.getText();
-				if(c5_chbx.isSelected())
-					almacenes = almacenes + "|" + c5_chbx.getText();
+				if(MP_PLANTA2D.isSelected())
+					almacenes = almacenes + "|" + MP_PLANTA2D.getText();
 				if(smoMP_chbx.isSelected())
 					almacenes = almacenes + "|" + smoMP_chbx.getText();
 				if(quimicos_chbx.isSelected())

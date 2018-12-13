@@ -225,8 +225,9 @@ public class inventario
 			  {				
 				  e.printStackTrace();
 			  }
-			  resultMessage = "The e-mail was sent successfully";
-			  System.out.println("Enviado"+alm);		  		  			  
+			  resultMessage = "The e-mail was sent successfully";			  
+			  System.out.println("Enviado"+alm);
+			  	  		  			  
 		  }
 		  else
 		  {

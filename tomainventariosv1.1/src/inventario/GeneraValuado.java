@@ -106,10 +106,11 @@ public class GeneraValuado
 + "m_product.piezas_pallet,"
 + "c_uom.name,"
 + "m_product.coststd,"
-+ "m_product.campoabcdeuno,"
++ "m_product.campoabcdeuno "
 + "ORDER BY m_warehouse.name,"
 + "m_locator.value,"
-+ "codigo ASC");		 
++ "codigo ASC");
+			System.out.println(""+ps);
 			rs = ps.executeQuery();		  
 			String valor = "",nombre="";		  		  
 			System.out.println(" Termina Consulta.......");
@@ -125,7 +126,7 @@ public class GeneraValuado
 			System.out.print(folder.mkdirs());
 			System.out.print("Existe: "+folder.exists());
 			PrintWriter in = new PrintWriter(folder+"/Inventario.csv");
-			in.write("ALMACEN,HUECO,CODIGO,DESCRIPCION,ATRIBUTO,CANTIDAD,UNIDAD,PIEZAS,COSTO ESTANDAR,COSTO TOTAL ESTANDAR"+ valor);
+			in.write("ALMACEN,HUECO,CODIGO,DESCRIPCION,CANTIDAD,UNIDAD,PIEZAS,COSTO ESTANDAR,COSTO TOTAL ESTANDAR"+ valor);
 			in.close();
 			cn.close();
 		} catch (ClassNotFoundException e) 
