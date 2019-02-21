@@ -165,13 +165,21 @@ public class DiferenciasPrueba extends JFrame {
 		SMO_J1_PT.setBounds(23,343, 168, 23);
 		contentPane.add(SMO_J1_PT);		
 		
+		final JCheckBox MP_PLANTA_1C = new JCheckBox("MP_PLANTA 1C");
+		MP_PLANTA_1C.setForeground(Color.WHITE);
+		MP_PLANTA_1C.setFont(new Font("Dialog", Font.BOLD, 12));
+		MP_PLANTA_1C.setBackground(Color.BLACK);
+		MP_PLANTA_1C.setBounds(23, 378, 168, 23);
+		contentPane.add(MP_PLANTA_1C);
+		
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() ||
-MPPLANTAB.isSelected() ||MPPLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()){
+MPPLANTAB.isSelected() ||MPPLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()
+|| MP_PLANTA_1C.isSelected()){
 				almacenes="";
 				if(BRANDSEUA.isSelected())
 					almacenes=almacenes+"|"+BRANDSEUA.getText();
@@ -181,6 +189,8 @@ MPPLANTAB.isSelected() ||MPPLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SM
 					almacenes=almacenes+"|"+QUIMICOS.getText();
 				if(MPPLANTA.isSelected())
 					almacenes=almacenes+"|"+MPPLANTA.getText();
+				if(MP_PLANTA_1C.isSelected())
+					almacenes=almacenes+"|"+MP_PLANTA_1C.getText();
 				if(MPPLANTAB.isSelected())
 					almacenes=almacenes+"|"+MPPLANTAB.getText();
 				if(MPPLANTA2D.isSelected())
@@ -234,8 +244,8 @@ MPPLANTAB.isSelected() ||MPPLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SM
 				
 			}
 		});
-		btnAceptar.setBounds(530, 270, 185, 65);
-		contentPane.add(btnAceptar);
+		
+		
 		
 		JLabel lblElegirLosAlmacenes = new JLabel("Elegir los almaces, y verificar diferencias");
 		lblElegirLosAlmacenes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -250,6 +260,8 @@ MPPLANTAB.isSelected() ||MPPLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SM
 		lblNewLabel.setIcon(new ImageIcon(inicio.class.getResource("/imagenes/fondo.jpg")));
 		lblNewLabel.setBounds(0, 0, 865, 419);
 		contentPane.add(lblNewLabel);
+		btnAceptar.setBounds(530, 270, 185, 65);
+		contentPane.add(btnAceptar);
 		
 	}
 }

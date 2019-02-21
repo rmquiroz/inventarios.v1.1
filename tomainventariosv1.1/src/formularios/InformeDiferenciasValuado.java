@@ -28,6 +28,8 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+
+import reporteConteos.DiferenciasValuado;
 public class InformeDiferenciasValuado extends JFrame {
 
 	/**
@@ -166,8 +168,15 @@ public class InformeDiferenciasValuado extends JFrame {
 		SMO_J1_PT.setBackground(Color.BLACK);
 		SMO_J1_PT.setForeground(Color.WHITE);
 		SMO_J1_PT.setBounds(23,343, 168, 23);
-		contentPane.add(SMO_J1_PT);		
+		contentPane.add(SMO_J1_PT);	
 		
+		
+		final JCheckBox MP_PLANTA_1C = new JCheckBox("MP_PLANTA 1C");
+		MP_PLANTA_1C.setForeground(Color.WHITE);
+		MP_PLANTA_1C.setFont(new Font("Dialog", Font.BOLD, 12));
+		MP_PLANTA_1C.setBackground(Color.BLACK);
+		MP_PLANTA_1C.setBounds(23, 377, 168, 23);
+		contentPane.add(MP_PLANTA_1C);
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -175,7 +184,7 @@ public class InformeDiferenciasValuado extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			if(BRANDSEUA.isSelected() || UDMP.isSelected() || QUIMICOS.isSelected() || MPPLANTA.isSelected() ||
 					MPPLANTAB.isSelected() ||
-MP_PLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()){
+MP_PLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() || ETIQUETAS.isSelected()|| MP_PLANTA_1C.isSelected()){
 				almacenes="";
 				if(BRANDSEUA.isSelected())
 					almacenes=almacenes+"|"+BRANDSEUA.getText();
@@ -185,6 +194,8 @@ MP_PLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() |
 					almacenes=almacenes+"|"+QUIMICOS.getText();
 				if(MPPLANTA.isSelected())
 					almacenes=almacenes+"|"+MPPLANTA.getText();
+				if(MP_PLANTA_1C.isSelected())
+					almacenes=almacenes+"|"+MP_PLANTA_1C.getText();
 				if(MPPLANTAB.isSelected())
 					almacenes=almacenes+"|"+MPPLANTAB.getText();
 				if(MP_PLANTA2D.isSelected())
@@ -199,9 +210,8 @@ MP_PLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() |
 				System.out.println("Variable:"+almacenes);
 				//inventario.inventario i=new inventario.inventario();
 				//reporteConteos.ConteosExcel i=new reporteConteos.ConteosExcel();
-				reporteConteos.DiferenciasValuado fvst=new reporteConteos.DiferenciasValuado();
-				String repositorio="";
-				JOptionPane.showMessageDialog(contentPane,  fvst.main(almacenes,repositorio));
+					String repositorio="";
+				JOptionPane.showMessageDialog(contentPane,  DiferenciasValuado.main(almacenes,repositorio));
 			}
 			else{
 				
@@ -209,6 +219,7 @@ MP_PLANTA2D.isSelected() || SMO_J1_PT.isSelected() || SMO_MATERIA.isSelected() |
 				
 			}
 		});
+		
 		btnAceptar.setBounds(530, 270, 185, 65);
 		contentPane.add(btnAceptar);
 		

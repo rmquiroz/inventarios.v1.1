@@ -257,7 +257,7 @@ public class CrearUsuarios extends JFrame {
 		contentPane.add(lblNewLabel_4);
 
 		final JComboBox ComboConteo = new JComboBox();
-		ComboConteo.setModel(new DefaultComboBoxModel(new String[] {"Primer Conteo", "Segundo Conteo ", "Tercer Conteo", "Administrador"}));
+		ComboConteo.setModel(new DefaultComboBoxModel(new String[] {"Primer Conteo", "Segundo Conteo", "Tercer Conteo", "Administrador"}));
 		ComboConteo.setBounds(165, 249, 127, 23);
 		contentPane.add(ComboConteo);
 	
