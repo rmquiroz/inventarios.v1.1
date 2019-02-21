@@ -201,6 +201,13 @@ public class MarbetesTercero extends JFrame {
 		contentPane.add(mpPlanta_chbx);	
 		contentPane.add(mpPlanta_chbxB);	
 		contentPane.add(smoPT_chbx);		
+		
+		final JCheckBox MP_PLANTA_1C = new JCheckBox("MP_PLANTA 1C");
+		MP_PLANTA_1C.setForeground(Color.WHITE);
+		MP_PLANTA_1C.setFont(new Font("Dialog", Font.BOLD, 14));
+		MP_PLANTA_1C.setBackground(Color.BLACK);
+		MP_PLANTA_1C.setBounds(453, 276, 210, 23);
+		contentPane.add(MP_PLANTA_1C);
 		contentPane.add(lblNewLabel);
 		contentPane.add(lblNewLabel_5);
 		
@@ -210,7 +217,8 @@ public class MarbetesTercero extends JFrame {
 				
 			if(smoPT_chbx.isSelected() || mpPlanta_chbx.isSelected() || MP_PLANTA2D.isSelected() 
 					|| smoMP_chbx.isSelected() || quimicos_chbx.isSelected()||mpPlanta_chbxB.isSelected() 
-					|| mp_chbx.isSelected() || etiquetas_chbx.isSelected() || brandsEUA_chbx.isSelected())
+					|| mp_chbx.isSelected() || etiquetas_chbx.isSelected() || brandsEUA_chbx.isSelected()
+					|| MP_PLANTA_1C.isSelected())
 			{
 				if(smoPT_chbx.isSelected())
 					almacenes = almacenes + "|" + smoPT_chbx.getText();
@@ -224,6 +232,8 @@ public class MarbetesTercero extends JFrame {
 					almacenes = almacenes + "|" + smoMP_chbx.getText();
 				if(quimicos_chbx.isSelected())
 					almacenes = almacenes + "|" + quimicos_chbx.getText();
+				if(MP_PLANTA_1C.isSelected())
+					almacenes=almacenes+"|"+MP_PLANTA_1C.getText();		
 				if(mp_chbx.isSelected())
 					almacenes = almacenes + "|" + mp_chbx.getText();
 				if(etiquetas_chbx.isSelected())
